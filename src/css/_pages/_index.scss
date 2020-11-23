@@ -84,11 +84,13 @@
 		left: 0;
 		margin: 0;
 		padding: 0;
+		cursor: none;
 
 		.btn--prev,
 		.btn--next {
 			position: absolute;
 			display: none;
+			cursor: none;
 		}
 
 		&.prev {
@@ -125,6 +127,8 @@
 	.slider__slide {
 		.card--hero {
 			.picture {
+				cursor: none;
+
 				img {
 					opacity: 0;
 					transform: scale(1.1, 1.1);
