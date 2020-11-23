@@ -1,0 +1,29 @@
+@import 'fonts';
+@import 'mixins';
+
+@import '_components/reset';
+@import '_components/base';
+@import '_components/typography';
+@import '_components/buttons';
+@import '_components/forms';
+@import '_components/grid';
+@import '_components/groups';
+@import '_components/svg';
+@import '_components/lazy';
+@import '_components/appear';
+@import '_components/appear-stagger';
+@import '_components/navs';
+// @import '_components/dropdowns';
+// @import '_components/cards';
+@import '_components/slider';
+@import '_components/modal';
+
+@import '_pages/header';
+@import '_pages/footer';
+@import '_pages/index';
+
+/*
+@import '_pages/cookies';
+@import '_pages/gallery';
+@import '_pages/generic';
+*/

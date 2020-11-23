@@ -1,0 +1,138 @@
+.footer {
+	position: relative;
+	z-index: 1;
+	padding: 96px 0 72px 0;
+	font-size: 14px;
+	font-weight: 100;
+	background: #004987;
+	color: white;
+
+	.brand {
+		svg {
+			width: 130px;
+			height: 35px;
+		}
+	}
+
+	.btn--link {
+
+		&,
+		&:active,
+		&:focus,
+		&:hover,
+		&:visited {
+			color: #ffffff;
+		}
+	}
+
+	.websolute {
+		width: 77px;
+		height: 16px;
+	}
+
+	@include media-down(xs) {
+		text-align: center;
+	}
+}
+
+.nav--menu-tertiary {
+	@extend %nav-reset;
+	margin-bottom: 30px;
+
+	&>li {
+
+		&>.title,
+		&>a {
+			@extend %btn;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		&>.title {
+			font-weight: 500;
+		}
+
+		&>a {
+			font-weight: 100;
+			opacity: 0.8;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.nav--social {
+	@extend %nav-reset;
+	list-style: none;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	svg {
+		fill: currentColor;
+		margin: 0 12px;
+	}
+
+	.facebook {
+		width: 11px;
+		height: 20px;
+	}
+
+	.instagram {
+		width: 18px;
+		height: 18px;
+	}
+
+	.twitter {
+		width: 20.5px;
+		height: 17px;
+	}
+
+	.linkedin {
+		width: 18px;
+		height: 18px;
+	}
+
+	.youtube {
+		width: 20px;
+		height: 14px;
+	}
+
+	@include media-down(xs) {
+		justify-content: center;
+		padding: 40px 0;
+	}
+}
+
+.row--colophon {
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	padding-top: 40px;
+	font-size: 12px;
+	font-weight: 300;
+
+	@include media-up(sm) {
+		&>div {
+			&:nth-child(2) {
+				text-align: center;
+			}
+
+			&:last-child {
+				text-align: right;
+			}
+		}
+	}
+
+	@include media-down(xs) {
+		&>div {
+			text-align: center;
+			margin-bottom: 10px;
+
+			&:last-child {
+				margin-top: 40px;
+				margin-bottom: 0;
+			}
+		}
+	}
+}

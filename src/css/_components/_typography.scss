@@ -1,0 +1,263 @@
+body {
+	font-family: $font-primary;
+	font-weight: $font-light;
+	line-height: $line-height;
+	background: $background;
+	color: $foreground;
+
+	@include media-up(sm) {
+		font-size: $font-size;
+	}
+
+	@include media-down(xs) {
+		font-size: $font-size-xs;
+	}
+}
+
+%category {
+	@extend %reset-link;
+	font-family: $font-secondary;
+	font-size: 18px;
+	line-height: 1.15;
+	font-weight: $font-bold;
+
+	@include media-down(sm) {
+		font-size: 16px;
+	}
+}
+
+%title-hero {
+	@extend %reset-link;
+	font-family: $font-secondary;
+	font-style: italic;
+	line-height: 1.1;
+	text-transform: uppercase;
+
+	@include media-up(lg) {
+		font-size: 79px;
+	}
+
+	@include media-between(sm, lg) {
+		font-size: 5vw;
+	}
+
+	@include media-between(xs, sm) {
+		font-size: 54px;
+	}
+
+	@include media-down(xs) {
+		font-size: 40px;
+		line-height: 1.2;
+	}
+}
+
+%title {
+	@extend %reset-link;
+	font-family: $font-secondary;
+	font-style: italic;
+	line-height: 0.9;
+	text-transform: uppercase;
+
+	$s: 0.9;
+
+	@include media-up(lg) {
+		font-size: 120px * $s;
+	}
+
+	@include media-between(sm, lg) {
+		font-size: 8vw * $s;
+	}
+
+	@include media-between(xs, sm) {
+		font-size: 80px * $s;
+		word-break: break-word;
+	}
+
+	@include media-down(xs) {
+		font-size: 60px * $s;
+		line-height: 1.2;
+		word-break: break-word;
+	}
+}
+
+%title-secondary {
+	@extend %reset-link;
+	font-family: $font-secondary;
+	font-style: italic;
+	line-height: 0.9;
+	text-transform: uppercase;
+
+	@include media-up(lg) {
+		font-size: 84px;
+	}
+
+	@include media-between(sm, lg) {
+		font-size: 5.5vw;
+	}
+
+	@include media-between(xs, sm) {
+		font-size: 56px;
+		word-break: break-word;
+	}
+
+	@include media-down(xs) {
+		font-size: 56px;
+		line-height: 1.2;
+		word-break: break-word;
+	}
+}
+
+%subtitle {
+	@extend %reset-link;
+	font-family: $font-secondary;
+	font-style: italic;
+	line-height: 1.15;
+
+	@include media-up(lg) {
+		font-size: 52px;
+	}
+
+	@include media-between(sm, lg) {
+		font-size: 2.7vw;
+	}
+
+	@include media-between(xs, sm) {
+		font-size: 2.7vw * 1.5;
+	}
+
+	@include media-down(xs) {
+		font-size: 28px;
+	}
+}
+
+%abstract-primary {
+	font-family: $font-secondary;
+	font-style: italic;
+    line-height: 1.05;
+	margin-bottom: 20px;
+
+	p {
+		margin: 0 0 30px 0;
+	}
+
+	@include media-up(lg) {
+		font-size: 36px;
+	}
+
+	@include media-between(sm, lg) {
+		font-size: 2.8vw;
+	}
+
+	@include media-between(xs, sm) {
+		font-size: 3vw;
+	}
+
+	@include media-down(xs) {
+		font-size: 22px;
+	}
+}
+
+%abstract {
+	font-family: $font-primary;
+	font-size: 16px;
+	line-height: 1.5;
+	font-weight: $font-regular;
+
+	@include media-down(sm) {
+		font-size: 15px;
+	}
+}
+
+%description-primary {
+	font-family: $font-primary;
+	font-size: 21px;
+	line-height: 1.42;
+	font-weight: $font-regular;
+	margin-bottom: 40px;
+
+	p {
+		margin: 0 0 30px 0;
+	}
+
+	@include media-down(sm) {
+		font-size: 17px;
+	}
+}
+
+%description {
+	font-family: $font-primary;
+	font-size: 16px;
+	line-height: 1.5;
+	font-weight: $font-regular;
+
+	p {
+		margin: 0 0 30px 0;
+	}
+
+	@include media-down(sm) {
+		font-size: 15px;
+	}
+}
+
+/*
+body {
+	font-family: $font-primary;
+	font-weight: $font-light;
+	line-height: $line-height;
+	background: $background;
+	color: $foreground;
+
+	@include media-up(sm) {
+		font-size: $font-size;
+	}
+
+	@include media-down(xs) {
+		font-size: $font-size-xs;
+	}
+}
+
+b,
+strong {
+	font-weight: $font-semibold;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+	font-family: $font-primary;
+	font-weight: $font-semibold;
+}
+
+.h1 {
+	font-size: 4rem;
+	line-height: 1;
+	margin-bottom: 40px;
+}
+
+.h2 {
+	font-size: 3.5rem;
+	line-height: 1;
+	margin-bottom: 30px;
+}
+
+.h3 {
+	font-size: 3rem;
+	margin-bottom: 20px;
+}
+
+.h4 {
+	font-size: 2.5rem;
+	margin-bottom: 10px;
+}
+
+.h5 {
+	font-size: 2rem;
+}
+
+.h6 {
+	font-size: 1.5rem;
+}
+
+*/

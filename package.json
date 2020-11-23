@@ -1,0 +1,32 @@
+{
+	"author": "Luca Zampetti <lzampetti@gmail.com>",
+	"name": "stipa",
+	"description": "stipa",
+	"version": "1.0.0",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/actarian/stipa.git"
+	},
+	"engines": {
+		"node": "10.x"
+	},
+	"main": "dist/server/main.js",
+	"scripts": {
+		"start": "node dist/server/main.js"
+	},
+	"dependencies": {
+		"gsap": "3.5.1",
+		"rxjs": "6.6.3",
+		"rxcomp": "1.0.0-beta.19",
+		"rxcomp-form": "1.0.0-beta.18",
+		"swiper": "6.3.5",
+		"body-parser": "1.19.0",
+		"events": "3.2.0",
+		"express": "4.17.1",
+		"https": "1.0.0"
+	},
+	"devDependencies": {
+		"gulpfile-config": "1.0.0-alpha.14"
+	}
+}
