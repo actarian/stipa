@@ -8,9 +8,15 @@
 	color: white;
 
 	.brand {
+		margin-bottom: 64px;
+
 		svg {
-			width: 130px;
-			height: 35px;
+			width: 120px;
+			height: 48px;
+		}
+
+		@include media-up(sm) {
+			display: none;
 		}
 	}
 

@@ -5,8 +5,8 @@
 				<a href="/stipa/" class="brand"><svg class="logo-stipa"><use xlink:href="#logo-stipa"></use></svg></a>
 			</div>
 			<div class="group--right">
-				<span class="btn--search"><svg class="search"><use xlink:href="#search"></use></svg></span>
-				<span class="btn--hamburger" (click)="onMainToggle($event)"><svg class="hamburger"><use xlink:href="#hamburger"></use></svg></span>
+				<button type="button" class="btn--search"><svg class="search"><use xlink:href="#search"></use></svg></button>
+				<button type="button" class="btn--hamburger" (click)="onMainToggle($event)"><svg class="hamburger"><use xlink:href="#hamburger"></use></svg></button>
 			</div>
 		</div>
 	</div>
@@ -14,54 +14,43 @@
 		<div class="container">
 			<div class="group--header">
 				<div class="group--left">
-					<ul class="nav--secondary-menu">
-						<li><span (click)="onMainToggle($event)">Menu</span></li>
-						<li><a href="#">En</a></li>
-					</ul>
-				</div>
-				<div class="group--center">
-					<a href="/stipa/" class="brand"><svg class="stipa-badge"><use xlink:href="#stipa-badge"></use></svg></a>
+					<a href="/stipa/" class="brand"><svg class="logo-stipa"><use xlink:href="#logo-stipa"></use></svg></a>
 				</div>
 				<div class="group--right">
-					<ul class="nav--secondary-menu">
-						<li><a href="/stipa/downloads.html">Downloads</a></li>
-						<li><a href="/stipa/contacts.html">Contacts</a></li>
-					</ul>
+					<button type="button" class="btn--search"><svg class="search"><use xlink:href="#search"></use></svg></button>
+					<button type="button" class="btn--close" (click)="onMainToggle($event)"><svg class="close"><use xlink:href="#close"></use></svg></button>
 				</div>
 			</div>
-		</div>
-		<div class="group--main-menu">
-			<div class="container">
+			<div class="group--main">
 				<ul class="nav--primary-menu">
-					<li><a href="/stipa/we-know-light.html">We Know Light</a></li>
-					<li><a href="/stipa/heritage.html">Heritage</a></li>
-					<li><a href="/stipa/how-we-do.html">How we do</a></li>
-					<li class="secondary" [class]="{ open: isSubOpen(2) }">
-						<span (click)="onOpenSub(2)" (clickOutside)="onCloseSub(2)">Yacht Lighting Collection</span>
+					<li class="secondary" [class]="{ active: isSubOpen(1) }">
+						<span (click)="onOpenSub(1)" (clickOutside)="onCloseSub(1)">About <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></span>
 						<ul>
-							<li><a href="/stipa/exclusive-yachts-exteriors.html">For Interiors</a></li>
-							<li><a href="/stipa/exclusive-yachts-exteriors.html">For Exteriors</a></li>
+							<li><a href="#">Lorem</a></li>
+							<li><a href="#">Ipsum</a></li>
+							<li><a href="#">Dolor sit</a></li>
+							<li><a href="#">Amet</a></li>
 						</ul>
 					</li>
-					<li class="secondary" [class]="{ open: isSubOpen(1) }">
-						<span (click)="onOpenSub(1)" (clickOutside)="onCloseSub(1)">Villa Lighting Collection</span>
+					<li class="secondary" [class]="{ active: isSubOpen(2) }">
+						<span (click)="onOpenSub(2)" (clickOutside)="onCloseSub(2)">Portfolio <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></span>
 						<ul>
-							<li><a href="#">For Interiors</a></li>
-							<li><a href="#">For Exteriors</a></li>
+							<li><a href="#">Stands</a></li>
+							<li><a href="#">Events</a></li>
+							<li><a href="#">Mostre e musei</a></li>
+							<li><a href="#">Showroom e negozi</a></li>
 						</ul>
 					</li>
-					<li class="secondary"><a href="#">Otto-Portable</a></li>
-					<li class="secondary"><a href="/stipa/bespoke.html">Bespoke</a></li>
-					<li class="secondary" [class]="{ open: isSubOpen(3) }">
-						<span (click)="onOpenSub(3)" (clickOutside)="onCloseSub(3)">Lighting Systems</span>
-						<ul>
-							<li><a href="#">Lighting Surfaces</a></li>
-							<li><a href="#">Straight Track</a></li>
-						</ul>
-					</li>
-					<li><a href="/stipa/stipa-world.html">Stipa World</a></li>
-					<li><a href="/stipa/contacts.html">Contacts</a></li>
+					<li><a href="#">Magazine</a></li>
+					<li><a href="#">Contatti</a></li>
+					<li><a href="#">FAQ</a></li>
 				</ul>
+			</div>
+			<div class="group--footer">
+				<div class="group--left"></div>
+				<div class="group--right">
+					<a href="#" class="btn--language">EN</a>
+				</div>
 			</div>
 		</div>
 	</div>

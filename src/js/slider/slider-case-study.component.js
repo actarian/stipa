@@ -32,20 +32,25 @@ export default class SliderCaseStudyComponent extends SliderComponent {
 	}
 
 	get wrapperStyle() {
-		const { node } = getContext(this);
-		const slideWidth = (node.offsetWidth / 12 * 10) + 40;
-		return { 'transform': 'translate3d(' + -slideWidth * this.state.current + 'px, 0, 0)' };
+		return { 'transform': 'translate3d(' + -this.slideWidth * this.state.current + 'px, 0, 0)' };
 	}
 
 	get innerStyle() {
+		return { 'width': this.slideWidth * this.items.length + 'px' };
+	}
+
+	get slideWidth() {
 		const { node } = getContext(this);
-		const slideWidth = (node.offsetWidth / 12 * 10) + 40;
 		// const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-		return { 'width': slideWidth * this.items.length + 'px' };
+		const slideWidth = (window.innerWidth < 768 ? node.offsetWidth: (node.offsetWidth / 12 * 10)) + 40;
+		return slideWidth;
 	}
 
 	onInit() {
 		super.onInit();
+		this.resize$().pipe(
+			takeUntil(this.unsubscribe$)
+		).subscribe(() => this.pushChanges());
 		this.changed$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe();
@@ -67,6 +72,10 @@ export default class SliderCaseStudyComponent extends SliderComponent {
 				pagination.classList.add('prev');
 			}
 		}
+	}
+
+	resize$() {
+		return fromEvent(window, 'resize');
 	}
 
 	raf$() {

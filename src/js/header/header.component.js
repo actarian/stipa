@@ -15,7 +15,6 @@ export default class HeaderComponent extends Component {
 	}
 
 	onMainToggle() {
-		return; // !!!
 		this.mainActive = !this.mainActive;
 		const { node } = getContext(this);
 		const items = Array.prototype.slice.call(node.querySelectorAll('.nav--primary-menu > li'));
