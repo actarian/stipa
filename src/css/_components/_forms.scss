@@ -7,7 +7,7 @@ $pristine: $foreground;
 $dirty: $foreground;
 $touched: $foreground;
 $valid: $foreground;
-$invalid: #A28850;
+$invalid: #AC3C72;
 
 %btn--disabled {
 	opacity: 0.5;
@@ -18,12 +18,10 @@ $invalid: #A28850;
 %label {
 	display: block;
 	flex: 0 0 100%;
-	font-family: $font-primary;
-	font-size: 10px;
-	font-weight: $font-semibold;
+	font-size: 14px;
 	line-height: $line;
 	margin-bottom: -1px;
-	color: #818C8E;
+	color: #ffffff;
 	// text-transform: uppercase;
 }
 
@@ -37,7 +35,6 @@ $invalid: #A28850;
 	display: flex;
 	flex-wrap: wrap;
 	padding: 3px 1px;
-	border-bottom: 1px solid rgba(#1D1D1B, 0.5);
 	margin-bottom: 15px;
 
 	label {
@@ -98,13 +95,14 @@ $invalid: #A28850;
 }
 
 %control--text {
-	@include autofill($foreground, transparent);
+	@include autofill($foreground, #ffffff);
 	flex: 1 1 auto;
 	max-width: 100%;
-	margin: 0;
-	padding: 5px 20px 5px 0;
-	background: none;
+	padding: 8px;
+    margin: 8px 0 0 0;
+	background: #ffffff;
 	border: none;
+	border-radius: 2px;
 	outline: none;
 	appearance: none;
 	color: $foreground;
@@ -137,31 +135,6 @@ $invalid: #A28850;
 }
 
 .form {
-
-	.title {
-		@extend %abstract;
-	}
-
-	.group--cta {
-		display: flex;
-		justify-content: center;
-	}
-
-	.group--info {
-		text-align: center;
-		margin: 40px 0;
-	}
-
-	.btn--submit {
-		opacity: 0.5;
-	}
-
-	&.valid {
-		.btn--submit {
-			opacity: 1;
-		}
-	}
-
 	[control-custom-select] .dropdown {
 		top: 100%;
 		width: 100%;
@@ -172,12 +145,14 @@ $invalid: #A28850;
 }
 
 .group--error {
-	background: #fae6e6;
-	color: #dc1215;
-	text-align: center;
-	padding: 5px;
-	font-size: 16px;
-	font-weight: 600;
+	background: transparent;
+    border: 1px solid white;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 24px;
 }
 
 fieldset,
@@ -200,7 +175,6 @@ fieldset,
 	@extend %group--form;
 	padding: 10px 0;
 	border: none;
-	border-bottom: 1px solid rgba(#1D1D1B, 0.5);
 
 	.control--text {
 		resize: vertical;
@@ -331,17 +305,16 @@ fieldset,
 
 errors-component {
 	display: block;
+	transform: translateY(-8px);
 
 	.inner {
-		@extend %label;
 		margin-top: -10px;
 		margin-bottom: 10px;
-		background: $invalid;
-		color: $foreground-negative;
+		background: rgba(0,0,0,0.15);
+		color: white;
 		padding: 5px 8px;
-		font-size: 11px;
-		font-weight: 100;
-		letter-spacing: 0.5px;
+		font-size: 12px;
+		font-weight: 400;
 	}
 }
 
@@ -364,6 +337,7 @@ errors-component {
 	align-items: flex-start;
 	flex-wrap: wrap;
 
+	/*
 	@include media-up(lg) {
 		$gutter: 30px;
 		margin-left: - $gutter / 2;
@@ -378,8 +352,9 @@ errors-component {
 			}
 		}
 	}
+	*/
 
-	@include media-down(md) {
+	@include media-up(sm) {
 		$gutter: 30px;
 		margin-left: - $gutter / 2;
 		margin-right: - $gutter / 2;

@@ -185,6 +185,8 @@
 }
 
 .section--case-studies {
+	padding: 0 0 80px 0;
+
 	&__badge {
 		margin-bottom: 16px;
 	}
@@ -281,7 +283,7 @@
 		}
 	}
 
-	.btn--next {
+	.btn--prev+.btn--next {
 		border-left: 0;
 	}
 }
@@ -397,7 +399,7 @@
 }
 
 .section--listing {
-	padding: 80px 0 0 0;
+	padding: 0 0 0 0;
 	text-align: center;
 
 	&__badge {

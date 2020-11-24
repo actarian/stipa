@@ -1636,6 +1636,82 @@ AuthSignupComponent.meta = {
 }(rxcomp.Directive);
 ClickOutsideDirective.meta = {
   selector: "[(clickOutside)]"
+};var ContactsComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(ContactsComponent, _Component);
+
+  function ContactsComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = ContactsComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    var _this = this;
+
+    var form = new rxcompForm.FormGroup({
+      fullName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      email: new rxcompForm.FormControl(null, [rxcompForm.Validators.RequiredValidator(), rxcompForm.Validators.EmailValidator()]),
+      // privacy: new FormControl(null, Validators.RequiredValidator()),
+      checkRequest: window.antiforgery,
+      checkField: ''
+    });
+    var controls = this.controls = form.controls;
+    form.changes$.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (changes) {
+      _this.pushChanges();
+    });
+    this.form = form;
+    this.error = null;
+    this.success = false;
+  };
+
+  _proto.test = function test() {
+    var role = this.controls.role.options.length ? this.controls.role.options[0].id : null;
+    this.form.patch({
+      fullName: 'Jhon Appleseed',
+      email: 'jhonappleseed@gmail.com',
+      // privacy: true,
+      checkRequest: window.antiforgery,
+      checkField: ''
+    });
+  };
+
+  _proto.reset = function reset() {
+    this.form.reset();
+  };
+
+  _proto.onSubmit = function onSubmit() {
+    var _this2 = this;
+
+    if (this.form.valid) {
+      this.form.submitted = true;
+      HttpService.post$('/api/contacts', this.form.value).subscribe(function (response) {
+        _this2.success = true;
+
+        _this2.form.reset(); // this.pushChanges();
+
+        /*
+        dataLayer.push({
+        	'event': 'formSubmission',
+        	'formType': 'Contacts'
+        });
+        */
+
+      }, function (error) {
+        console.log('ContactsComponent.error', error);
+        _this2.error = error;
+
+        _this2.pushChanges();
+      });
+    } else {
+      this.form.touched = true;
+    }
+  };
+
+  return ContactsComponent;
+}(rxcomp.Component);
+ContactsComponent.meta = {
+  selector: '[contacts]',
+  inputs: ['flag']
 };var DROPDOWN_ID = 1000000;
 
 var DropdownDirective = /*#__PURE__*/function (_Directive) {
@@ -2132,6 +2208,129 @@ ErrorsComponent.meta = {
   template:
   /* html */
   "\n\t<div class=\"inner\" [style]=\"{ display: control.invalid && control.touched ? 'block' : 'none' }\">\n\t\t<div class=\"error\" *for=\"let [key, value] of control.errors\">\n\t\t\t<span [innerHTML]=\"getLabel(key, value)\"></span>\n\t\t\t<!-- <span class=\"key\" [innerHTML]=\"key\"></span> <span class=\"value\" [innerHTML]=\"value | json\"></span> -->\n\t\t</div>\n\t</div>\n\t"
+};var GalleryModalComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(GalleryModalComponent, _Component);
+
+  function GalleryModalComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = GalleryModalComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    _Component.prototype.onInit.call(this);
+
+    this.mode = 'slider';
+
+    var _getContext = rxcomp.getContext(this),
+        parentInstance = _getContext.parentInstance,
+        node = _getContext.node;
+
+    if (parentInstance instanceof ModalOutletComponent) {
+      var data = this.data = parentInstance.modal.data;
+      this.sliderItems = data.items;
+      this.sliderIndex = data.index;
+    }
+  };
+
+  _proto.close = function close() {
+    ModalService.reject();
+  };
+
+  _proto.toggleMode = function toggleMode() {
+    this.mode = this.mode === 'slider' ? 'grid' : 'slider';
+    this.pushChanges();
+  };
+
+  _proto.onChange = function onChange(event) {// console.log('onChange', event);
+  };
+
+  _proto.onTween = function onTween(event) {// console.log('onTween', event);
+  };
+
+  _proto.onSelect = function onSelect(index) {
+    this.sliderIndex = index;
+    this.mode = 'slider';
+    this.pushChanges();
+  };
+
+  return GalleryModalComponent;
+}(rxcomp.Component);
+GalleryModalComponent.meta = {
+  selector: '[gallery-modal]'
+};var GALLERY_MODAL = BASE_HREF + 'gallery-modal.html';
+
+var GalleryComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(GalleryComponent, _Component);
+
+  function GalleryComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = GalleryComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    var _this = this;
+
+    this.galleryItems.forEach(function (item) {
+      if (GalleryComponent.items.indexOf(item) === -1) {
+        GalleryComponent.items.push(item);
+      }
+    });
+    this.click$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (event) {
+      return _this.onOpenGallery(event);
+    });
+  };
+
+  _proto.click$ = function click$() {
+    var _getContext = rxcomp.getContext(this),
+        node = _getContext.node;
+
+    return rxjs.fromEvent(node, 'click');
+  };
+
+  _proto.onOpenGallery = function onOpenGallery(event) {
+    var items = GalleryComponent.items;
+    var index = items.indexOf(this.firstGalleryItem); // console.log('GalleryComponent.onOpenGallery', this.gallery, items, index);
+
+    ModalService.open$({
+      src: GALLERY_MODAL,
+      data: {
+        items: items,
+        index: index
+      }
+    }).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (event) {// this.pushChanges();
+    });
+  };
+
+  _createClass(GalleryComponent, [{
+    key: "galleryItems",
+    get: function get() {
+      if (typeof this.gallery === 'string') {
+        return [this.gallery];
+      } else if (Array.isArray(this.gallery)) {
+        return this.gallery;
+      } else {
+        return [];
+      }
+    }
+  }, {
+    key: "firstGalleryItem",
+    get: function get() {
+      var items = this.galleryItems;
+
+      if (items.length) {
+        return items[0];
+      }
+    }
+  }]);
+
+  return GalleryComponent;
+}(rxcomp.Component);
+GalleryComponent.items = [];
+GalleryComponent.meta = {
+  selector: '[gallery]',
+  inputs: ['gallery']
 };var CssService = /*#__PURE__*/function () {
   function CssService() {}
 
@@ -2906,75 +3105,19 @@ SliderComponent.meta = {
     return rxjs.fromEvent(window, 'resize');
   };
 
-  _proto.raf$ = function raf$() {
-    return rxjs.interval(0, rxjs.animationFrameScheduler);
-  };
-
-  _proto.mouse$ = function mouse$() {
-    var event = {
-      x: 0,
-      y: 0
-    };
-    return rxjs.fromEvent(window, 'mousemove').pipe(operators.map(function (mouseEvent) {
-      event.x = mouseEvent.clientX;
-      event.y = mouseEvent.clientY;
-      return event;
-    }));
-  };
-
-  _proto.pagination$ = function pagination$() {
+  _proto.changed$ = function changed$() {
     var _this2 = this;
 
-    var _getContext = rxcomp.getContext(this),
-        node = _getContext.node;
-
-    var position = {
-      x: 0,
-      y: 0
-    };
-    var pagination = node.querySelector('.slider__pagination');
-    return rxjs.combineLatest([this.mouse$(), this.raf$()]).pipe(operators.tap(function (datas) {
-      var mouse = datas[0];
-      position.x += (mouse.x - position.x) / 20;
-      position.y += (mouse.y - position.y) / 20; // const rect = node.getBoundingClientRect();
-
-      _this2.direction = mouse.x > window.innerWidth / 2 ? 1 : -1;
-      pagination.style.transform = "translateX(" + position.x + "px) translateY(" + position.y + "px)";
-    }));
-  };
-
-  _proto.click$ = function click$() {
-    var _this3 = this;
-
-    var _getContext2 = rxcomp.getContext(this),
-        node = _getContext2.node;
-
-    return rxjs.fromEvent(node, 'click').pipe(operators.map(function (event) {
-      if (event.clientX > window.innerWidth / 2) {
-        // if (this.hasNext()) {
-        _this3.navTo(_this3.state.current + 1); // }
-
-      } else {
-        // if (this.hasPrev()) {
-        _this3.navTo(_this3.state.current - 1); // }
-
-      }
-    }));
-  };
-
-  _proto.changed$ = function changed$() {
-    var _this4 = this;
-
     return this.change.pipe(operators.tap(function () {
-      return _this4.setActiveState();
+      return _this2.setActiveState();
     }));
   };
 
   _proto.setActiveState = function setActiveState() {
     var current = this.current;
 
-    var _getContext3 = rxcomp.getContext(this),
-        node = _getContext3.node;
+    var _getContext = rxcomp.getContext(this),
+        node = _getContext.node;
 
     var slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
     slides.forEach(function (slide, i) {
@@ -2983,15 +3126,15 @@ SliderComponent.meta = {
   };
 
   _proto.onContentOver = function onContentOver() {
-    var _getContext4 = rxcomp.getContext(this),
-        node = _getContext4.node;
+    var _getContext2 = rxcomp.getContext(this),
+        node = _getContext2.node;
 
     node.classList.add('content-over');
   };
 
   _proto.onContentOut = function onContentOut() {
-    var _getContext5 = rxcomp.getContext(this),
-        node = _getContext5.node;
+    var _getContext3 = rxcomp.getContext(this),
+        node = _getContext3.node;
 
     node.classList.remove('content-over');
   };
@@ -3053,32 +3196,12 @@ SliderComponent.meta = {
   }, {
     key: "slideWidth",
     get: function get() {
-      var _getContext6 = rxcomp.getContext(this),
-          node = _getContext6.node; // const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+      var _getContext4 = rxcomp.getContext(this),
+          node = _getContext4.node; // const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
 
 
       var slideWidth = (window.innerWidth < 768 ? node.offsetWidth : node.offsetWidth / 12 * 10) + 40;
       return slideWidth;
-    }
-  }, {
-    key: "direction",
-    set: function set(direction) {
-      if (this.direction_ !== direction) {
-        this.direction_ = direction;
-
-        var _getContext7 = rxcomp.getContext(this),
-            node = _getContext7.node;
-
-        var pagination = node.querySelector('.slider__pagination');
-
-        if (direction == 1) {
-          pagination.classList.remove('prev');
-          pagination.classList.add('next');
-        } else {
-          pagination.classList.remove('next');
-          pagination.classList.add('prev');
-        }
-      }
     }
   }]);
 
@@ -3088,6 +3211,116 @@ SliderCaseStudyComponent.meta = {
   selector: '[slider-case-study]',
   inputs: ['items', 'current', 'autoplay'],
   outputs: ['change', 'tween']
+};var SliderGalleryComponent = /*#__PURE__*/function (_SliderComponent) {
+  _inheritsLoose(SliderGalleryComponent, _SliderComponent);
+
+  function SliderGalleryComponent() {
+    return _SliderComponent.apply(this, arguments) || this;
+  }
+
+  var _proto = SliderGalleryComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    var _this = this;
+
+    _SliderComponent.prototype.onInit.call(this);
+
+    this.changed$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
+    setTimeout(function () {
+      _this.setActiveState();
+    }, 500);
+  };
+
+  _proto.changed$ = function changed$() {
+    var _this2 = this;
+
+    return this.change.pipe(operators.tap(function () {
+      return _this2.setActiveState();
+    }));
+  };
+
+  _proto.setActiveState = function setActiveState() {
+    var current = this.current;
+
+    var _getContext = rxcomp.getContext(this),
+        node = _getContext.node;
+
+    var slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+    slides.forEach(function (slide, i) {
+      return i === current ? slide.classList.add('active') : slide.classList.remove('active');
+    });
+  };
+
+  _proto.navTo = function navTo(current) {
+    _SliderComponent.prototype.navTo.call(this, current);
+  };
+
+  _proto.doClose = function doClose() {
+    this.close.next();
+  };
+
+  _proto.toggleMode = function toggleMode() {
+    this.mode.next();
+  };
+
+  _createClass(SliderGalleryComponent, [{
+    key: "items",
+    get: function get() {
+      return this.items_ || [];
+    },
+    set: function set(items) {
+      if (this.items_ !== items) {
+        this.items_ = items;
+      }
+    }
+  }, {
+    key: "current",
+    get: function get() {
+      return this.state.current || 0;
+    },
+    set: function set(current) {
+      if (current === void 0) {
+        current = 0;
+      }
+
+      if (this.state.current !== current) {
+        this.state.current = current;
+        this.change.next(current);
+      }
+    }
+  }, {
+    key: "state",
+    get: function get() {
+      if (!this.state_) {
+        this.state_ = {
+          current: 0
+        };
+      }
+
+      return this.state_;
+    }
+  }, {
+    key: "wrapperStyle",
+    get: function get() {
+      return {
+        'transform': 'translate3d(' + -100 * this.state.current + '%, 0, 0)'
+      };
+    }
+  }, {
+    key: "innerStyle",
+    get: function get() {
+      return {
+        'width': 100 * this.items.length + '%'
+      };
+    }
+  }]);
+
+  return SliderGalleryComponent;
+}(SliderComponent);
+SliderGalleryComponent.meta = {
+  selector: '[slider-gallery]',
+  inputs: ['items', 'current', 'autoplay'],
+  outputs: ['change', 'tween', 'close', 'mode']
 };var SliderHeroComponent = /*#__PURE__*/function (_SliderComponent) {
   _inheritsLoose(SliderHeroComponent, _SliderComponent);
 
@@ -3740,6 +3973,6 @@ VirtualStructure.meta = {
 }(rxcomp.Module);
 AppModule.meta = {
   imports: [rxcomp.CoreModule, rxcompForm.FormModule],
-  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, HeaderComponent, HtmlPipe, ModalComponent, ModalOutletComponent, ScrollToDirective, SecureDirective, ShareComponent, SliderComponent, SliderHeroComponent, SliderCaseStudyComponent, SlugPipe, VirtualStructure],
+  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, ModalComponent, ModalOutletComponent, ScrollToDirective, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, VirtualStructure],
   bootstrap: AppComponent
 };rxcomp.Browser.bootstrap(AppModule);})));

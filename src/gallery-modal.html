@@ -1,8 +1,82 @@
 <div class="modal--gallery" gallery-modal>
-	<div class="modal__header">
-		<button type="button" class="btn--close" (click)="close()">
-			<svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#close"></use></svg>
-		</button>
+	<div class="slider__container slider--modal" slider-gallery [items]="sliderItems" [current]="sliderIndex" (tween)="onTween($event)" (change)="onChange($event)" (close)="close()" (mode)="toggleMode()" *if="sliderItems && mode == 'slider'">
+		<div class="container">
+			<div class="group--header">
+				<div class="group--left">
+					<span class="counter" [innerHTML]="(current + 1) + '/' + items.length"></span>
+				</div>
+				<div class="group--center">
+					<a href="/stipa/" class="brand"><svg class="logo-stipa"><use xlink:href="#logo-stipa"></use></svg></a>
+				</div>
+				<div class="group--right">
+					<button type="button" class="btn--close" (click)="doClose()">
+						<svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#close"></use></svg>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="slider__wrapper" [style]="wrapperStyle">
+			<div class="slider__inner" [style]="innerStyle">
+				<div class="slider__slide" *for="let item of items; let index = index;">
+					<div class="card--modal">
+						<div class="picture">
+							<img loading="lazy" [src]="item" ondragstart="return false;" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="group--footer">
+				<!--
+				<div class="slider__bullets">
+					<span class="slider__bullet" [class]="{ active: index === state.current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
+				</div>
+				-->
+				<div class="slider__pagination">
+					<div class="group--left">
+						<button type="button" class="btn--prev" [class]="{ disabled: !hasPrev() }" (click)="navTo(current - 1)">
+							<svg class="arrow-prev"><use xlink:href="#arrow-prev"></use></svg>
+						</button>
+					</div>
+					<div class="group--center">
+						<button type="button" class="btn--grid" (click)="toggleMode(event)"><svg class="grid"><use xlink:href="#grid"></use></svg></button>
+					</div>
+					<div class="group--right">
+						<button type="button" class="btn--next" [class]="{ disabled: !hasNext() }" (click)="navTo(current + 1)">
+							<svg class="arrow-next"><use xlink:href="#arrow-next"></use></svg>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- @@include ./templates/shared/slider.html -->
+	<div class="gallery-grid" *if="sliderItems && mode === 'grid'">
+		<div class="container">
+			<div class="group--header">
+				<div class="group--left"></div>
+				<div class="group--center">
+					<a href="/stipa/" class="brand"><svg class="logo-stipa"><use xlink:href="#logo-stipa"></use></svg></a>
+				</div>
+				<div class="group--right">
+					<button type="button" class="btn--close" (click)="close()">
+						<svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#close"></use></svg>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="group--main">
+			<div class="container">
+				<div class="listing--grid">
+					<div class="listing__item" *for="let item of sliderItems; let index = index;">
+						<div class="card--grid" (click)="onSelect(index)">
+							<div class="picture">
+								<img loading="lazy" [src]="item" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

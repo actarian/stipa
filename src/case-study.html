@@ -1,0 +1,282 @@
+<!-- @@master = ./templates/layout.html { "baseHref": "/stipa/" } -->
+
+<!-- @@block = main-->
+
+<!-- @@include ./templates/shared/header.html { "path": "<ul class=\"nav--path\"><li>Portfolio</li><li>/</li><li>Stand</li><li>/</li><li>Sap</li></ul>" } -->
+
+<section class="section--hero-secondary">
+	<div class="background">
+		<img loading="lazy" src="/stipa/img/index/hero@2x.jpg" />
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6">
+				<div class="title">Sap</div>
+				<div class="abstract">Sap Now 2019 / Milano</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--text">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 offset-sm-2">
+				<div class="text">In occasione dell’evento SAP Now, Hi-Comm, società del gruppo Imageware con esperienza professionale nell’organizzazione e gestione di eventi, sceglie ancora una volta Stipa per l’edizione 2019 in scena a FieraMilanoCity.</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--gallery">
+	<div class="slider__container slider--gallery" slider-gallery [autoplay]="5000">
+		<div class="slider__wrapper" [style]="wrapperStyle">
+			<div class="slider__inner" [style]="innerStyle">
+				<!-- SLIDE -->
+				<div class="slider__slide">
+					<div class="card--gallery">
+						<div class="picture">
+							<img loading="lazy" src="/stipa/img/case-study/01@2x.jpg" ondragstart="return false;" />
+						</div>
+					</div>
+				</div>
+				<!-- SLIDE -->
+				<div class="slider__slide">
+					<div class="card--gallery">
+						<div class="picture">
+							<img loading="lazy" src="/stipa/img/index/case-study-01@2x.jpg" ondragstart="return false;" />
+						</div>
+					</div>
+				</div>
+				<!-- SLIDE -->
+				<div class="slider__slide">
+					<div class="card--gallery">
+						<div class="picture">
+							<img loading="lazy" src="/stipa/img/index/case-study-02@2x.jpg" ondragstart="return false;" />
+						</div>
+					</div>
+				</div>
+				<!-- SLIDE -->
+				<div class="slider__slide">
+					<div class="card--gallery">
+						<div class="picture">
+							<img loading="lazy" src="/stipa/img/index/case-study-03@2x.jpg" ondragstart="return false;" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="slider__bullets">
+				<span class="slider__bullet" [class]="{ active: index === state.current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
+			</div>
+			<div class="slider__pagination">
+				<div class="group--left">
+					<button type="button" class="btn--prev" [class]="{ disabled: !hasPrev() }" (click)="navTo(current - 1)">
+						<svg class="arrow-prev"><use xlink:href="#arrow-prev"></use></svg>
+					</button>
+				</div>
+				<div class="group--center">
+					<button type="button" class="btn--primary" [gallery]="['/stipa/img/case-study/01@2x.jpg', '/stipa/img/index/case-study-01@2x.jpg', '/stipa/img/index/case-study-02@2x.jpg', '/stipa/img/index/case-study-03@2x.jpg']" data-title="Guarda la gallery completa">Guarda la gallery completa</button>
+				</div>
+				<div class="group--right">
+					<button type="button" class="btn--next" [class]="{ disabled: !hasNext() }" (click)="navTo(current + 1)">
+						<svg class="arrow-next"><use xlink:href="#arrow-next"></use></svg>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--picture-full">
+	<div class="picture picture--gallery" gallery="/stipa/img/case-study/02@2x.jpg">
+		<img loading="lazy" src="/stipa/img/case-study/02@2x.jpg" ondragstart="return false;" />
+		<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+	</div>
+</section>
+
+<section class="section--quote">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 offset-sm-2">
+				<div class="quote">“Oggi tutti i fornitori di beni e servizi sono chiamati ad ascoltare le intenzioni, i sentimenti, i bisogni dei clienti per poter soddisfare le loro aspettative. Considerando che il consumatore è ormai perennemente connesso a internet con vari dispositivi, l’esperienza nel valutare l’offerta generale diventa il vero fattore differenziante.”</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--picture-text">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-7 col-md-7">
+				<div class="picture picture--gallery" gallery="/stipa/img/case-study/03@2x.jpg">
+					<img loading="lazy" src="/stipa/img/case-study/03@2x.jpg" />
+					<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+				</div>
+			</div>
+			<div class="col-sm-4 col-md-4 offset-sm-1" appear-stagger>
+				<div class="abstract">Al centro del padiglione è stata allestita la Plenaria, dove due schermi opposti collegati da un’ampia pedana hanno ospitato gli interventi più importanti e spettacoli di intrattenimento.</div>
+				<div class="group--cta">
+					<button type="button" class="btn--primary" gallery="/stipa/img/case-study/03@2x.jpg" data-title="Guarda la gallery completa">Guarda la gallery completa</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--text-picture">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 col-md-4" appear-stagger>
+				<div class="abstract">8 teatri hanno permesso la regia in contemporanea di diversi workshop e tante isole tematiche distribuite nei 16.000 mq dell’evento hanno garantito il giusto spazio ai 90 brand sponsor della manifestazione.</div>
+				<div class="group--cta">
+					<button type="button" class="btn--primary" gallery="/stipa/img/case-study/04@2x.jpg" data-title="Guarda la gallery completa">Guarda la gallery completa</button>
+				</div>
+			</div>
+			<div class="col-sm-7 col-md-7 offset-sm-1">
+				<div class="picture picture--gallery" gallery="/stipa/img/case-study/04@2x.jpg">
+					<img loading="lazy" src="/stipa/img/case-study/04@2x.jpg" />
+					<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	window.antiforgery = "949c21d9-2e33-44df-8560-9d5b502c02fc";
+	window.labels = {
+		select: "Seleziona",
+		error_required: "Il campo &#232; obbligatorio",
+		error_email: "Email non valida",
+		error_match: "I campi non corrispondono"
+	};
+
+</script>
+
+<section class="section--contacts" contacts>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+				<div class="badge"></div>
+				<div class="title">Vuoi saperne di più sui nostri progetti?</div>
+				<div class="abstract">Nice to show you!</div>
+			</div>
+			<div class="col-md-6 offset-md-1">
+				<form class="form" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
+					<div class="listing--form">
+						<input name="checkField" [formControl]="controls.checkField" value="" type="text" style="display:none !important;" />
+						<div control-text [control]="controls.fullName" label="Nome"></div>
+						<div control-text [control]="controls.email" label="Email"></div>
+						<!-- <div class="full" control-checkbox [control]="controls.privacy" label="Ho letto l&amp;#39;&amp;lt;a href=&amp;quot;/privacy/&amp;quot; target=&amp;quot;_blank&amp;quot;&gt;informativa&amp;lt;/a&gt; e do il consenso al trattamento del dato"></div> -->
+					</div>
+					<div class="group--error" *if="error">
+						<span class="status-code" [innerHTML]="error.statusCode"></span>
+						<span class="status-message" [innerHTML]="error.statusMessage"></span>
+						<span class="friendly-message" [innerHTML]="error.friendlyMessage"></span>
+					</div>
+					<div class="group--cta">
+						<button type="submit" class="btn--submit" data-title="Contattaci" *if="!form.submitted">
+							<span>Contattaci</span>
+						</button>
+						<button type="submit" class="btn--submit" data-title="Inviato!" *if="form.submitted">
+							<span>Inviato!</span>
+						</button>
+					</div>
+					<test-component [form]="form" (test)="test($event)" (reset)="reset($event)"></test-component>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--case-studies">
+	<div class="container">
+		<div class="section--case-studies__badge badge"></div>
+		<div class="section--case-studies__title">Correlati</div>
+		<div class="slider__container slider--case-studies" slider-case-study>
+			<div class="slider__wrapper" [style]="wrapperStyle">
+				<div class="slider__inner" [style]="innerStyle">
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--case-study">
+							<div class="picture">
+								<img loading="lazy" src="/stipa/img/case-study/related-01@2x.jpg" ondragstart="return false;" />
+							</div>
+							<div class="container">
+								<div class="title">Loriblu showroom Milano</div>
+								<div class="group--cta">
+									<a href="#" class="btn--card"><span class="badge"></span> <span class="label">Guarda il case study</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--case-study">
+							<div class="picture">
+								<img loading="lazy" src="/stipa/img/case-study/related-02@2x.jpg" ondragstart="return false;" />
+							</div>
+							<div class="container">
+								<div class="title">Eurotrias Progetto Fuoco</div>
+								<div class="group--cta">
+									<a href="#" class="btn--card"><span class="badge"></span> <span class="label">Guarda il case study</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--case-study">
+							<div class="picture">
+								<img loading="lazy" src="/stipa/img/case-study/related-03@2x.jpg" ondragstart="return false;" />
+							</div>
+							<div class="container">
+								<div class="title">Sap Now 2019 Milano</div>
+								<div class="group--cta">
+									<a href="#" class="btn--card"><span class="badge"></span> <span class="label">Guarda il case study</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--case-study">
+							<div class="picture">
+								<img loading="lazy" src="/stipa/img/index/case-study-04@2x.jpg" ondragstart="return false;" />
+							</div>
+							<div class="container">
+								<div class="title">Fabbri 1905 Rimini</div>
+								<div class="group--cta">
+									<a href="#" class="btn--card"><span class="badge"></span> <span class="label">Guarda il case study</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slider__bullets">
+				<span class="slider__bullet" [class]="{ active: index === state.current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
+			</div>
+			<div class="slider__pagination">
+				<div class="group--left">
+					<button type="button" class="btn--prev" [class]="{ disabled: !hasPrev() }" (click)="navTo(current - 1)">
+						<svg class="arrow-prev"><use xlink:href="#arrow-prev"></use></svg>
+					</button>
+				</div>
+				<div class="group--center">
+					<!-- <a href="#" class="btn--primary" data-title="Scopri tutti i progetti">Scopri tutti i progetti</a> -->
+				</div>
+				<div class="group--right">
+					<button type="button" class="btn--next" [class]="{ disabled: !hasNext() }" (click)="navTo(current + 1)">
+						<svg class="arrow-next"><use xlink:href="#arrow-next"></use></svg>
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+
+<!-- @@close-->

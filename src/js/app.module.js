@@ -9,6 +9,7 @@ import AuthSigninComponent from './auth/auth-signin.component';
 import AuthSignupComponent from './auth/auth-signup.component';
 import AuthComponent from './auth/auth.component';
 import ClickOutsideDirective from './click-outside/click-outside.directive';
+import ContactsComponent from './contacts/contacts.component';
 import DropdownItemDirective from './dropdown/dropdown-item.directive';
 import DropdownDirective from './dropdown/dropdown.directive';
 import ControlCheckboxComponent from './forms/control-checkbox.component';
@@ -17,6 +18,8 @@ import ControlPasswordComponent from './forms/control-password.component';
 import ControlTextComponent from './forms/control-text.component';
 import ControlTextareaComponent from './forms/control-textarea.component';
 import ErrorsComponent from './forms/errors.component';
+import GalleryModalComponent from './gallery/gallery-modal.component';
+import GalleryComponent from './gallery/gallery.component';
 import HeaderComponent from './header/header.component';
 import HtmlPipe from './html/html.pipe';
 import ModalOutletComponent from './modal/modal-outlet.component';
@@ -25,6 +28,7 @@ import ScrollToDirective from './scroll-to/scroll-to.directive';
 import SecureDirective from './secure/secure.directive';
 import ShareComponent from './share/share.component';
 import SliderCaseStudyComponent from './slider/slider-case-study.component';
+import SliderGalleryComponent from './slider/slider-gallery.component';
 import SliderHeroComponent from './slider/slider-hero.component';
 import SliderComponent from './slider/slider.component';
 import SlugPipe from './slug/slug.pipe';
@@ -46,6 +50,7 @@ AppModule.meta = {
 		AuthSigninComponent,
 		AuthSignupComponent,
 		ClickOutsideDirective,
+		ContactsComponent,
 		ControlCheckboxComponent,
 		ControlCustomSelectComponent,
 		ControlPasswordComponent,
@@ -54,6 +59,8 @@ AppModule.meta = {
 		DropdownDirective,
 		DropdownItemDirective,
 		ErrorsComponent,
+		GalleryComponent,
+		GalleryModalComponent,
 		HeaderComponent,
 		HtmlPipe,
 		ModalComponent,
@@ -62,8 +69,9 @@ AppModule.meta = {
 		SecureDirective,
 		ShareComponent,
 		SliderComponent,
-		SliderHeroComponent,
 		SliderCaseStudyComponent,
+		SliderGalleryComponent,
+		SliderHeroComponent,
 		SlugPipe,
 		VirtualStructure
 	],

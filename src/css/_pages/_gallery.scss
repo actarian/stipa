@@ -1,43 +1,259 @@
-.btn--close {
+
+.btn--grid {
 	@extend %btn;
+
 	display: flex;
-	justify-content: center;
 	align-items: center;
-	line-height: 1;
+	justify-content: center;
 
-	&,
-	&:hover {
-		color: white;
-	}
-
-	&:hover {
-		transition: all ease-in-out 350ms;
-		transform: rotateZ(90deg);
-	}
-
-	svg {
-		fill: currentColor;
+	.grid {
+		width: 22px;
+		height: 22px;
 	}
 }
 
 .modal--gallery {
-	.modal__header {
-		padding: 20px;
+	height: 100%;
+
+	.brand {
+		line-height: 0;
+
+		svg {
+			width: 140px;
+			height: 55px;
+		}
 	}
 
-	.picture {
-		display: inline-flex;
+	@include media-down(xs) {
+
+		.brand {
+			svg {
+				width: 100px;
+				height: 40px;
+			}
+		}
+	}
+
+	.group--header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		padding: 7px 0;
+
+		.group--left {
+			flex: 1 1 auto;
+		}
+
+		.group--right {
+			flex: 1 1 auto;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+		}
+
+		@include media-up(sm) {
+			height: 90px;
+		}
+
+		@include media-down(xs) {
+			height: 64px;
+		}
+	}
+
+	.group--footer {
+		display: flex;
 		justify-content: center;
 		align-items: center;
+		min-height: 76px;
+
+		.slider__pagination {
+			width: 100%;
+		}
+	}
+
+	.group--main {
+		height: calc(100% - 90px);
+	}
+}
+
+.slider--modal {
+	width: 100%;
+
+	.slider__slide {
+		.card--gallery {
+			.picture {
+				img {
+					opacity: 0.8;
+					transform: scale(1.1, 1.1);
+					transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 350ms 250ms;
+				}
+			}
+		}
+
+		&.active {
+			.card--gallery {
+				.picture {
+					img {
+						opacity: 1;
+						transform: scale(1, 1);
+					}
+				}
+			}
+		}
+	}
+
+	.slider__pagination {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.group--right {
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	.btn--prev,
+	.btn--next {
+		width: 40px;
+		height: 40px;
+		border: 1px solid #152154;
+		color: #152154;
+
+		svg {
+			width: 7px;
+			height: 14px;
+			fill: currentColor;
+		}
+
+		&.disabled {
+			opacity: 0.5;
+			pointer-events: none;
+		}
+	}
+}
+
+.gallery-grid {
+	height: 100%;
+
+	.group--main {
+		height: calc(100% - 90px);
+		overflow-x: hidden;
+		overflow-y: auto;
+		@include scrollbar();
+	}
+}
+
+.card--modal {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+    width: 100%;
+    height: calc(100vh - 90px - 76px);
+	white-space: normal;
+
+	&>.picture {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 		overflow: hidden;
-		height: calc(100vh - 128px);
-		width: 100vw;
 
 		&>img {
-			display: block;
+			object-fit: contain;
 			width: 100%;
 			height: 100%;
-			object-fit: contain;
+		}
+	}
+}
+
+.listing--grid {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+
+	&>.listing__item {
+		margin-bottom: 13px;
+	}
+
+	@include media-up(lg) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(4, 12, $gutter);
+		}
+	}
+
+	@include media-between(sm, md) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(4, 12, $gutter);
+		}
+	}
+
+	@include media-between(xs, sm) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(6, 12, $gutter);
+		}
+	}
+
+	@include media-down(xs) {
+		$gutter: 32px;
+
+		&>.listing__item {
+			@include as-col(12, 12, $gutter);
+		}
+	}
+}
+
+.card--grid {
+	cursor: pointer;
+
+	&>.picture {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		margin-bottom: 16px;
+		overflow: hidden;
+
+		@include aspect-clip(430, 209);
+
+		&>img {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+			transition: all ease-in-out 350ms;
+		}
+	}
+
+	&:hover {
+		&>.picture {
+			&>img {
+				transform: scale(1.1, 1.1);
+			}
 		}
 	}
 }

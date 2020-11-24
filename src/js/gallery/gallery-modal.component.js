@@ -6,6 +6,7 @@ export default class GalleryModalComponent extends Component {
 
 	onInit() {
 		super.onInit();
+		this.mode = 'slider';
 		const { parentInstance, node } = getContext(this);
 		if (parentInstance instanceof ModalOutletComponent) {
 			const data = this.data = parentInstance.modal.data;
@@ -18,12 +19,23 @@ export default class GalleryModalComponent extends Component {
 		ModalService.reject();
 	}
 
+	toggleMode() {
+		this.mode = this.mode === 'slider' ? 'grid' : 'slider';
+		this.pushChanges();
+	}
+
 	onChange(event) {
 		// console.log('onChange', event);
 	}
 
 	onTween(event) {
 		// console.log('onTween', event);
+	}
+
+	onSelect(index) {
+		this.sliderIndex = index;
+		this.mode = 'slider';
+		this.pushChanges();
 	}
 
 }
