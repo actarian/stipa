@@ -50,6 +50,41 @@ export default class HeaderComponent extends Component {
 		return this.subId != null;
 	}
 
+	showPicture(src) {
+		const { node } = getContext(this);
+		const picture = node.querySelector('.main-menu__picture');
+		let img;
+		if (src) {
+			img = document.createElement('img');
+			img.onload = () => {
+				picture.appendChild(img);
+				gsap.set(img, { opacity: 0 });
+				gsap.to(img, {
+					opacity: 1,
+					duration: 0.35,
+					onComplete: () => {
+						while(picture.childElementCount > 1) {
+							picture.removeChild(picture.children[0]);
+						}
+					},
+				});
+			};
+			img.src = src;
+		} else {
+			img = picture.querySelector('img');
+			if (img) {
+				gsap.to(img, {
+					opacity: 0,
+					duration: 0.35,
+					onComplete: () => {
+						while(picture.childElementCount > 0) {
+							picture.removeChild(picture.children[0]);
+						}
+					},
+				});
+			}
+		}
+	}
 }
 
 HeaderComponent.meta = {

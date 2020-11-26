@@ -165,6 +165,9 @@ strong {
           appearance: none;
   font: inherit;
   cursor: pointer;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
   .btn--secondary, .btn--primary, .btn--submit, .btn--link, .btn, .link, .group--form--checkbox a, .btn--card, .btn--next,
   .btn--prev, .nav--secondary-menu > li > a,
@@ -3480,6 +3483,25 @@ errors-component {
   .main-menu .brand svg {
     width: 120px;
     height: 48px; }
+  .main-menu__background {
+    position: relative;
+    width: 100%;
+    padding-bottom: 10px; }
+  .main-menu__picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.3; }
+    .main-menu__picture > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
 
 .nav--primary-menu {
   align-items: center;
@@ -3547,11 +3569,13 @@ errors-component {
       display: flex; }
       .nav--primary-menu > li > ul > li > a {
         font-size: 2vw;
-        line-height: 1.5; }
+        line-height: 1.5;
+        transform: translateY(-1px); }
         .nav--primary-menu > li > ul > li > a, .nav--primary-menu > li > ul > li > a:active, .nav--primary-menu > li > ul > li > a:focus, .nav--primary-menu > li > ul > li > a:visited, .nav--primary-menu > li > ul > li > a:hover {
           color: #152154; }
         .nav--primary-menu > li > ul > li > a:hover {
-          color: black; }
+          color: black;
+          transform: translateY(1px); }
       @media (min-width: 768px) {
         .nav--primary-menu > li > ul {
           justify-content: center;
@@ -3609,7 +3633,7 @@ errors-component {
   @media (max-width: 767.98px) {
     .nav--primary-menu > li > a,
     .nav--primary-menu > li > span {
-      font-size: 24px; }
+      font-size: 34px; }
     .nav--primary-menu > li > ul > li > a,
     .nav--primary-menu > li > ul > li > span {
       font-size: 16px; } }
@@ -3620,8 +3644,7 @@ errors-component {
       line-height: 1.2; }
     .nav--primary-menu > li > a,
     .nav--primary-menu > li > span {
-      font-size: 24px;
-      font-weight: 400; }
+      font-size: 34px; }
     .nav--primary-menu > li > ul > li > a,
     .nav--primary-menu > li > ul > li > span {
       font-size: 16px; } }

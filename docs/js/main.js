@@ -2402,6 +2402,50 @@ GalleryComponent.meta = {
     return this.subId != null;
   };
 
+  _proto.showPicture = function showPicture(src) {
+    var _getContext2 = rxcomp.getContext(this),
+        node = _getContext2.node;
+
+    var picture = node.querySelector('.main-menu__picture');
+    var img;
+
+    if (src) {
+      img = document.createElement('img');
+
+      img.onload = function () {
+        picture.appendChild(img);
+        gsap.set(img, {
+          opacity: 0
+        });
+        gsap.to(img, {
+          opacity: 1,
+          duration: 0.35,
+          onComplete: function onComplete() {
+            while (picture.childElementCount > 1) {
+              picture.removeChild(picture.children[0]);
+            }
+          }
+        });
+      };
+
+      img.src = src;
+    } else {
+      img = picture.querySelector('img');
+
+      if (img) {
+        gsap.to(img, {
+          opacity: 0,
+          duration: 0.35,
+          onComplete: function onComplete() {
+            while (picture.childElementCount > 0) {
+              picture.removeChild(picture.children[0]);
+            }
+          }
+        });
+      }
+    }
+  };
+
   return HeaderComponent;
 }(rxcomp.Component);
 HeaderComponent.meta = {

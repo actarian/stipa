@@ -18,7 +18,7 @@
 	"dependencies": {
 		"gsap": "3.5.1",
 		"rxjs": "6.6.3",
-		"rxcomp": "1.0.0-beta.19",
+		"rxcomp": "1.0.0-beta.20",
 		"rxcomp-form": "1.0.0-beta.18",
 		"swiper": "6.3.5",
 		"body-parser": "1.19.0",
