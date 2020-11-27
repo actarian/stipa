@@ -1,6 +1,6 @@
 import { getContext } from 'rxcomp';
 import { fromEvent } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import SliderComponent from './slider.component';
 
 export default class SliderCaseStudyComponent extends SliderComponent {
@@ -51,18 +51,21 @@ export default class SliderCaseStudyComponent extends SliderComponent {
 		this.resize$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe(() => this.pushChanges());
+		/*
 		this.changed$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe();
 		setTimeout(() => {
 			this.setActiveState();
 		}, 500);
+		*/
 	}
 
 	resize$() {
 		return fromEvent(window, 'resize');
 	}
 
+	/*
 	changed$() {
 		return this.change.pipe(
 			tap(() => this.setActiveState()),
@@ -75,6 +78,7 @@ export default class SliderCaseStudyComponent extends SliderComponent {
 		const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
 		slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
 	}
+	*/
 
 	onContentOver() {
 		const { node } = getContext(this);

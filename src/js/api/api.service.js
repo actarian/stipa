@@ -1,10 +1,9 @@
 import { getApiUrl } from '../environment';
 import HttpService from '../http/http.service';
-import CookieStorageService from '../storage/cookie-storage.service';
 
 export default class ApiService extends HttpService {
 
-	static currentLanguage = CookieStorageService.getRaw('wp-wpml_current_language'); // || 'it';
+	static currentLanguage = window.currentLanguage || 'it';
 
 	static get$(url, data, format) {
 		return super.get$(getApiUrl(url), data, format);

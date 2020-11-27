@@ -1,0 +1,103 @@
+<!-- @@master = ./templates/layout.html { "baseHref": "/stipa/" } -->
+
+<!-- @@block = main-->
+
+<!-- @@include ./templates/shared/header.html { "path": "<ul class=\"nav--path\"><li>Contatti</li></ul>" } -->
+
+<section class="section--hero-tertiary">
+	<div class="background">
+		<img loading="lazy" src="/stipa/img/contacts/hero@2x.jpg" />
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6">
+				<div class="title">Contatti</div>
+				<div class="abstract">Hai una richiesta o vuoi semplicemente conoscerci?</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	window.antiforgery = "949c21d9-2e33-44df-8560-9d5b502c02fc";
+	window.labels = {
+		select: "Seleziona",
+		error_required: "Il campo &#232; obbligatorio",
+		error_email: "Email non valida",
+		error_match: "I campi non corrispondono"
+	};
+	window.data = {
+		reason: [
+			{ id: 1, name: "Ragione 1" },
+			{ id: 2, name: "Ragione 2" },
+			{ id: 3, name: "Ragione 3" },
+		],
+		firstCategory: [
+			{ id: 1, name: "Categoria 1" },
+			{ id: 2, name: "Categoria 2" },
+			{ id: 3, name: "Categoria 3" },
+		],
+		secondCategory: [
+			{ id: 1, name: "Categoria 1" },
+			{ id: 2, name: "Categoria 2" },
+			{ id: 3, name: "Categoria 3" },
+		]
+	};
+</script>
+
+<section class="section--contacts" contacts>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="text">Compila il form per entrare in contatto con il nostro team di progettisti.</div>
+			</div>
+			<div class="col-md-8 offset-md-1">
+				<form class="form form--positive" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
+					<div class="listing--form">
+						<input name="checkField" [formControl]="controls.checkField" value="" type="text" style="display:none !important;" />
+						<div control-text [control]="controls.fullName" label="Nome"></div>
+						<div control-text [control]="controls.email" label="Email"></div>
+						<div control-text [control]="controls.company" label="Azienda"></div>
+						<div control-custom-select [control]="controls.reason" label="Motivo del contatto"></div>
+						<div control-custom-select [control]="controls.firstCategory" label="Argomento"></div>
+						<div control-custom-select [control]="controls.secondCategory" label="Selezione aggiuntiva"></div>
+						<div class="full" control-textarea [control]="controls.message" label="Messaggio"></div>
+						<div class="full" control-checkbox [control]="controls.privacy" label="Ho letto ed accetto l&amp;#39;informativa sulla&nbsp; &amp;lt;a href=&amp;quot;/privacy/&amp;quot; target=&amp;quot;_blank&amp;quot;&gt;Privacy Policy&amp;lt;/a&gt;"></div>
+					</div>
+					<div class="group--error" *if="error">
+						<span class="status-code" [innerHTML]="error.statusCode"></span>
+						<span class="status-message" [innerHTML]="error.statusMessage"></span>
+						<span class="friendly-message" [innerHTML]="error.friendlyMessage"></span>
+					</div>
+					<div class="group--cta">
+						<button type="submit" class="btn--submit" data-title="Contattaci" *if="!form.submitted">
+							<span>Invia Messaggio</span>
+						</button>
+						<button type="submit" class="btn--submit" data-title="Inviato!" *if="form.submitted">
+							<span>Messaggio Inviato!</span>
+						</button>
+					</div>
+					<test-component [form]="form" (test)="test($event)" (reset)="reset($event)"></test-component>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--card">
+	<div class="container">
+		<div class="card--generic">
+			<div class="picture">
+				<img loading="lazy" src="/stipa/img/contacts/company@2x.jpg" ondragstart="return false;" />
+			</div>
+			<div class="container">
+				<div class="title">Le nostre sedi</div>
+				<div class="group--cta">
+					<a href="/stipa/our-offices.html" class="btn--card"><span class="badge"></span> <span class="label">Scopri di più</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- @@close-->

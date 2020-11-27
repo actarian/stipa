@@ -1,5 +1,3 @@
-import { getContext } from 'rxcomp';
-import { takeUntil, tap } from 'rxjs/operators';
 import SliderComponent from './slider.component';
 
 export default class SliderGalleryComponent extends SliderComponent {
@@ -40,14 +38,17 @@ export default class SliderGalleryComponent extends SliderComponent {
 
 	onInit() {
 		super.onInit();
+		/*
 		this.changed$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe();
 		setTimeout(() => {
 			this.setActiveState();
 		}, 500);
+		*/
 	}
 
+	/*
 	changed$() {
 		return this.change.pipe(
 			tap(() => this.setActiveState()),
@@ -60,6 +61,7 @@ export default class SliderGalleryComponent extends SliderComponent {
 		const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
 		slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
 	}
+	*/
 
 	navTo(current) {
 		super.navTo(current);

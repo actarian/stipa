@@ -9,6 +9,7 @@ import AuthSigninComponent from './auth/auth-signin.component';
 import AuthSignupComponent from './auth/auth-signup.component';
 import AuthComponent from './auth/auth.component';
 import ClickOutsideDirective from './click-outside/click-outside.directive';
+import ContactsSimpleComponent from './contacts/contacts-simple.component';
 import ContactsComponent from './contacts/contacts.component';
 import DropdownItemDirective from './dropdown/dropdown-item.directive';
 import DropdownDirective from './dropdown/dropdown.directive';
@@ -22,6 +23,8 @@ import GalleryModalComponent from './gallery/gallery-modal.component';
 import GalleryComponent from './gallery/gallery.component';
 import HeaderComponent from './header/header.component';
 import HtmlPipe from './html/html.pipe';
+import MagazineDropdownComponent from './magazine/magazine-dropdown.component';
+import MagazineComponent from './magazine/magazine.component';
 import ModalOutletComponent from './modal/modal-outlet.component';
 import ModalComponent from './modal/modal.component';
 import ScrollToDirective from './scroll-to/scroll-to.directive';
@@ -51,6 +54,7 @@ AppModule.meta = {
 		AuthSignupComponent,
 		ClickOutsideDirective,
 		ContactsComponent,
+		ContactsSimpleComponent,
 		ControlCheckboxComponent,
 		ControlCustomSelectComponent,
 		ControlPasswordComponent,
@@ -63,6 +67,8 @@ AppModule.meta = {
 		GalleryModalComponent,
 		HeaderComponent,
 		HtmlPipe,
+		MagazineComponent,
+		MagazineDropdownComponent,
 		ModalComponent,
 		ModalOutletComponent,
 		ScrollToDirective,

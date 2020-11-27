@@ -1,0 +1,39 @@
+
+.section--office {
+	padding: 80px 0 80px 0;
+
+	.title {
+		font-size: 48px;
+		line-height: 1.2;
+		margin-bottom: 40px;
+	}
+
+	.abstract {
+		font-size: 24px;
+		margin-bottom: 32px;
+	}
+
+	.description {
+		margin-bottom: 32px;
+	}
+
+	.group--cta {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.btn--primary {
+		margin-bottom: 24px;
+	}
+
+	@include media-down(xs) {
+		.group--cta {
+			margin-bottom: 32px;
+		}
+	}
+}
+
+.section--office + .section--office {
+	padding-top: 0;
+}

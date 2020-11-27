@@ -3,16 +3,9 @@ $size: 14px;
 $weight: $font-light;
 $spacing: 0;
 $line: 1; // always
-$pristine: $foreground;
-$dirty: $foreground;
-$touched: $foreground;
-$valid: $foreground;
-$invalid: #AC3C72;
 
 %btn--disabled {
 	opacity: 0.5;
-	background: rgb(125, 125, 125);
-	color: white;
 }
 
 %label {
@@ -21,13 +14,11 @@ $invalid: #AC3C72;
 	font-size: 14px;
 	line-height: $line;
 	margin-bottom: -1px;
-	color: #ffffff;
 	// text-transform: uppercase;
 }
 
 %placeholder {
 	// text-transform: uppercase;
-	color: rgba(#818C8E, 0.4);
 	line-height: 1.2;
 }
 
@@ -35,7 +26,7 @@ $invalid: #AC3C72;
 	display: flex;
 	flex-wrap: wrap;
 	padding: 3px 1px;
-	margin-bottom: 15px;
+	margin-bottom: 8px;
 
 	label {
 		@extend %label;
@@ -47,18 +38,14 @@ $invalid: #AC3C72;
 }
 
 @mixin autofill($color: black, $background: white, $borderColor: transparent, $borderWidth: 0px, $borderRadius: 0px) {
-	background: $background;
-	color: $color;
-	border: $borderWidth solid $borderColor;
+	border: $borderWidth solid transparent;
 	border-radius: $borderRadius;
 	outline: none;
 
 	&:-webkit-autofill,
 	&:-webkit-autofill:hover,
 	&:-webkit-autofill:focus {
-		background: $background;
-		color: $color;
-		border: $borderWidth solid $borderColor;
+		border: $borderWidth solid transparent;
 		border-radius: $borderRadius;
 		font-family: $family;
 		font-size: $size;
@@ -100,38 +87,15 @@ $invalid: #AC3C72;
 	max-width: 100%;
 	padding: 8px;
     margin: 8px 0 0 0;
-	background: #ffffff;
-	border: none;
+	border: 1px solid transparent;
 	border-radius: 2px;
 	outline: none;
 	appearance: none;
-	color: $foreground;
 	font-family: $family;
 	font-size: $size;
 	font-weight: $weight;
 	letter-spacing: $spacing;
 	line-height: $line;
-
-	&.pristine {
-		color: $pristine;
-	}
-
-	&.dirty {
-		color: $dirty;
-	}
-
-	&.touched {
-		color: $touched;
-	}
-
-	&.valid {
-		border-color: $valid;
-		color: $valid;
-	}
-
-	&.invalid:not(.pristine) {
-		color: $invalid;
-	}
 }
 
 .form {
@@ -142,12 +106,14 @@ $invalid: #AC3C72;
 		left: 0;
 		border-radius: 0;
 	}
+
+	.group--cta {
+		margin-top: 16px;
+	}
 }
 
 .group--error {
-	background: transparent;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid transparent;
     text-align: center;
     padding: 5px;
     font-size: 16px;
@@ -179,6 +145,7 @@ fieldset,
 	.control--text {
 		resize: vertical;
 		font-size: 14px;
+		border-radius: 6px;
 	}
 
 	label {
@@ -196,16 +163,14 @@ fieldset,
 		pointer-events: none;
 	}
 
-	.icon--caret-down {
-		width: 12px;
-		height: 12px;
+	.caret-down {
+		width: 9px;
+		height: 8px;
 		margin: 0;
-		fill: #ccc;
 		pointer-events: none;
-	}
-
-	&.required .required__badge {
-		display: none;
+		position: absolute;
+		bottom: 16px;
+		right: 9px;
 	}
 
 	@include media-down(xs) {
@@ -215,6 +180,7 @@ fieldset,
 
 .control--select {
 	@extend %control--text;
+	width: 100%;
 
 	.multiple>& {
 		white-space: nowrap;
@@ -228,26 +194,19 @@ fieldset,
 	@extend %group--form;
 	align-items: center;
 	flex-wrap: nowrap;
-	min-height: 77px;
-	padding-top: 44px;
-
-	input {
-		width: 11px;
-		height: 11px;
-		border-radius: 0;
-		cursor: pointer;
-	}
+	min-height: 30px;
+	padding: 0;
 
 	input {
 		appearance: none;
+		width: 11px;
+		height: 11px;
 		padding: 0;
 		margin: 0 10px 0 0;
-		border: 2px solid $pristine;
+		border: 1px solid transparent;
+		border-radius: 2px;
+		cursor: pointer;
 		outline: 0;
-
-		&:checked {
-			background: $pristine;
-		}
 	}
 
 	label {
@@ -279,21 +238,17 @@ fieldset,
 	@extend %group--form;
 	position: relative;
 	border: none;
-	background: $background-secondary;
 	padding: 10px 10px;
 	margin-top: 13px;
 	cursor: pointer;
 
 	.icon--upload {
 		margin: 0 7px 0 0;
-		fill: $pristine;
 		pointer-events: none;
 	}
 }
 
 .control--file {
-	color: transparent;
-	background: rgba(0, 1, 0, 0.2);
 	opacity: 0;
 	position: absolute;
 	top: 0;
@@ -305,14 +260,11 @@ fieldset,
 
 errors-component {
 	display: block;
-	transform: translateY(-8px);
 
 	.inner {
-		margin-top: -10px;
-		margin-bottom: 10px;
-		background: rgba(0,0,0,0.15);
-		color: white;
+		margin: -8px 1px 8px 1px;
 		padding: 5px 8px;
+		border-radius: 2px;
 		font-size: 12px;
 		font-weight: 400;
 	}
@@ -324,7 +276,6 @@ errors-component {
 	padding: 10px 15px;
 	font-size: 14px;
 	text-align: center;
-	background: rgba(255, 255, 255, 0.8);
 
 	@include media-down(xs) {
 		display: none;
@@ -337,9 +288,8 @@ errors-component {
 	align-items: flex-start;
 	flex-wrap: wrap;
 
-	/*
-	@include media-up(lg) {
-		$gutter: 30px;
+	@include media-up(md) {
+		$gutter: 32px;
 		margin-left: - $gutter / 2;
 		margin-right: - $gutter / 2;
 
@@ -352,10 +302,9 @@ errors-component {
 			}
 		}
 	}
-	*/
 
-	@include media-up(sm) {
-		$gutter: 30px;
+	@include media-between(sm, md) {
+		$gutter: 32px;
 		margin-left: - $gutter / 2;
 		margin-right: - $gutter / 2;
 
@@ -392,32 +341,15 @@ errors-component {
 	align-items: flex-start;
 	flex-wrap: wrap;
 
-	@include media-up(lg) {
-		$gutter: 30px;
-		margin-left: - $gutter / 2;
-		margin-right: - $gutter / 2;
-
-		&>div {
-			@include as-col(4, 12, $gutter);
-
-			&[control-checkbox] {
-				@include as-col(6, 12, $gutter);
-			}
-
-			&[control-textarea] {
-				@include as-col(12, 12, $gutter);
-			}
-		}
-	}
-
-	@include media-down(md) {
-		$gutter: 30px;
+	@include media-up(sm) {
+		$gutter: 32px;
 		margin-left: - $gutter / 2;
 		margin-right: - $gutter / 2;
 
 		&>div {
 			@include as-col(6, 12, $gutter);
 
+			&.full,
 			&[control-textarea] {
 				@include as-col(12, 12, $gutter);
 			}
@@ -461,26 +393,19 @@ errors-component {
 }
 
 .required__badge {
+	@extend %label;
 	display: none;
+	position: absolute;
+	right: 0;
+	top: 3px;
 }
 
 .required {
 	position: relative;
 
+	/*
 	.required__badge {
-		@extend %label;
 		display: block;
-		position: absolute;
-		font-size: 10px;
-		right: 0;
-		top: 0;
 	}
-
-	&.group--form--select,
-	&.group--form--file {
-		.required__badge {
-			top: 8px;
-			right: 10px;
-		}
-	}
+	*/
 }

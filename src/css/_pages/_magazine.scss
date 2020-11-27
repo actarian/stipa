@@ -1,0 +1,177 @@
+.section--hero-magazine {
+	padding: 0 0 48px 0;
+
+	.picture {
+		@include aspect-clip(1440, 543);
+		margin-bottom: 24px;
+
+		&>img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.date {
+		margin-bottom: 16px;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.2;
+		color: #767676;
+	}
+
+	.title {
+		font-size: 24px;
+		line-height: 1.2;
+		margin-bottom: 24px;
+	}
+
+	.btn--card {
+		font-size: 16px;
+	}
+}
+
+.section--magazine {
+	padding: 0 0 48px 0;
+}
+
+.card--magazine {
+	text-align: left;
+
+	&>.picture {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		margin-bottom: 16px;
+		overflow: hidden;
+
+		@include aspect-clip(1, 1);
+
+		&>img {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.date {
+		margin-bottom: 16px;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.2;
+		color: #767676;
+	}
+
+	.title {
+		font-size: 24px;
+		line-height: 1.2;
+		margin-bottom: 24px;
+	}
+
+	.btn--card {
+		margin-bottom: 24px;
+		font-size: 16px;
+	}
+}
+
+.listing--filters {
+	display: flex;
+	align-items: center;
+	padding: 32px 0;
+
+	&>.listing__item {
+		margin-right: 16px;
+	}
+
+	svg {
+		width: 12px;
+		height: 12px;
+	}
+}
+
+[magazine-dropdown] {
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+
+	.text {
+		margin-right: 5px;
+	}
+
+	.dropdown {
+		top: auto;
+	}
+}
+
+.btn--dropdown {
+	@extend %btn;
+	position: relative;
+	font-size: 18px;
+	font-weight: 400;
+	text-transform: lowercase;
+	text-decoration: underline;
+
+	&,
+	&:active,
+	&:focus,
+	&:visited,
+	&:hover {
+		color:#AC3C72;
+	}
+}
+
+.listing--magazine {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+
+	&>.listing__item {
+		margin-bottom: 13px;
+	}
+
+	@include media-up(lg) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(4, 12, $gutter);
+		}
+	}
+
+	@include media-between(sm, md) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(4, 12, $gutter);
+		}
+	}
+
+	@include media-between(xs, sm) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(6, 12, $gutter);
+		}
+	}
+
+	@include media-down(xs) {
+		$gutter: 32px;
+
+		&>.listing__item {
+			@include as-col(12, 12, $gutter);
+		}
+	}
+}

@@ -1,5 +1,4 @@
 import { Component, getContext } from 'rxcomp';
-import { interval, of, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
 import DragService, { DragDownEvent, DragMoveEvent, DragUpEvent } from '../drag/drag.service';
 
@@ -50,7 +49,8 @@ export default class SliderComponent extends Component {
 			this.items = items;
 		}
 		// console.log('SliderComponent.onInit', this.items);
-		this.userGesture$ = new Subject();
+		this.userGesture = false;
+		// this.userGesture$ = new Subject();
 		setTimeout(() => {
 			// this.change.next(this.current);
 			/*
@@ -64,11 +64,74 @@ export default class SliderComponent extends Component {
 				// console.log('dragService', event);
 			});
 		}, 1);
+		this.changed$().pipe(
+			takeUntil(this.unsubscribe$)
+		).subscribe();
+		setTimeout(() => {
+			this.setActiveState();
+		}, 500);
+		/*
 		this.autoplay$().pipe(
 			takeUntil(this.unsubscribe$),
 		).subscribe(() => {
 			this.pushChanges();
 		});
+		*/
+	}
+
+	changed$() {
+		return this.change.pipe(
+			tap(() => this.setActiveState()),
+		);
+	}
+
+	setActiveState() {
+		if (this.to) {
+			clearTimeout(this.to);
+			this.to = null;
+		}
+		const current = this.current;
+		const { node } = getContext(this);
+		const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+		let currentSlide;
+		slides.forEach((slide, i) => {
+			if (i === current) {
+				currentSlide = slide;
+				slide.classList.add('active');
+			} else {
+				slide.classList.remove('active');
+			}
+		});
+		const videos = Array.prototype.slice.call(node.querySelectorAll('video'));
+		videos.forEach(video => {
+			if (!video.paused) {
+				video.pause();
+			}
+		});
+		if (currentSlide) {
+			const video = currentSlide.querySelector('video');
+			if (video) {
+				const onEnded = () => {
+					// console.log(video, 'onEnded');
+					video.removeEventListener('ended', onEnded);
+					if (!this.userGesture) {
+						this.current = (this.current + 1) % this.items.length;
+						this.pushChanges();
+					}
+				};
+				video.addEventListener('ended', onEnded);
+				video.play();
+			} else {
+				const autoplay = typeof this.autoplay === 'number' ? this.autoplay : 4000;
+				if (!this.userGesture) {
+					this.to = setTimeout(() => {
+						this.current = (this.current + 1) % this.items.length;
+						this.pushChanges();
+					}, autoplay);
+				}
+			}
+		}
+		// console.log('SliderComponent.setActiveState', current, currentSlide);
 	}
 
 	slider$() {
@@ -93,6 +156,7 @@ export default class SliderComponent extends Component {
 		);
 	}
 
+	/*
 	autoplay$() {
 		if (this.autoplay) {
 			const autoplay = typeof this.autoplay === 'number' ? this.autoplay : 4000;
@@ -106,6 +170,7 @@ export default class SliderComponent extends Component {
 			return of(null);
 		}
 	}
+	*/
 
 	onDragMoveEvent(dragDownEvent, dragMoveEvent, translation) {
 		this.container.classList.add('dragging');
@@ -130,7 +195,8 @@ export default class SliderComponent extends Component {
 	navTo(current) {
 		current = (current > 0 ? current : this.items.length + current) % this.items.length;
 		this.current = current;
-		this.userGesture$.next();
+		this.userGesture = true;
+		// this.userGesture$.next();
 		this.pushChanges();
 	}
 

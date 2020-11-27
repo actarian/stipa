@@ -1,0 +1,34 @@
+{
+  "category": {
+    "label": "Categoria",
+    "placeholder": "Tutte",
+    "mode": "or",
+    "options": [
+      {
+        "value": 1,
+        "label": "Eventi"
+      },
+      {
+        "value": 2,
+        "label": "News"
+      }
+    ],
+    "secondary": false
+  },
+  "year": {
+    "label": "Anno",
+    "placeholder": "Tutti",
+    "mode": "or",
+    "options": [
+      {
+        "value": 2020,
+        "label": "2020"
+      },
+      {
+        "value": 2019,
+        "label": "2019"
+      }
+    ],
+    "secondary": false
+  }
+}

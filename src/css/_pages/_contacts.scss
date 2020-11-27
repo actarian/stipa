@@ -1,0 +1,185 @@
+.section--hero-tertiary {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 360px;
+	padding: 48px 0;
+	background: black;
+	color: white;
+
+	.background {
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		&>img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.7);
+		}
+	}
+
+	.title {
+		font-size: 48px;
+		margin-bottom: 24px;
+		line-height: 1.2;
+	}
+
+	.abstract {
+		font-size: 18px;
+		line-height: 1.2;
+	}
+}
+
+.section--contacts {
+	padding: 80px 0;
+
+	.text {
+		margin-bottom: 24px;
+		font-weight: 400;
+		line-height: 1.66;
+	}
+}
+
+.section--card {
+	padding: 80px 0;
+}
+
+.card--generic {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	height: 100%;
+	width: 100%;
+	background: rgba($foreground, 0.2);
+	white-space: normal;
+
+	&>.picture {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+
+		&>img {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.3);
+		}
+
+		@include media-up(sm) {
+			@include aspect-clip(1276, 497);
+		}
+
+		@include media-down(xs) {
+			@include aspect-clip(5, 4);
+		}
+	}
+
+	&>.container {
+		position: absolute;
+	}
+
+	.category {
+		line-height: 1.2;
+		color: $foreground-negative;
+	}
+
+	.title {
+		line-height: 1.2;
+		max-width: 360px;
+		color: $foreground-negative;
+	}
+
+	.btn--card {
+		.label {
+			color: white;
+		}
+	}
+
+	p {
+		margin: 0;
+	}
+
+	& p+p {
+		margin-top: 10px;
+	}
+
+	@include media-up(sm) {
+
+		&>.container {
+			padding: 40px 48px;
+		}
+
+		.category {
+			font-size: 24px;
+			margin-bottom: 24px;
+		}
+
+		.title {
+			font-size: 48px;
+			margin-bottom: 24px;
+		}
+
+		.btn--card {
+			.label {
+				font-size: 16px;
+			}
+		}
+	}
+
+	@include media-down(xs) {
+
+		&>.container {
+			padding: 16px;
+		}
+
+		.category {
+			font-size: 16px;
+			margin-bottom: 8px;
+		}
+
+		.title {
+			font-size: 24px;
+			margin-bottom: 16px;
+		}
+
+		.btn--card {
+			.label {
+				font-size: 16px;
+			}
+		}
+	}
+}

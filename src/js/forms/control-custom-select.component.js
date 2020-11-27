@@ -141,7 +141,7 @@ ControlCustomSelectComponent.meta = {
 			<label [innerHTML]="label"></label>
 			<span class="control--select" [innerHTML]="getLabel()"></span>
             <input type="text" style="display:none" class="control--select" [formControl]="control" [formControlName]="name" />
-			<svg class="icon icon--caret-down"><use xlink:href="#caret-down"></use></svg>
+			<svg class="icon caret-down"><use xlink:href="#caret-down"></use></svg>
 			<span class="required__badge">required</span>
 		</div>
 		<errors-component [control]="control"></errors-component>

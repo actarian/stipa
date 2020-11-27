@@ -155,7 +155,7 @@
 
 </script>
 
-<section class="section--contacts" contacts>
+<section class="section--contacts-simple" contacts-simple>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
@@ -164,8 +164,8 @@
 				<div class="abstract">Nice to show you!</div>
 			</div>
 			<div class="col-md-6 offset-md-1">
-				<form class="form" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
-					<div class="listing--form">
+				<form class="form form--negative" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
+					<div class="listing--form-compact">
 						<input name="checkField" [formControl]="controls.checkField" value="" type="text" style="display:none !important;" />
 						<div control-text [control]="controls.fullName" label="Nome"></div>
 						<div control-text [control]="controls.email" label="Email"></div>

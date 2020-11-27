@@ -47,12 +47,14 @@ export default class SliderHeroComponent extends SliderComponent {
 		this.click$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe();
+		/*
 		this.changed$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe();
 		setTimeout(() => {
 			this.setActiveState();
 		}, 500);
+		*/
 	}
 
 	set direction(direction) {
@@ -118,6 +120,7 @@ export default class SliderHeroComponent extends SliderComponent {
 		);
 	}
 
+	/*
 	changed$() {
 		return this.change.pipe(
 			tap(() => this.setActiveState()),
@@ -130,6 +133,7 @@ export default class SliderHeroComponent extends SliderComponent {
 		const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
 		slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
 	}
+	*/
 
 	onContentOver() {
 		const { node } = getContext(this);
@@ -140,7 +144,6 @@ export default class SliderHeroComponent extends SliderComponent {
 		const { node } = getContext(this);
 		node.classList.remove('content-over');
 	}
-
 }
 
 SliderHeroComponent.meta = {

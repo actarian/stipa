@@ -134,7 +134,7 @@
 	align-items: center;
 	border-radius: 0;
 	padding: 15px 35px;
-	border: 1px solid transparent;
+	border: thin solid transparent;
 	line-height: 1;
 	text-transform: uppercase;
 	// transform: translateZ(0);
@@ -275,11 +275,11 @@
 	padding: 10px 24px;
 
 	&:before {
-		background: #ffffff;
+		background: #004987;
 	}
 
 	&:after {
-		color: #004987;
+		color: white;
 		left: 24px;
 		top: 10px;
 	}
@@ -290,8 +290,8 @@
 	&:visited,
 	&:hover {
 		background: transparent;
-		border-color: #ffffff;
-		color: #ffffff;
+		border-color: $foreground;
+		color: $foreground;
 	}
 }
 
@@ -315,18 +315,18 @@
 
 %link {
 	@extend %btn;
-	font-weight: 600;
-	text-decoration: none;
+	font-weight: 400;
+	text-decoration: underline;
 
 	&,
 	&:link &:active,
 	&:focus,
 	&:visited {
-		color: #A28850;
+		color: $foreground;
 	}
 
 	&:hover {
-		color: #A28850;
+		color: $foreground;
 	}
 }
 

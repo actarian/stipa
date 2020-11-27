@@ -17,7 +17,6 @@ ControlCheckboxComponent.meta = {
 				<input type="checkbox" class="control--checkbox" [formControl]="control" [value]="true" [formControlName]="name" />
 				<span [innerHTML]="label | html"></span>
 			</label>
-			<span *if="control.validators.length" class="required__badge">required</span>
 		</div>
 		<errors-component *if="control.validators.length" [control]="control"></errors-component>
 	`

@@ -516,7 +516,7 @@ var PARAMS = NODE ? {
 } : new URLSearchParams(window.location.search);
 var DEBUG =  PARAMS.get('debug') != null;
 var BASE_HREF = NODE ? null : document.querySelector('base').getAttribute('href');
-var STATIC = NODE ? false : window && (window.location.port === '40525' || window.location.host === 'actarian.github.io' || window.location.host === 'stipa.herokuapp.com');
+var STATIC = NODE ? false : window && (window.location.port === '41234' || window.location.host === 'actarian.github.io' || window.location.host === 'stipa.herokuapp.com');
 var DEVELOPMENT = NODE ? false : window && ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(window.location.host.split(':')[0]) !== -1;
 var PRODUCTION = !DEVELOPMENT;
 var ENV = {
@@ -526,7 +526,7 @@ var ENV = {
   PRODUCTION: PRODUCTION,
   RESOURCE: '/docs/',
   STATIC_RESOURCE: './',
-  API: '/wp-json/stipa/v1',
+  API: '/api',
   STATIC_API: DEVELOPMENT && !STATIC ? '/Client/docs/api' : './api'
 };
 function getApiUrl(url, useStatic) {
@@ -703,107 +703,13 @@ var HttpService = /*#__PURE__*/function () {
   };
 
   return HttpService;
-}();var CookieStorageService = /*#__PURE__*/function (_StorageService) {
-  _inheritsLoose(CookieStorageService, _StorageService);
-
-  function CookieStorageService() {
-    return _StorageService.apply(this, arguments) || this;
-  }
-
-  CookieStorageService.clear = function clear() {
-    var _this = this;
-
-    this.toRawArray().forEach(function (x) {
-      _this.setter(x.name, '', -1);
-    });
-  };
-
-  CookieStorageService.delete = function _delete(name) {
-    this.setter(name, '', -1);
-  };
-
-  CookieStorageService.exist = function exist(name) {
-    return document.cookie.indexOf(';' + name + '=') !== -1 || document.cookie.indexOf(name + '=') === 0;
-  };
-
-  CookieStorageService.get = function get(name) {
-    return this.decode(this.getRaw(name));
-  };
-
-  CookieStorageService.set = function set(name, value, days) {
-    this.setter(name, this.encode(value), days);
-  };
-
-  CookieStorageService.getRaw = function getRaw(name) {
-    var value = null;
-    var cookies = this.toRawArray();
-    var cookie = cookies.find(function (x) {
-      return x.name === name;
-    });
-
-    if (cookie) {
-      value = cookie.value;
-    }
-
-    return value;
-  };
-
-  CookieStorageService.setRaw = function setRaw(name, value, days) {
-    this.setter(name, value, days);
-  };
-
-  CookieStorageService.toArray = function toArray() {
-    var _this2 = this;
-
-    return this.toRawArray().map(function (x) {
-      x.value = _this2.decode(x.value);
-      return x;
-    });
-  };
-
-  CookieStorageService.toRawArray = function toRawArray() {
-    return document.cookie.split(';').map(function (x) {
-      var items = x.split('=');
-      return {
-        name: items[0].trim(),
-        value: items[1] ? items[1].trim() : null
-      };
-    }).filter(function (x) {
-      return x.name !== '';
-    });
-  };
-
-  CookieStorageService.setter = function setter(name, value, days) {
-    var expires;
-
-    if (days) {
-      var date = new Date();
-      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-      expires = '; expires=' + date.toUTCString();
-    } else {
-      expires = '';
-    }
-
-    document.cookie = name + '=' + value + expires + '; path=/';
-    this.items$.next(this.toArray());
-  };
-
-  CookieStorageService.isSupported = function isSupported() {
-    var isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
-    return isBrowser;
-  };
-
-  return CookieStorageService;
-}(StorageService);
-
-_defineProperty(CookieStorageService, "items$", new rxjs.ReplaySubject(1));var ApiService = /*#__PURE__*/function (_HttpService) {
+}();var ApiService = /*#__PURE__*/function (_HttpService) {
   _inheritsLoose(ApiService, _HttpService);
 
   function ApiService() {
     return _HttpService.apply(this, arguments) || this;
   }
 
-  // || 'it';
   ApiService.get$ = function get$(url, data, format) {
     return _HttpService.get$.call(this, getApiUrl(url), data, format);
   };
@@ -847,7 +753,7 @@ _defineProperty(CookieStorageService, "items$", new rxjs.ReplaySubject(1));var A
   return ApiService;
 }(HttpService);
 
-_defineProperty(ApiService, "currentLanguage", CookieStorageService.getRaw('wp-wpml_current_language'));var LocalStorageService = /*#__PURE__*/function (_StorageService) {
+_defineProperty(ApiService, "currentLanguage", window.currentLanguage || 'it');var LocalStorageService = /*#__PURE__*/function (_StorageService) {
   _inheritsLoose(LocalStorageService, _StorageService);
 
   function LocalStorageService() {
@@ -1636,14 +1542,14 @@ AuthSignupComponent.meta = {
 }(rxcomp.Directive);
 ClickOutsideDirective.meta = {
   selector: "[(clickOutside)]"
-};var ContactsComponent = /*#__PURE__*/function (_Component) {
-  _inheritsLoose(ContactsComponent, _Component);
+};var ContactsSimpleComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(ContactsSimpleComponent, _Component);
 
-  function ContactsComponent() {
+  function ContactsSimpleComponent() {
     return _Component.apply(this, arguments) || this;
   }
 
-  var _proto = ContactsComponent.prototype;
+  var _proto = ContactsSimpleComponent.prototype;
 
   _proto.onInit = function onInit() {
     var _this = this;
@@ -1670,6 +1576,102 @@ ClickOutsideDirective.meta = {
       fullName: 'Jhon Appleseed',
       email: 'jhonappleseed@gmail.com',
       // privacy: true,
+      checkRequest: window.antiforgery,
+      checkField: ''
+    });
+  };
+
+  _proto.reset = function reset() {
+    this.form.reset();
+  };
+
+  _proto.onSubmit = function onSubmit() {
+    var _this2 = this;
+
+    if (this.form.valid) {
+      this.form.submitted = true;
+      HttpService.post$('/api/contacts', this.form.value).subscribe(function (response) {
+        _this2.success = true;
+
+        _this2.form.reset(); // this.pushChanges();
+
+        /*
+        dataLayer.push({
+        	'event': 'formSubmission',
+        	'formType': 'Contacts'
+        });
+        */
+
+      }, function (error) {
+        console.log('ContactsSimpleComponent.error', error);
+        _this2.error = error;
+
+        _this2.pushChanges();
+      });
+    } else {
+      this.form.touched = true;
+    }
+  };
+
+  return ContactsSimpleComponent;
+}(rxcomp.Component);
+ContactsSimpleComponent.meta = {
+  selector: '[contacts-simple]',
+  inputs: ['flag']
+};var ContactsComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(ContactsComponent, _Component);
+
+  function ContactsComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = ContactsComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    var _this = this;
+
+    var data = window.data || {
+      reason: [],
+      firstCategory: [],
+      secondCategory: []
+    };
+    var form = new rxcompForm.FormGroup({
+      fullName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      email: new rxcompForm.FormControl(null, [rxcompForm.Validators.RequiredValidator(), rxcompForm.Validators.EmailValidator()]),
+      company: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      reason: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      firstCategory: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      secondCategory: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      message: new rxcompForm.FormControl(null),
+      privacy: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      checkRequest: window.antiforgery,
+      checkField: ''
+    });
+    var controls = this.controls = form.controls;
+    controls.reason.options = data.reason;
+    controls.firstCategory.options = data.firstCategory;
+    controls.secondCategory.options = data.secondCategory;
+    form.changes$.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (changes) {
+      _this.pushChanges();
+    });
+    this.form = form;
+    this.error = null;
+    this.success = false;
+  };
+
+  _proto.test = function test() {
+    var reason = this.controls.reason.options.length ? this.controls.reason.options[0].id : null;
+    var firstCategory = this.controls.firstCategory.options.length ? this.controls.firstCategory.options[0].id : null;
+    var secondCategory = this.controls.secondCategory.options.length ? this.controls.secondCategory.options[0].id : null;
+    this.form.patch({
+      fullName: 'Jhon Appleseed',
+      email: 'jhonappleseed@gmail.com',
+      company: 'Websolute',
+      reason: reason,
+      firstCategory: firstCategory,
+      secondCategory: secondCategory,
+      message: 'Hi!',
+      privacy: true,
       checkRequest: window.antiforgery,
       checkField: ''
     });
@@ -1917,7 +1919,7 @@ ControlCheckboxComponent.meta = {
   inputs: ['control', 'label', 'name'],
   template:
   /* html */
-  "\n\t\t<div class=\"group--form--checkbox\" [class]=\"{ required: control.validators.length }\">\n\t\t\t<label>\n\t\t\t\t<input type=\"checkbox\" class=\"control--checkbox\" [formControl]=\"control\" [value]=\"true\" [formControlName]=\"name\" />\n\t\t\t\t<span [innerHTML]=\"label | html\"></span>\n\t\t\t</label>\n\t\t\t<span *if=\"control.validators.length\" class=\"required__badge\">required</span>\n\t\t</div>\n\t\t<errors-component *if=\"control.validators.length\" [control]=\"control\"></errors-component>\n\t"
+  "\n\t\t<div class=\"group--form--checkbox\" [class]=\"{ required: control.validators.length }\">\n\t\t\t<label>\n\t\t\t\t<input type=\"checkbox\" class=\"control--checkbox\" [formControl]=\"control\" [value]=\"true\" [formControlName]=\"name\" />\n\t\t\t\t<span [innerHTML]=\"label | html\"></span>\n\t\t\t</label>\n\t\t</div>\n\t\t<errors-component *if=\"control.validators.length\" [control]=\"control\"></errors-component>\n\t"
 };var KeyboardService = /*#__PURE__*/function () {
   function KeyboardService() {}
 
@@ -2111,7 +2113,7 @@ ControlCustomSelectComponent.meta = {
   inputs: ['control', 'label', 'multiple', 'name'],
   template:
   /* html */
-  "\n\t\t<div class=\"group--form--select\" [class]=\"{ required: control.validators.length, multiple: isMultiple }\" [dropdown]=\"dropdownId\" (dropped)=\"onDropped($event)\">\n\t\t\t<label [innerHTML]=\"label\"></label>\n\t\t\t<span class=\"control--select\" [innerHTML]=\"getLabel()\"></span>\n            <input type=\"text\" style=\"display:none\" class=\"control--select\" [formControl]=\"control\" [formControlName]=\"name\" />\n\t\t\t<svg class=\"icon icon--caret-down\"><use xlink:href=\"#caret-down\"></use></svg>\n\t\t\t<span class=\"required__badge\">required</span>\n\t\t</div>\n\t\t<errors-component [control]=\"control\"></errors-component>\n\t\t<div class=\"dropdown\" [dropdown-item]=\"dropdownId\">\n\t\t\t<div class=\"category\" [innerHTML]=\"label\"></div>\n\t\t\t<ul class=\"nav--dropdown\" [class]=\"{ multiple: isMultiple }\">\n\t\t\t<li *for=\"let item of control.options\" (click)=\"setOption(item)\"><span [class]=\"{ active: hasOption(item) }\" [innerHTML]=\"item.name\"></span></li>\n\t\t\t</ul>\n\t\t</div>\n\t"
+  "\n\t\t<div class=\"group--form--select\" [class]=\"{ required: control.validators.length, multiple: isMultiple }\" [dropdown]=\"dropdownId\" (dropped)=\"onDropped($event)\">\n\t\t\t<label [innerHTML]=\"label\"></label>\n\t\t\t<span class=\"control--select\" [innerHTML]=\"getLabel()\"></span>\n            <input type=\"text\" style=\"display:none\" class=\"control--select\" [formControl]=\"control\" [formControlName]=\"name\" />\n\t\t\t<svg class=\"icon caret-down\"><use xlink:href=\"#caret-down\"></use></svg>\n\t\t\t<span class=\"required__badge\">required</span>\n\t\t</div>\n\t\t<errors-component [control]=\"control\"></errors-component>\n\t\t<div class=\"dropdown\" [dropdown-item]=\"dropdownId\">\n\t\t\t<div class=\"category\" [innerHTML]=\"label\"></div>\n\t\t\t<ul class=\"nav--dropdown\" [class]=\"{ multiple: isMultiple }\">\n\t\t\t<li *for=\"let item of control.options\" (click)=\"setOption(item)\"><span [class]=\"{ active: hasOption(item) }\" [innerHTML]=\"item.name\"></span></li>\n\t\t\t</ul>\n\t\t</div>\n\t"
   /*  (click)="onClick($event)" (clickOutside)="onClickOutside($event)" */
 
   /*  <!-- <div class="dropdown" [class]="{ dropped: dropped }"> --> */
@@ -2181,7 +2183,7 @@ ControlTextareaComponent.meta = {
   inputs: ['control', 'label', 'name'],
   template:
   /* html */
-  "\n\t\t<div class=\"group--form--textarea\" [class]=\"{ required: control.validators.length }\">\n\t\t\t<label [innerHTML]=\"label\"></label>\n\t\t\t<textarea class=\"control--text\" [formControl]=\"control\" [innerHTML]=\"label\" rows=\"4\" [formControlName]=\"name\"></textarea>\n\t\t\t<span class=\"required__badge\">required</span>\n\t\t</div>\n\t\t<errors-component [control]=\"control\"></errors-component>\n\t"
+  "\n\t\t<div class=\"group--form--textarea\" [class]=\"{ required: control.validators.length }\">\n\t\t\t<label [innerHTML]=\"label\"></label>\n\t\t\t<textarea class=\"control--text\" [formControl]=\"control\" [innerHTML]=\"label\" rows=\"6\" [formControlName]=\"name\"></textarea>\n\t\t\t<span class=\"required__badge\">required</span>\n\t\t</div>\n\t\t<errors-component [control]=\"control\"></errors-component>\n\t"
 };var ErrorsComponent = /*#__PURE__*/function (_ControlComponent) {
   _inheritsLoose(ErrorsComponent, _ControlComponent);
 
@@ -2488,6 +2490,543 @@ var HtmlPipe = /*#__PURE__*/function (_Pipe) {
 }(rxcomp.Pipe);
 HtmlPipe.meta = {
   name: 'html'
+};var MagazineDropdownComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(MagazineDropdownComponent, _Component);
+
+  function MagazineDropdownComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = MagazineDropdownComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    this.dropdownId = DropdownDirective.nextId();
+  };
+
+  return MagazineDropdownComponent;
+}(rxcomp.Component);
+MagazineDropdownComponent.meta = {
+  selector: '[magazine-dropdown]',
+  inputs: ['label', 'filter'],
+  template:
+  /* html */
+  "\n\t\t<span class=\"text\" [innerHTML]=\"label\"></span>\n\t\t<span class=\"btn--dropdown\" [dropdown]=\"dropdownId\">\n\t\t\t<span [innerHTML]=\"filter.label\"></span> <svg class=\"filter\"><use xlink:href=\"#filter\"></use></svg>\n\t\t\t<!-- dropdown -->\n\t\t\t<div class=\"dropdown\" [dropdown-item]=\"dropdownId\">\n\t\t\t\t<div class=\"category\" [innerHTML]=\"filter.label\"></div>\n\t\t\t\t<ul class=\"nav--dropdown\">\n\t\t\t\t\t<li *for=\"let item of filter.options\">\n\t\t\t\t\t\t<span [class]=\"{ active: filter.has(item), disabled: item.disabled }\" (click)=\"filter.set(item)\" [innerHTML]=\"item.label\"></span>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</span>\n\t"
+};var FilterMode = {
+  SELECT: 'select',
+  AND: 'and',
+  OR: 'or'
+};
+
+var FilterItem = /*#__PURE__*/function () {
+  _createClass(FilterItem, [{
+    key: "empty",
+    get: function get() {
+      return this.values.length === 0;
+    }
+  }]);
+
+  function FilterItem(filter) {
+    this.change$ = new rxjs.BehaviorSubject();
+    this.mode = FilterMode.SELECT;
+    this.placeholder = 'Select';
+    this.values = [];
+    this.options = [];
+
+    if (filter) {
+      if (filter.mode === FilterMode.SELECT) {
+        filter.options.unshift({
+          label: filter.placeholder,
+          values: []
+        });
+      }
+
+      Object.assign(this, filter);
+    }
+  }
+
+  var _proto = FilterItem.prototype;
+
+  _proto.filter = function filter(item, value) {
+    return true; // item.options.indexOf(value) !== -1;
+  };
+
+  _proto.match = function match(item) {
+    var _this = this;
+
+    var match;
+
+    if (this.mode === FilterMode.OR) {
+      match = this.values.length ? false : true;
+      this.values.forEach(function (value) {
+        match = match || _this.filter(item, value);
+      });
+    } else {
+      match = true;
+      this.values.forEach(function (value) {
+        match = match && _this.filter(item, value);
+      });
+    }
+
+    return match;
+  };
+
+  _proto.getSelectedOption = function getSelectedOption() {
+    var _this2 = this;
+
+    return this.options.find(function (x) {
+      return _this2.has(x);
+    });
+  };
+
+  _proto.getLabel = function getLabel() {
+    if (this.mode === FilterMode.SELECT) {
+      var selectedOption = this.getSelectedOption();
+      return selectedOption ? selectedOption.label : this.placeholder;
+    } else {
+      return this.label;
+    }
+  };
+
+  _proto.hasAny = function hasAny() {
+    return this.values.length > 0;
+  };
+
+  _proto.has = function has(item) {
+    return this.values.indexOf(item.value) !== -1;
+  };
+
+  _proto.set = function set(item) {
+    if (this.mode === FilterMode.SELECT) {
+      this.values = [];
+    }
+
+    var index = this.values.indexOf(item.value);
+
+    if (index === -1) {
+      if (item.value !== undefined) {
+        this.values.push(item.value);
+      }
+    }
+
+    if (this.mode === FilterMode.SELECT) {
+      this.placeholder = item.label;
+    } // console.log('FilterItem.set', item);
+
+
+    this.change$.next();
+  };
+
+  _proto.remove = function remove(item) {
+    var index = this.values.indexOf(item.value);
+
+    if (index !== -1) {
+      this.values.splice(index, 1);
+    }
+
+    if (this.mode === FilterMode.SELECT) {
+      var first = this.options[0];
+      this.placeholder = first.label;
+    } // console.log('FilterItem.remove', item);
+
+
+    this.change$.next();
+  };
+
+  _proto.toggle = function toggle(item) {
+    if (this.has(item)) {
+      this.remove(item);
+    } else {
+      this.set(item);
+    }
+  };
+
+  _proto.toggleActive = function toggleActive() {
+    this.active = !this.active;
+  };
+
+  _proto.clear = function clear() {
+    this.values = [];
+
+    if (this.mode === FilterMode.SELECT) {
+      var first = this.options[0];
+      this.placeholder = first.label;
+    } // console.log('FilterItem.clear', item);
+
+
+    this.change$.next();
+  };
+
+  return FilterItem;
+}();var LocationService = /*#__PURE__*/function () {
+  function LocationService() {}
+
+  LocationService.get = function get(key) {
+    var params = new URLSearchParams(window.location.search); // console.log('LocationService.get', params);
+
+    return params.get(key);
+  };
+
+  LocationService.set = function set(keyOrValue, value) {
+    var params = new URLSearchParams(window.location.search);
+
+    if (typeof keyOrValue === 'string') {
+      params.set(keyOrValue, value);
+    } else {
+      params.set(keyOrValue, '');
+    }
+
+    this.replace(params); // console.log('LocationService.set', params, keyOrValue, value);
+  };
+
+  LocationService.replace = function replace(params) {
+    if (window.history && window.history.pushState) {
+      var title = document.title;
+      var url = window.location.href.split('?')[0] + "?" + params.toString();
+      window.history.pushState(params.toString(), title, url);
+    }
+  };
+
+  LocationService.deserialize = function deserialize(key) {
+    var encoded = this.get('params');
+    return this.decode(key, encoded);
+  };
+
+  LocationService.serialize = function serialize(keyOrValue, value) {
+    var params = this.deserialize();
+    var encoded = this.encode(keyOrValue, value, params);
+    this.set('params', encoded);
+  };
+
+  LocationService.decode = function decode(key, encoded) {
+    var decoded = null;
+
+    if (encoded) {
+      var json = window.atob(encoded);
+      decoded = JSON.parse(json);
+    }
+
+    if (key && decoded) {
+      decoded = decoded[key];
+    }
+
+    return decoded || null;
+  };
+
+  LocationService.encode = function encode(keyOrValue, value, params) {
+    params = params || {};
+    var encoded = null;
+
+    if (typeof keyOrValue === 'string') {
+      params[keyOrValue] = value;
+    } else {
+      params = keyOrValue;
+    }
+
+    var json = JSON.stringify(params);
+    encoded = window.btoa(json);
+    return encoded;
+  };
+
+  return LocationService;
+}();var FilterService = /*#__PURE__*/function () {
+  function FilterService(options, initialParams, callback) {
+    var filters = {};
+    this.filters = filters;
+
+    if (options) {
+      Object.keys(options).forEach(function (key) {
+        var filter = new FilterItem(options[key]);
+
+        if (typeof callback === 'function') {
+          callback(key, filter);
+        }
+
+        filters[key] = filter;
+      });
+      this.deserialize(this.filters, initialParams);
+    }
+  }
+
+  var _proto = FilterService.prototype;
+
+  _proto.getParamsCount = function getParamsCount(params) {
+    if (params) {
+      var paramsCount = Object.keys(params).reduce(function (p, c, i) {
+        var values = params[c];
+        return p + (values ? values.length : 0);
+      }, 0);
+      return paramsCount;
+    } else {
+      return 0;
+    }
+  };
+
+  _proto.deserialize = function deserialize(filters, initialParams) {
+    var params;
+
+    if (initialParams && this.getParamsCount(initialParams)) {
+      params = initialParams;
+    }
+
+    var locationParams = LocationService.deserialize('filters');
+
+    if (locationParams && this.getParamsCount(locationParams)) {
+      params = locationParams;
+    }
+
+    if (params) {
+      Object.keys(filters).forEach(function (key) {
+        filters[key].values = params[key] || [];
+      });
+    }
+
+    return filters;
+  };
+
+  _proto.serialize = function serialize(filters) {
+    var params = {};
+    var any = false;
+    Object.keys(filters).forEach(function (x) {
+      var filter = filters[x];
+
+      if (filter.values && filter.values.length > 0) {
+        params[x] = filter.values;
+        any = true;
+      }
+    });
+
+    if (!any) {
+      params = null;
+    } // console.log('FilterService.serialize', params);
+
+
+    LocationService.serialize('filters', params);
+    return params;
+  };
+
+  _proto.items$ = function items$(items) {
+    var _this = this;
+
+    var filters = this.filters;
+    var changes = Object.keys(filters).map(function (key) {
+      return filters[key].change$;
+    });
+    this.updateFilterStates(filters, items, true);
+    return rxjs.merge.apply(void 0, changes).pipe(operators.auditTime(1), // tap(() => console.log(filters)),
+    operators.tap(function () {
+      return _this.serialize(filters);
+    }), operators.map(function () {
+      return _this.filterItems(items);
+    }), operators.tap(function () {
+      return _this.updateFilterStates(filters, items);
+    }));
+  };
+
+  _proto.filterItems = function filterItems(items, skipFilter) {
+    var _this2 = this;
+
+    var filters = Object.keys(this.filters).map(function (x) {
+      return _this2.filters[x];
+    }).filter(function (x) {
+      return x.values && x.values.length > 0;
+    });
+    items = items.filter(function (item) {
+      var has = true;
+      filters.forEach(function (filter) {
+        if (filter !== skipFilter) {
+          has = has && filter.match(item);
+        }
+      });
+      return has;
+    });
+    return items;
+  };
+
+  _proto.updateFilterStates = function updateFilterStates(filters, items, initialCount) {
+    var _this3 = this;
+
+    Object.keys(filters).forEach(function (x) {
+      var filter = filters[x];
+      var filteredItems = initialCount ? items : _this3.filterItems(items, filter);
+      filter.options.forEach(function (option) {
+        var count = 0;
+
+        if (option.value) {
+          var i = 0;
+
+          while (i < filteredItems.length) {
+            var item = filteredItems[i];
+
+            if (filter.filter(item, option.value)) {
+              count++;
+            }
+
+            i++;
+          }
+        } else {
+          count = filteredItems.length;
+        }
+
+        initialCount ? option.initialCount = count : option.count = count;
+        option.disabled = count === 0;
+      });
+
+      if (initialCount) {
+        filter.options.sort(function (a, b) {
+          return b.initialCount - a.initialCount;
+        });
+      }
+    });
+  };
+
+  return FilterService;
+}();var MagazineService = /*#__PURE__*/function () {
+  function MagazineService() {}
+
+  MagazineService.all$ = function all$() {
+    if (STATIC) {
+      return ApiService.staticGet$('/magazine/all').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    } else {
+      return ApiService.get$('/magazine/all').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    }
+  };
+
+  MagazineService.filters$ = function filters$() {
+    if (STATIC) {
+      return ApiService.staticGet$('/magazine/filters').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    } else {
+      return ApiService.get$('/magazine/filters').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    }
+  };
+
+  return MagazineService;
+}();var ITEMS_PER_PAGE = 9;
+
+var MagazineComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(MagazineComponent, _Component);
+
+  function MagazineComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = MagazineComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    var _this = this;
+
+    this.maxVisibleItems = ITEMS_PER_PAGE;
+    this.visibleItems = [];
+    this.items = [];
+    this.filters = {};
+    this.busy = true;
+    this.load$().pipe(operators.first()).subscribe(function (data) {
+      _this.busy = false;
+      _this.items = data[0];
+      _this.filters = data[1];
+
+      _this.onLoad();
+
+      _this.pushChanges();
+    });
+  };
+
+  _proto.onLoad = function onLoad() {
+    var _this2 = this;
+
+    var items = this.items;
+    var filters = this.filters;
+    Object.keys(filters).forEach(function (key) {
+      filters[key].mode = FilterMode.SELECT;
+    });
+    var initialParams = {};
+    var filterService = new FilterService(filters, initialParams, function (key, filter) {
+      switch (key) {
+        case 'category':
+        case 'year':
+          filter.filter = function (item, value) {
+            return item[key] === value;
+          };
+
+          break;
+      }
+    });
+    this.filterService = filterService;
+    this.filters = filterService.filters;
+    filterService.items$(items).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (items) {
+      _this2.maxVisibleItems = ITEMS_PER_PAGE;
+      _this2.items = items;
+      _this2.visibleItems = items.slice(0, _this2.maxVisibleItems);
+
+      _this2.pushChanges();
+    });
+    this.scroll$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
+  };
+
+  _proto.scroll$ = function scroll$() {
+    var _this3 = this;
+
+    var _getContext = rxcomp.getContext(this),
+        node = _getContext.node;
+
+    return rxjs.fromEvent(window, 'scroll').pipe(operators.tap(function () {
+      if (_this3.items.length > _this3.visibleItems.length && !_this3.busy) {
+        var rect = node.getBoundingClientRect();
+
+        if (rect.bottom < window.innerHeight) {
+          _this3.busy = true;
+
+          _this3.pushChanges();
+
+          setTimeout(function () {
+            _this3.busy = false;
+            _this3.maxVisibleItems += ITEMS_PER_PAGE;
+            _this3.visibleItems = _this3.items.slice(0, _this3.maxVisibleItems);
+
+            _this3.pushChanges();
+          }, 1000);
+        }
+      }
+    }));
+  };
+
+  _proto.load$ = function load$() {
+    return rxjs.combineLatest([MagazineService.all$(), MagazineService.filters$()]);
+  };
+
+  _proto.toggleFilter = function toggleFilter(filter) {
+    var _this4 = this;
+
+    Object.keys(this.filters).forEach(function (key) {
+      var f = _this4.filters[key];
+
+      if (f === filter) {
+        f.active = !f.active;
+      } else {
+        f.active = false;
+      }
+    });
+    this.pushChanges();
+  };
+
+  _proto.clearFilter = function clearFilter(event, filter) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    filter.clear();
+    this.pushChanges();
+  };
+
+  return MagazineComponent;
+}(rxcomp.Component);
+MagazineComponent.meta = {
+  selector: '[magazine]'
 };var ModalComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(ModalComponent, _Component);
 
@@ -2952,7 +3491,8 @@ var DragService = /*#__PURE__*/function () {
     } // console.log('SliderComponent.onInit', this.items);
 
 
-    this.userGesture$ = new rxjs.Subject();
+    this.userGesture = false; // this.userGesture$ = new Subject();
+
     setTimeout(function () {
       // this.change.next(this.current);
 
@@ -2964,46 +3504,127 @@ var DragService = /*#__PURE__*/function () {
       _this.slider$().pipe(operators.takeUntil(_this.unsubscribe$)).subscribe(function (event) {// console.log('dragService', event);
       });
     }, 1);
-    this.autoplay$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
-      _this.pushChanges();
+    this.changed$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
+    setTimeout(function () {
+      _this.setActiveState();
+    }, 500);
+    /*
+    this.autoplay$().pipe(
+    	takeUntil(this.unsubscribe$),
+    ).subscribe(() => {
+    	this.pushChanges();
     });
+    */
+  };
+
+  _proto.changed$ = function changed$() {
+    var _this2 = this;
+
+    return this.change.pipe(operators.tap(function () {
+      return _this2.setActiveState();
+    }));
+  };
+
+  _proto.setActiveState = function setActiveState() {
+    var _this3 = this;
+
+    if (this.to) {
+      clearTimeout(this.to);
+      this.to = null;
+    }
+
+    var current = this.current;
+
+    var _getContext2 = rxcomp.getContext(this),
+        node = _getContext2.node;
+
+    var slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+    var currentSlide;
+    slides.forEach(function (slide, i) {
+      if (i === current) {
+        currentSlide = slide;
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+    var videos = Array.prototype.slice.call(node.querySelectorAll('video'));
+    videos.forEach(function (video) {
+      if (!video.paused) {
+        video.pause();
+      }
+    });
+
+    if (currentSlide) {
+      var video = currentSlide.querySelector('video');
+
+      if (video) {
+        var onEnded = function onEnded() {
+          // console.log(video, 'onEnded');
+          video.removeEventListener('ended', onEnded);
+
+          if (!_this3.userGesture) {
+            _this3.current = (_this3.current + 1) % _this3.items.length;
+
+            _this3.pushChanges();
+          }
+        };
+
+        video.addEventListener('ended', onEnded);
+        video.play();
+      } else {
+        var autoplay = typeof this.autoplay === 'number' ? this.autoplay : 4000;
+
+        if (!this.userGesture) {
+          this.to = setTimeout(function () {
+            _this3.current = (_this3.current + 1) % _this3.items.length;
+
+            _this3.pushChanges();
+          }, autoplay);
+        }
+      }
+    } // console.log('SliderComponent.setActiveState', current, currentSlide);
+
   };
 
   _proto.slider$ = function slider$() {
-    var _this2 = this;
+    var _this4 = this;
 
     var translation, dragDownEvent, dragMoveEvent;
     return DragService.events$(this.wrapper).pipe(operators.tap(function (event) {
       if (event instanceof DragDownEvent) {
-        translation = _this2.getTranslation(_this2.wrapper, _this2.container);
+        translation = _this4.getTranslation(_this4.wrapper, _this4.container);
         dragDownEvent = event;
       } else if (event instanceof DragMoveEvent) {
-        dragMoveEvent = _this2.onDragMoveEvent(dragDownEvent, event, translation); // console.log('DragMoveEvent');
+        dragMoveEvent = _this4.onDragMoveEvent(dragDownEvent, event, translation); // console.log('DragMoveEvent');
       } else if (event instanceof DragUpEvent) {
         if (dragMoveEvent) {
-          _this2.container.classList.remove('dragging');
+          _this4.container.classList.remove('dragging');
 
-          _this2.wrapper.style.transform = null;
+          _this4.wrapper.style.transform = null;
 
-          _this2.onDragUpEvent(dragDownEvent, dragMoveEvent);
+          _this4.onDragUpEvent(dragDownEvent, dragMoveEvent);
         } // console.log('DragUpEvent');
 
       }
     }));
-  };
-
-  _proto.autoplay$ = function autoplay$() {
-    var _this3 = this;
-
-    if (this.autoplay) {
-      var autoplay = typeof this.autoplay === 'number' ? this.autoplay : 4000;
-      return rxjs.interval(autoplay).pipe(operators.takeUntil(this.userGesture$), operators.tap(function () {
-        _this3.current = (_this3.current + 1) % _this3.items.length;
-      }));
-    } else {
-      return rxjs.of(null);
-    }
-  };
+  }
+  /*
+  autoplay$() {
+  	if (this.autoplay) {
+  		const autoplay = typeof this.autoplay === 'number' ? this.autoplay : 4000;
+  		return interval(autoplay).pipe(
+  			takeUntil(this.userGesture$),
+  			tap(() => {
+  				this.current = (this.current + 1) % this.items.length;
+  			}),
+  		);
+  	} else {
+  		return of(null);
+  	}
+  }
+  */
+  ;
 
   _proto.onDragMoveEvent = function onDragMoveEvent(dragDownEvent, dragMoveEvent, translation) {
     this.container.classList.add('dragging');
@@ -3028,7 +3649,8 @@ var DragService = /*#__PURE__*/function () {
   _proto.navTo = function navTo(current) {
     current = (current > 0 ? current : this.items.length + current) % this.items.length;
     this.current = current;
-    this.userGesture$.next();
+    this.userGesture = true; // this.userGesture$.next();
+
     this.pushChanges();
   };
 
@@ -3139,46 +3761,45 @@ SliderComponent.meta = {
     this.resize$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
       return _this.pushChanges();
     });
-    this.changed$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
-    setTimeout(function () {
-      _this.setActiveState();
+    /*
+    this.changed$().pipe(
+    	takeUntil(this.unsubscribe$)
+    ).subscribe();
+    setTimeout(() => {
+    	this.setActiveState();
     }, 500);
+    */
   };
 
   _proto.resize$ = function resize$() {
     return rxjs.fromEvent(window, 'resize');
-  };
-
-  _proto.changed$ = function changed$() {
-    var _this2 = this;
-
-    return this.change.pipe(operators.tap(function () {
-      return _this2.setActiveState();
-    }));
-  };
-
-  _proto.setActiveState = function setActiveState() {
-    var current = this.current;
-
-    var _getContext = rxcomp.getContext(this),
-        node = _getContext.node;
-
-    var slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-    slides.forEach(function (slide, i) {
-      return i === current ? slide.classList.add('active') : slide.classList.remove('active');
-    });
-  };
+  }
+  /*
+  changed$() {
+  	return this.change.pipe(
+  		tap(() => this.setActiveState()),
+  	);
+  }
+  
+  setActiveState() {
+  	const current = this.current;
+  	const { node } = getContext(this);
+  	const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+  	slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
+  }
+  */
+  ;
 
   _proto.onContentOver = function onContentOver() {
-    var _getContext2 = rxcomp.getContext(this),
-        node = _getContext2.node;
+    var _getContext = rxcomp.getContext(this),
+        node = _getContext.node;
 
     node.classList.add('content-over');
   };
 
   _proto.onContentOut = function onContentOut() {
-    var _getContext3 = rxcomp.getContext(this),
-        node = _getContext3.node;
+    var _getContext2 = rxcomp.getContext(this),
+        node = _getContext2.node;
 
     node.classList.remove('content-over');
   };
@@ -3240,8 +3861,8 @@ SliderComponent.meta = {
   }, {
     key: "slideWidth",
     get: function get() {
-      var _getContext4 = rxcomp.getContext(this),
-          node = _getContext4.node; // const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+      var _getContext3 = rxcomp.getContext(this),
+          node = _getContext3.node; // const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
 
 
       var slideWidth = (window.innerWidth < 768 ? node.offsetWidth : node.offsetWidth / 12 * 10) + 40;
@@ -3265,35 +3886,32 @@ SliderCaseStudyComponent.meta = {
   var _proto = SliderGalleryComponent.prototype;
 
   _proto.onInit = function onInit() {
-    var _this = this;
-
     _SliderComponent.prototype.onInit.call(this);
-
-    this.changed$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
-    setTimeout(function () {
-      _this.setActiveState();
+    /*
+    this.changed$().pipe(
+    	takeUntil(this.unsubscribe$)
+    ).subscribe();
+    setTimeout(() => {
+    	this.setActiveState();
     }, 500);
-  };
+    */
 
-  _proto.changed$ = function changed$() {
-    var _this2 = this;
-
-    return this.change.pipe(operators.tap(function () {
-      return _this2.setActiveState();
-    }));
-  };
-
-  _proto.setActiveState = function setActiveState() {
-    var current = this.current;
-
-    var _getContext = rxcomp.getContext(this),
-        node = _getContext.node;
-
-    var slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-    slides.forEach(function (slide, i) {
-      return i === current ? slide.classList.add('active') : slide.classList.remove('active');
-    });
-  };
+  }
+  /*
+  changed$() {
+  	return this.change.pipe(
+  		tap(() => this.setActiveState()),
+  	);
+  }
+  
+  setActiveState() {
+  	const current = this.current;
+  	const { node } = getContext(this);
+  	const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+  	slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
+  }
+  */
+  ;
 
   _proto.navTo = function navTo(current) {
     _SliderComponent.prototype.navTo.call(this, current);
@@ -3375,16 +3993,18 @@ SliderGalleryComponent.meta = {
   var _proto = SliderHeroComponent.prototype;
 
   _proto.onInit = function onInit() {
-    var _this = this;
-
     _SliderComponent.prototype.onInit.call(this);
 
     this.pagination$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
     this.click$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
-    this.changed$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
-    setTimeout(function () {
-      _this.setActiveState();
+    /*
+    this.changed$().pipe(
+    	takeUntil(this.unsubscribe$)
+    ).subscribe();
+    setTimeout(() => {
+    	this.setActiveState();
     }, 500);
+    */
   };
 
   _proto.raf$ = function raf$() {
@@ -3404,7 +4024,7 @@ SliderGalleryComponent.meta = {
   };
 
   _proto.pagination$ = function pagination$() {
-    var _this2 = this;
+    var _this = this;
 
     var _getContext = rxcomp.getContext(this),
         node = _getContext.node;
@@ -3419,13 +4039,13 @@ SliderGalleryComponent.meta = {
       position.x += (mouse.x - position.x) / 20;
       position.y += (mouse.y - position.y) / 20; // const rect = node.getBoundingClientRect();
 
-      _this2.direction = mouse.x > window.innerWidth / 2 ? 1 : -1;
+      _this.direction = mouse.x > window.innerWidth / 2 ? 1 : -1;
       pagination.style.transform = "translateX(" + position.x + "px) translateY(" + position.y + "px)";
     }));
   };
 
   _proto.click$ = function click$() {
-    var _this3 = this;
+    var _this2 = this;
 
     var _getContext2 = rxcomp.getContext(this),
         node = _getContext2.node;
@@ -3433,46 +4053,41 @@ SliderGalleryComponent.meta = {
     return rxjs.fromEvent(node, 'click').pipe(operators.map(function (event) {
       if (event.clientX > window.innerWidth / 2) {
         // if (this.hasNext()) {
-        _this3.navTo(_this3.state.current + 1); // }
+        _this2.navTo(_this2.state.current + 1); // }
 
       } else {
         // if (this.hasPrev()) {
-        _this3.navTo(_this3.state.current - 1); // }
+        _this2.navTo(_this2.state.current - 1); // }
 
       }
     }));
-  };
-
-  _proto.changed$ = function changed$() {
-    var _this4 = this;
-
-    return this.change.pipe(operators.tap(function () {
-      return _this4.setActiveState();
-    }));
-  };
-
-  _proto.setActiveState = function setActiveState() {
-    var current = this.current;
-
-    var _getContext3 = rxcomp.getContext(this),
-        node = _getContext3.node;
-
-    var slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-    slides.forEach(function (slide, i) {
-      return i === current ? slide.classList.add('active') : slide.classList.remove('active');
-    });
-  };
+  }
+  /*
+  changed$() {
+  	return this.change.pipe(
+  		tap(() => this.setActiveState()),
+  	);
+  }
+  
+  setActiveState() {
+  	const current = this.current;
+  	const { node } = getContext(this);
+  	const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+  	slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
+  }
+  */
+  ;
 
   _proto.onContentOver = function onContentOver() {
-    var _getContext4 = rxcomp.getContext(this),
-        node = _getContext4.node;
+    var _getContext3 = rxcomp.getContext(this),
+        node = _getContext3.node;
 
     node.classList.add('content-over');
   };
 
   _proto.onContentOut = function onContentOut() {
-    var _getContext5 = rxcomp.getContext(this),
-        node = _getContext5.node;
+    var _getContext4 = rxcomp.getContext(this),
+        node = _getContext4.node;
 
     node.classList.remove('content-over');
   };
@@ -3533,8 +4148,8 @@ SliderGalleryComponent.meta = {
       if (this.direction_ !== direction) {
         this.direction_ = direction;
 
-        var _getContext6 = rxcomp.getContext(this),
-            node = _getContext6.node;
+        var _getContext5 = rxcomp.getContext(this),
+            node = _getContext5.node;
 
         var pagination = node.querySelector('.slider__pagination');
 
@@ -4017,6 +4632,6 @@ VirtualStructure.meta = {
 }(rxcomp.Module);
 AppModule.meta = {
   imports: [rxcomp.CoreModule, rxcompForm.FormModule],
-  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, ModalComponent, ModalOutletComponent, ScrollToDirective, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, VirtualStructure],
+  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ContactsSimpleComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, MagazineComponent, MagazineDropdownComponent, ModalComponent, ModalOutletComponent, ScrollToDirective, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, VirtualStructure],
   bootstrap: AppComponent
 };rxcomp.Browser.bootstrap(AppModule);})));
