@@ -37,9 +37,8 @@
 	}
 
 	.title {
-		font-size: 48px;
+		@extend %title-hero;
 		margin-bottom: 24px;
-		line-height: 1.2;
 	}
 
 	.abstract {
@@ -113,12 +112,12 @@
 	}
 
 	.category {
-		line-height: 1.2;
+		@extend %category;
 		color: $foreground-negative;
 	}
 
 	.title {
-		line-height: 1.2;
+		@extend %title;
 		max-width: 360px;
 		color: $foreground-negative;
 	}
@@ -143,16 +142,6 @@
 			padding: 40px 48px;
 		}
 
-		.category {
-			font-size: 24px;
-			margin-bottom: 24px;
-		}
-
-		.title {
-			font-size: 48px;
-			margin-bottom: 24px;
-		}
-
 		.btn--card {
 			.label {
 				font-size: 16px;
@@ -164,16 +153,6 @@
 
 		&>.container {
 			padding: 16px;
-		}
-
-		.category {
-			font-size: 16px;
-			margin-bottom: 8px;
-		}
-
-		.title {
-			font-size: 24px;
-			margin-bottom: 16px;
 		}
 
 		.btn--card {

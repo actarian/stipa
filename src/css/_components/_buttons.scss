@@ -80,6 +80,50 @@
 			transition-delay: 0.2s;
 		}
 	}
+
+	@include media-up(sm) {
+		// height: 49px;
+		padding: 15px 35px;
+		font-size: 18px;
+
+		&:after {
+			top: 15px;
+			left: 35px;
+		}
+	}
+
+	@include media-down(xs) {
+		// height: 36px;
+		padding: 10px 15px;
+		font-size: 14px;
+
+		&:after {
+			top: 10px;
+			left: 15px;
+		}
+	}
+}
+
+%btn-rect-md {
+	@include media-up(sm) {
+		// height: 39px;
+		padding: 10px 24px;
+
+		&:after {
+			top: 10px;
+			left: 24px;
+		}
+	}
+
+	@include media-down(xs) {
+		// height: 36px;
+		padding: 10px 15px;
+
+		&:after {
+			top: 10px;
+			left: 15px;
+		}
+	}
 }
 
 %btn-rect {
@@ -87,7 +131,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 15px 25px;
 
 	svg {
 		width: 24px;
@@ -105,8 +148,6 @@
 	}
 
 	&:after {
-		top: 15px;
-		left: 25px;
 		color: white;
 	}
 
@@ -133,7 +174,6 @@
 	justify-content: center;
 	align-items: center;
 	border-radius: 0;
-	padding: 15px 35px;
 	border: thin solid transparent;
 	line-height: 1;
 	text-transform: uppercase;
@@ -145,8 +185,6 @@
 	}
 
 	&:after {
-		top: 15px;
-		left: 35px;
 		color: #ffffff;
 	}
 
@@ -164,44 +202,6 @@
 	&.active {
 		&:after {
 			width: calc(100% - 50px);
-		}
-	}
-}
-
-%btn-rect-secondary {
-	@extend %btn-animated;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 15px 20px; // 20px 30px;
-
-	span {
-		display: block;
-	}
-
-	&:before {
-		background: #2D2D2B;
-	}
-
-	&:after {
-		top: 15px;
-		left: 20px;
-		color: #888888;
-	}
-
-	&,
-	&:active,
-	&:focus,
-	&:visited,
-	&:hover {
-		background: #1D1D1B;
-		color: #ffffff;
-	}
-
-	&:hover,
-	&.active {
-		&:after {
-			width: calc(100% - 40px);
 		}
 	}
 }
@@ -254,11 +254,6 @@
 
 .btn--primary {
 	@extend %btn-rect-stroked;
-
-	@include media-down(xs) {
-		padding: 10px 15px;
-		font-size: 14px;
-	}
 }
 
 .btn--secondary {
@@ -272,7 +267,7 @@
 
 .btn--submit {
 	@extend %btn-rect-stroked;
-	padding: 10px 24px;
+	@extend %btn-rect-md;
 
 	&:before {
 		background: #004987;
@@ -280,8 +275,6 @@
 
 	&:after {
 		color: white;
-		left: 24px;
-		top: 10px;
 	}
 
 	&,

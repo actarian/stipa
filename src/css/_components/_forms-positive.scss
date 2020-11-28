@@ -130,7 +130,7 @@ $invalid: #AC3C72;
 
 	errors-component {
 		.inner {
-			background: rgba($foreground, 0.5);
+			background: $invalid;
 			color: white;
 		}
 	}

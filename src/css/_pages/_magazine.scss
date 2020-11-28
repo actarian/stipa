@@ -21,9 +21,7 @@
 	}
 
 	.title {
-		font-size: 24px;
-		line-height: 1.2;
-		margin-bottom: 24px;
+		@extend %title-listing;
 	}
 
 	.btn--card {
@@ -67,9 +65,7 @@
 	}
 
 	.title {
-		font-size: 24px;
-		line-height: 1.2;
-		margin-bottom: 24px;
+		@extend %title-listing;
 	}
 
 	.btn--card {
@@ -85,11 +81,6 @@
 
 	&>.listing__item {
 		margin-right: 16px;
-	}
-
-	svg {
-		width: 12px;
-		height: 12px;
 	}
 }
 
@@ -115,12 +106,50 @@
 	text-transform: lowercase;
 	text-decoration: underline;
 
+	svg {
+		width: 12px;
+		height: 12px;
+	}
+
 	&,
 	&:active,
 	&:focus,
 	&:visited,
 	&:hover {
 		color:#AC3C72;
+	}
+}
+
+.btn--option {
+	@extend %btn;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 3px 6px;
+	border: thin solid transparent;
+	border-radius: 2px;
+
+    font-size: 12px;
+	font-weight: 400;
+	line-height: 1;
+	text-transform: uppercase;
+	cursor: pointer;
+
+	svg {
+		width: 8px;
+		height: 8px;
+		margin-left: 4px;
+		fill: currentColor!important;
+	}
+
+	&,
+	&:active,
+	&:focus,
+	&:visited,
+	&:hover {
+		background: transparent;
+		border-color: #ac3c72;
+		color: #ac3c72;
 	}
 }
 

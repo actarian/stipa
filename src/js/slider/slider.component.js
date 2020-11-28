@@ -114,10 +114,10 @@ export default class SliderComponent extends Component {
 				const onEnded = () => {
 					// console.log(video, 'onEnded');
 					video.removeEventListener('ended', onEnded);
-					if (!this.userGesture) {
+					// if (!this.userGesture) {
 						this.current = (this.current + 1) % this.items.length;
 						this.pushChanges();
-					}
+					// }
 				};
 				video.addEventListener('ended', onEnded);
 				video.play();

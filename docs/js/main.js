@@ -209,152 +209,7 @@ MediaMatcher._matchMedia = window.matchMedia ? window.matchMedia.bind(window) : 
   return BreakpointService;
 }();
 
-_defineProperty(BreakpointService, "queries_", {});var StorageService = /*#__PURE__*/function () {
-  function StorageService() {}
-
-  StorageService.encode = function encode(decoded) {
-    var encoded = rxcomp.Serializer.encode(decoded, [rxcomp.encodeJson, encodeURIComponent, rxcomp.encodeBase64]) || null;
-    return encoded;
-  };
-
-  StorageService.decode = function decode(encoded) {
-    var decoded = rxcomp.Serializer.decode(encoded, [rxcomp.decodeBase64, decodeURIComponent, rxcomp.decodeJson]);
-    return decoded;
-  };
-
-  StorageService.isSupported = function isSupported(type) {
-    var flag = false;
-    var storage;
-
-    try {
-      storage = rxcomp.WINDOW[type];
-      var x = '__storage_test__';
-      storage.setItem(x, x);
-      storage.removeItem(x);
-      flag = true;
-    } catch (error) {
-      flag = error instanceof DOMException && ( // everything except Firefox
-      error.code === 22 || // Firefox
-      error.code === 1014 || // test name field too, because code might not be present
-      // everything except Firefox
-      error.name === 'QuotaExceededError' || // Firefox
-      error.name === 'NS_ERROR_DOM_QUOTA_REACHED') && // acknowledge QuotaExceededError only if there's something already stored
-      Boolean(storage && storage.length !== 0);
-    }
-
-    return flag;
-  };
-
-  return StorageService;
-}();
-
-_defineProperty(StorageService, "supported", false);var SessionStorageService = /*#__PURE__*/function (_StorageService) {
-  _inheritsLoose(SessionStorageService, _StorageService);
-
-  function SessionStorageService() {
-    return _StorageService.apply(this, arguments) || this;
-  }
-
-  SessionStorageService.clear = function clear() {
-    if (this.isSupported()) {
-      sessionStorage.clear();
-      this.items$.next(this.toArray());
-    }
-  };
-
-  SessionStorageService.delete = function _delete(name) {
-    if (this.isSupported()) {
-      sessionStorage.removeItem(name);
-      this.items$.next(this.toArray());
-    }
-  };
-
-  SessionStorageService.exist = function exist(name) {
-    if (this.isSupported()) {
-      return sessionStorage.getItem(name) !== undefined;
-    } else {
-      return false;
-    }
-  };
-
-  SessionStorageService.get = function get(name) {
-    return this.decode(this.getRaw(name));
-  };
-
-  SessionStorageService.set = function set(name, value) {
-    this.setRaw(name, this.encode(value));
-  };
-
-  SessionStorageService.getRaw = function getRaw(name) {
-    var value = null;
-
-    if (this.isSupported()) {
-      value = sessionStorage.getItem(name);
-    }
-
-    return value;
-  };
-
-  SessionStorageService.setRaw = function setRaw(name, value) {
-    if (value && this.isSupported()) {
-      sessionStorage.setItem(name, value);
-      this.items$.next(this.toArray());
-    }
-  };
-
-  SessionStorageService.toArray = function toArray() {
-    var _this = this;
-
-    return this.toRawArray().map(function (x) {
-      x.value = _this.decode(x.value);
-      return x;
-    });
-  };
-
-  SessionStorageService.toRawArray = function toRawArray() {
-    var _this2 = this;
-
-    if (this.isSupported()) {
-      return Object.keys(sessionStorage).map(function (key) {
-        return {
-          name: key,
-          value: _this2.getRaw(key)
-        };
-      });
-    } else {
-      return [];
-    }
-  };
-
-  SessionStorageService.isSupported = function isSupported() {
-    if (this.supported) {
-      return true;
-    }
-
-    return StorageService.isSupported('sessionStorage');
-  };
-
-  return SessionStorageService;
-}(StorageService);
-
-_defineProperty(SessionStorageService, "items$", new rxjs.ReplaySubject(1));var CoverService = /*#__PURE__*/function () {
-  function CoverService() {}
-
-  CoverService.isIndex = function isIndex() {
-    var validPaths = ['', '/', '/it/', '/en/'];
-    return validPaths.indexOf(window.location.pathname) !== -1;
-  };
-
-  CoverService.shouldShowCover = function shouldShowCover() {
-    var flag = false;
-    var showCover = SessionStorageService.get('showCover');
-    flag = CoverService.isIndex() && !showCover;
-    SessionStorageService.set('showCover', true);
-    return flag;
-  };
-
-  return CoverService;
-}();var AppComponent = /*#__PURE__*/function (_Component) {
+_defineProperty(BreakpointService, "queries_", {});var AppComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(AppComponent, _Component);
 
   function AppComponent() {
@@ -370,7 +225,6 @@ _defineProperty(SessionStorageService, "items$", new rxjs.ReplaySubject(1));var 
         node = _getContext.node;
 
     node.classList.remove('hidden');
-    this.showCover = CoverService.shouldShowCover();
     BreakpointService.observe$({
       isMobile: '(max-width: 767px)'
     }).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (results) {
@@ -379,12 +233,6 @@ _defineProperty(SessionStorageService, "items$", new rxjs.ReplaySubject(1));var 
 
       _this.pushChanges();
     });
-  };
-
-  _proto.onSkipCover = function onSkipCover(event) {
-    console.log('AppComponent.onSkipCover');
-    this.showCover = false;
-    this.pushChanges();
   };
 
   _proto.onMenuToggle = function onMenuToggle(opened) {
@@ -753,7 +601,46 @@ var HttpService = /*#__PURE__*/function () {
   return ApiService;
 }(HttpService);
 
-_defineProperty(ApiService, "currentLanguage", window.currentLanguage || 'it');var LocalStorageService = /*#__PURE__*/function (_StorageService) {
+_defineProperty(ApiService, "currentLanguage", window.currentLanguage || 'it');var StorageService = /*#__PURE__*/function () {
+  function StorageService() {}
+
+  StorageService.encode = function encode(decoded) {
+    var encoded = rxcomp.Serializer.encode(decoded, [rxcomp.encodeJson, encodeURIComponent, rxcomp.encodeBase64]) || null;
+    return encoded;
+  };
+
+  StorageService.decode = function decode(encoded) {
+    var decoded = rxcomp.Serializer.decode(encoded, [rxcomp.decodeBase64, decodeURIComponent, rxcomp.decodeJson]);
+    return decoded;
+  };
+
+  StorageService.isSupported = function isSupported(type) {
+    var flag = false;
+    var storage;
+
+    try {
+      storage = rxcomp.WINDOW[type];
+      var x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      flag = true;
+    } catch (error) {
+      flag = error instanceof DOMException && ( // everything except Firefox
+      error.code === 22 || // Firefox
+      error.code === 1014 || // test name field too, because code might not be present
+      // everything except Firefox
+      error.name === 'QuotaExceededError' || // Firefox
+      error.name === 'NS_ERROR_DOM_QUOTA_REACHED') && // acknowledge QuotaExceededError only if there's something already stored
+      Boolean(storage && storage.length !== 0);
+    }
+
+    return flag;
+  };
+
+  return StorageService;
+}();
+
+_defineProperty(StorageService, "supported", false);var LocalStorageService = /*#__PURE__*/function (_StorageService) {
   _inheritsLoose(LocalStorageService, _StorageService);
 
   function LocalStorageService() {
@@ -3561,13 +3448,12 @@ var DragService = /*#__PURE__*/function () {
       if (video) {
         var onEnded = function onEnded() {
           // console.log(video, 'onEnded');
-          video.removeEventListener('ended', onEnded);
+          video.removeEventListener('ended', onEnded); // if (!this.userGesture) {
 
-          if (!_this3.userGesture) {
-            _this3.current = (_this3.current + 1) % _this3.items.length;
+          _this3.current = (_this3.current + 1) % _this3.items.length;
 
-            _this3.pushChanges();
-          }
+          _this3.pushChanges(); // }
+
         };
 
         video.addEventListener('ended', onEnded);

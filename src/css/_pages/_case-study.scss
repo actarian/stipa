@@ -26,14 +26,12 @@
 	}
 
 	.title {
-		font-size: 48px;
+		@extend %title-hero;
 		margin-bottom: 24px;
-		line-height: 1.2;
 	}
 
 	.abstract {
-		font-size: 24px;
-		line-height: 1.2;
+		@extend %abstract;
 	}
 }
 
@@ -41,7 +39,7 @@
 	padding: 80px 0;
 
 	.text {
-		font-size: 24px;
+		@extend %abstract;
 		line-height: 1.4;
 	}
 }
@@ -54,8 +52,7 @@
 	}
 
 	&__title {
-		font-size: 40px;
-		line-height: 1.2;
+		@extend %title-secondary;
 		margin-bottom: 32px;
 	}
 }
@@ -168,12 +165,12 @@
 	}
 
 	.category {
-		line-height: 1.2;
+		@extend %category;
 		color: $foreground-negative;
 	}
 
 	.title {
-		line-height: 1.2;
+		@extend %title-secondary;
 		max-width: 360px;
 		color: $foreground-negative;
 	}
@@ -191,32 +188,12 @@
 		&>.container {
 			padding: 40px 48px;
 		}
-
-		.category {
-			font-size: 24px;
-			margin-bottom: 24px;
-		}
-
-		.title {
-			font-size: 40px;
-			margin-bottom: 24px;
-		}
 	}
 
 	@include media-down(xs) {
 
 		&>.container {
 			padding: 16px;
-		}
-
-		.category {
-			font-size: 16px;
-			margin-bottom: 8px;
-		}
-
-		.title {
-			font-size: 24px;
-			margin-bottom: 16px;
 		}
 
 		.btn--card {
@@ -239,7 +216,7 @@
 	.quote {
 		position: relative;
 		padding-left: 32px;
-		font-size: 24px;
+		@extend %abstract;
 		font-weight: 400;
 		line-height: 1.4;
 
@@ -269,8 +246,7 @@
 	}
 
 	.title {
-		font-size: 40px;
-		line-height: 1.2;
+		@extend %title-secondary;
 		margin-bottom: 40px;
 	}
 

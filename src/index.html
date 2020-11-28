@@ -80,7 +80,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="slider__pagination">
+		<div class="slider__pagination" appear-stagger>
 			<!--
 			<button type="button" class="btn--prev" [class]="{ disabled: !hasPrev() }">
 				<svg class="arrow-rounded-prev"><use xlink:href="#arrow-rounded-prev"></use></svg>
@@ -196,7 +196,7 @@
 			<div class="slider__bullets">
 				<span class="slider__bullet" [class]="{ active: index === state.current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
 			</div>
-			<div class="slider__pagination">
+			<div class="slider__pagination" appear-stagger>
 				<div class="group--left">
 					<a href="#" class="btn--primary" data-title="Scopri tutti i progetti">Scopri tutti i progetti</a>
 				</div>

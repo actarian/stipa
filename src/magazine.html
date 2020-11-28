@@ -27,6 +27,13 @@
 			<div class="listing__item">
 				<div magazine-dropdown label="oppure per" [filter]="filters.year"></div>
 			</div>
+			<div class="listing__item" *for="let [key, filter] of filters">
+				<span *for="let item of filter.options">
+					<button type="button" class="btn--option" *if="filter.has(item)" (click)="filter.remove(item)">
+						<span class="name" [innerHTML]="item.label"></span> <svg class="close"><use xlink:href="#close"></use></svg>
+					</button>
+				</span>
+			</div>
 		</div>
 		<!-- results -->
 		<div class="listing--magazine">
