@@ -1,0 +1,47 @@
+
+<script>
+	window.antiforgery = "949c21d9-2e33-44df-8560-9d5b502c02fc";
+	window.labels = {
+		select: "Seleziona",
+		error_required: "Il campo &#232; obbligatorio",
+		error_email: "Email non valida",
+		error_match: "I campi non corrispondono"
+	};
+
+</script>
+
+<section class="section--contacts-simple" contacts-simple>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5">
+				<div class="badge"></div>
+				<div class="title">Vuoi saperne di più sui nostri progetti?</div>
+				<div class="abstract">Nice to show you!</div>
+			</div>
+			<div class="col-md-6 offset-md-1">
+				<form class="form form--negative" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
+					<div class="listing--form-compact">
+						<input name="checkField" [formControl]="controls.checkField" value="" type="text" style="display:none !important;" />
+						<div control-text [control]="controls.fullName" label="Nome"></div>
+						<div control-text [control]="controls.email" label="Email"></div>
+						<!-- <div class="full" control-checkbox [control]="controls.privacy" label="Ho letto l&amp;#39;&amp;lt;a href=&amp;quot;/privacy/&amp;quot; target=&amp;quot;_blank&amp;quot;&gt;informativa&amp;lt;/a&gt; e do il consenso al trattamento del dato"></div> -->
+					</div>
+					<div class="group--error" *if="error">
+						<span class="status-code" [innerHTML]="error.statusCode"></span>
+						<span class="status-message" [innerHTML]="error.statusMessage"></span>
+						<span class="friendly-message" [innerHTML]="error.friendlyMessage"></span>
+					</div>
+					<div class="group--cta">
+						<button type="submit" class="btn--submit" data-title="Contattaci" *if="!form.submitted">
+							<span>Contattaci</span>
+						</button>
+						<button type="submit" class="btn--submit" data-title="Inviato!" *if="form.submitted">
+							<span>Inviato!</span>
+						</button>
+					</div>
+					<test-component [form]="form" (test)="test($event)" (reset)="reset($event)"></test-component>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

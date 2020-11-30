@@ -267,7 +267,7 @@
 
 .section--contacts-simple {
 	padding: 80px 0;
-	margin-bottom: 80px;
+	// margin-bottom: 80px;
 	background: $background-primary;
 	color: $foreground-negative;
 
@@ -288,6 +288,10 @@
 	.abstract {
 		margin-bottom: 32px;
 	}
+}
+
+.section--contacts-simple+.section--case-studies {
+	margin-top: 80px;
 }
 
 .picture--gallery {

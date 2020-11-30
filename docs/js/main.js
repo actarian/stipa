@@ -1761,6 +1761,27 @@ DropdownDirective.dropdown$ = new rxjs.BehaviorSubject(null);var DropdownItemDir
 DropdownItemDirective.meta = {
   selector: '[dropdown-item], [[dropdown-item]]',
   inputs: ['dropdown-item']
+};var FilterDropdownComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(FilterDropdownComponent, _Component);
+
+  function FilterDropdownComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = FilterDropdownComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    this.dropdownId = DropdownDirective.nextId();
+  };
+
+  return FilterDropdownComponent;
+}(rxcomp.Component);
+FilterDropdownComponent.meta = {
+  selector: '[filter-dropdown]',
+  inputs: ['label', 'filter'],
+  template:
+  /* html */
+  "\n\t\t<span class=\"text\" [innerHTML]=\"label\"></span>\n\t\t<span class=\"btn--dropdown\" [dropdown]=\"dropdownId\">\n\t\t\t<span [innerHTML]=\"filter.label\"></span> <svg class=\"filter\"><use xlink:href=\"#filter\"></use></svg>\n\t\t\t<!-- dropdown -->\n\t\t\t<div class=\"dropdown\" [dropdown-item]=\"dropdownId\">\n\t\t\t\t<div class=\"category\" [innerHTML]=\"filter.label\"></div>\n\t\t\t\t<ul class=\"nav--dropdown\">\n\t\t\t\t\t<li *for=\"let item of filter.options\">\n\t\t\t\t\t\t<span [class]=\"{ active: filter.has(item), disabled: item.disabled }\" (click)=\"filter.set(item)\" [innerHTML]=\"item.label\"></span>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</span>\n\t"
 };var ControlComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(ControlComponent, _Component);
 
@@ -2377,27 +2398,6 @@ var HtmlPipe = /*#__PURE__*/function (_Pipe) {
 }(rxcomp.Pipe);
 HtmlPipe.meta = {
   name: 'html'
-};var MagazineDropdownComponent = /*#__PURE__*/function (_Component) {
-  _inheritsLoose(MagazineDropdownComponent, _Component);
-
-  function MagazineDropdownComponent() {
-    return _Component.apply(this, arguments) || this;
-  }
-
-  var _proto = MagazineDropdownComponent.prototype;
-
-  _proto.onInit = function onInit() {
-    this.dropdownId = DropdownDirective.nextId();
-  };
-
-  return MagazineDropdownComponent;
-}(rxcomp.Component);
-MagazineDropdownComponent.meta = {
-  selector: '[magazine-dropdown]',
-  inputs: ['label', 'filter'],
-  template:
-  /* html */
-  "\n\t\t<span class=\"text\" [innerHTML]=\"label\"></span>\n\t\t<span class=\"btn--dropdown\" [dropdown]=\"dropdownId\">\n\t\t\t<span [innerHTML]=\"filter.label\"></span> <svg class=\"filter\"><use xlink:href=\"#filter\"></use></svg>\n\t\t\t<!-- dropdown -->\n\t\t\t<div class=\"dropdown\" [dropdown-item]=\"dropdownId\">\n\t\t\t\t<div class=\"category\" [innerHTML]=\"filter.label\"></div>\n\t\t\t\t<ul class=\"nav--dropdown\">\n\t\t\t\t\t<li *for=\"let item of filter.options\">\n\t\t\t\t\t\t<span [class]=\"{ active: filter.has(item), disabled: item.disabled }\" (click)=\"filter.set(item)\" [innerHTML]=\"item.label\"></span>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\t\t\t</div>\n\t\t</span>\n\t"
 };var FilterMode = {
   SELECT: 'select',
   AND: 'and',
@@ -2940,6 +2940,153 @@ MagazineComponent.meta = {
 }(rxcomp.Component);
 ModalComponent.meta = {
   selector: '[modal]'
+};var PortfolioService = /*#__PURE__*/function () {
+  function PortfolioService() {}
+
+  PortfolioService.all$ = function all$() {
+    if (STATIC) {
+      return ApiService.staticGet$('/portfolio/stand/all').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    } else {
+      return ApiService.get$('/portfolio/stand/all').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    }
+  };
+
+  PortfolioService.filters$ = function filters$() {
+    if (STATIC) {
+      return ApiService.staticGet$('/portfolio/stand/filters').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    } else {
+      return ApiService.get$('/portfolio/stand/filters').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    }
+  };
+
+  return PortfolioService;
+}();var ITEMS_PER_PAGE$1 = 9;
+
+var PortfolioComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(PortfolioComponent, _Component);
+
+  function PortfolioComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = PortfolioComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    var _this = this;
+
+    this.maxVisibleItems = ITEMS_PER_PAGE$1;
+    this.visibleItems = [];
+    this.items = [];
+    this.filters = {};
+    this.busy = true;
+    this.load$().pipe(operators.first()).subscribe(function (data) {
+      _this.busy = false;
+      _this.items = data[0];
+      _this.filters = data[1];
+
+      _this.onLoad();
+
+      _this.pushChanges();
+    });
+  };
+
+  _proto.onLoad = function onLoad() {
+    var _this2 = this;
+
+    var items = this.items;
+    var filters = this.filters;
+    Object.keys(filters).forEach(function (key) {
+      filters[key].mode = FilterMode.SELECT;
+    });
+    var initialParams = {};
+    var filterService = new FilterService(filters, initialParams, function (key, filter) {
+      switch (key) {
+        case 'area':
+        case 'city':
+          filter.filter = function (item, value) {
+            return item[key] === value;
+          };
+
+          break;
+      }
+    });
+    this.filterService = filterService;
+    this.filters = filterService.filters;
+    filterService.items$(items).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (items) {
+      _this2.maxVisibleItems = ITEMS_PER_PAGE$1;
+      _this2.items = items;
+      _this2.visibleItems = items.slice(0, _this2.maxVisibleItems);
+
+      _this2.pushChanges();
+    });
+    this.scroll$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
+  };
+
+  _proto.scroll$ = function scroll$() {
+    var _this3 = this;
+
+    var _getContext = rxcomp.getContext(this),
+        node = _getContext.node;
+
+    return rxjs.fromEvent(window, 'scroll').pipe(operators.tap(function () {
+      if (_this3.items.length > _this3.visibleItems.length && !_this3.busy) {
+        var rect = node.getBoundingClientRect();
+
+        if (rect.bottom < window.innerHeight) {
+          _this3.busy = true;
+
+          _this3.pushChanges();
+
+          setTimeout(function () {
+            _this3.busy = false;
+            _this3.maxVisibleItems += ITEMS_PER_PAGE$1;
+            _this3.visibleItems = _this3.items.slice(0, _this3.maxVisibleItems);
+
+            _this3.pushChanges();
+          }, 1000);
+        }
+      }
+    }));
+  };
+
+  _proto.load$ = function load$() {
+    return rxjs.combineLatest([PortfolioService.all$(), PortfolioService.filters$()]);
+  };
+
+  _proto.toggleFilter = function toggleFilter(filter) {
+    var _this4 = this;
+
+    Object.keys(this.filters).forEach(function (key) {
+      var f = _this4.filters[key];
+
+      if (f === filter) {
+        f.active = !f.active;
+      } else {
+        f.active = false;
+      }
+    });
+    this.pushChanges();
+  };
+
+  _proto.clearFilter = function clearFilter(event, filter) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    filter.clear();
+    this.pushChanges();
+  };
+
+  return PortfolioComponent;
+}(rxcomp.Component);
+PortfolioComponent.meta = {
+  selector: '[portfolio]'
 };var ScrollToDirective = /*#__PURE__*/function (_Directive) {
   _inheritsLoose(ScrollToDirective, _Directive);
 
@@ -4518,6 +4665,6 @@ VirtualStructure.meta = {
 }(rxcomp.Module);
 AppModule.meta = {
   imports: [rxcomp.CoreModule, rxcompForm.FormModule],
-  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ContactsSimpleComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, MagazineComponent, MagazineDropdownComponent, ModalComponent, ModalOutletComponent, ScrollToDirective, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, VirtualStructure],
+  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ContactsSimpleComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, FilterDropdownComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, MagazineComponent, ModalComponent, ModalOutletComponent, PortfolioComponent, ScrollToDirective, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, VirtualStructure],
   bootstrap: AppComponent
 };rxcomp.Browser.bootstrap(AppModule);})));

@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "area": 1,
+    "city": "Verona",
+    "title": "Eurotrias",
+    "abstract": "Progetto Fuoco / Verona",
+    "category": "Case study",
+    "image": "/stipa/img/portfolio/stand/stand-01@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": true
+  },
+  {
+    "id": 2,
+    "area": 1,
+    "city": "Milano",
+    "title": "Loriblu",
+    "abstract": "Micam / Milano",
+    "category": "Case study",
+    "image": "/stipa/img/portfolio/stand/stand-02@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": false
+  },
+  {
+    "id": 3,
+    "area": 2,
+    "city": "Milano",
+    "title": "Keraglass Industries",
+    "abstract": "Vitrum / Milano",
+    "category": null,
+    "image": "/stipa/img/portfolio/stand/stand-03@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": false
+  },
+  {
+    "id": 4,
+    "area": 1,
+    "city": "Milano",
+    "title": "MV Agusta",
+    "abstract": "Eicma / Milano",
+    "category": "Case study",
+    "image": "/stipa/img/portfolio/stand/stand-04@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": true
+  },
+  {
+    "id": 5,
+    "area": 2,
+    "city": "Milano",
+    "title": "Elle Decore",
+    "abstract": "Design Expo / Milano",
+    "category": null,
+    "image": "/stipa/img/portfolio/stand/stand-05@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": false
+  },
+  {
+    "id": 6,
+    "area": 1,
+    "city": "Dusseldorf",
+    "title": "Eni Versalis",
+    "abstract": "K / Dusseldorf",
+    "category": "Case study",
+    "image": "/stipa/img/portfolio/stand/stand-06@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": false
+  },
+  {
+    "id": 7,
+    "area": 2,
+    "city": "Milano",
+    "title": "A.N.C.I. Vip Lounge",
+    "abstract": "Micam / Milano",
+    "category": null,
+    "image": "/stipa/img/portfolio/stand/stand-07@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": false
+  },
+  {
+    "id": 8,
+    "area": 2,
+    "city": "Milano",
+    "title": "Giovanni Fabiani",
+    "abstract": "Micam / Milano",
+    "category": null,
+    "image": "/stipa/img/portfolio/stand/stand-08@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": false
+  },
+  {
+    "id": 9,
+    "area": 1,
+    "city": "Milano",
+    "title": "Sap",
+    "abstract": "Sap Now 2019 / Milano",
+    "category": "Case study",
+    "image": "/stipa/img/portfolio/stand/stand-09@2x.jpg",
+    "url": "/stipa/case-study.html",
+    "important": true
+  }
+]

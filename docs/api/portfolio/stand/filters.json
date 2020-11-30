@@ -1,0 +1,36 @@
+{
+  "area": {
+    "label": "Ambito",
+    "placeholder": "Tutti",
+    "mode": "or",
+    "options": [
+      {
+        "value": 1,
+        "label": "Case study"
+      },
+      {
+        "value": 2,
+        "label": "Event"
+      }
+    ]
+  },
+  "city": {
+    "label": "Località",
+    "placeholder": "Tutte",
+    "mode": "or",
+    "options": [
+      {
+        "value": "Dusseldorf",
+        "label": "Dusseldorf"
+      },
+      {
+        "value": "Milano",
+        "label": "Milano"
+      },
+      {
+        "value": "Verona",
+        "label": "Verona"
+      }
+    ]
+  }
+}

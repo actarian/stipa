@@ -13,6 +13,7 @@ import ContactsSimpleComponent from './contacts/contacts-simple.component';
 import ContactsComponent from './contacts/contacts.component';
 import DropdownItemDirective from './dropdown/dropdown-item.directive';
 import DropdownDirective from './dropdown/dropdown.directive';
+import FilterDropdownComponent from './filter/filter-dropdown.component';
 import ControlCheckboxComponent from './forms/control-checkbox.component';
 import ControlCustomSelectComponent from './forms/control-custom-select.component';
 import ControlPasswordComponent from './forms/control-password.component';
@@ -23,10 +24,10 @@ import GalleryModalComponent from './gallery/gallery-modal.component';
 import GalleryComponent from './gallery/gallery.component';
 import HeaderComponent from './header/header.component';
 import HtmlPipe from './html/html.pipe';
-import MagazineDropdownComponent from './magazine/magazine-dropdown.component';
 import MagazineComponent from './magazine/magazine.component';
 import ModalOutletComponent from './modal/modal-outlet.component';
 import ModalComponent from './modal/modal.component';
+import PortfolioComponent from './portfolio/portfolio.component';
 import ScrollToDirective from './scroll-to/scroll-to.directive';
 import SecureDirective from './secure/secure.directive';
 import ShareComponent from './share/share.component';
@@ -63,14 +64,15 @@ AppModule.meta = {
 		DropdownDirective,
 		DropdownItemDirective,
 		ErrorsComponent,
+		FilterDropdownComponent,
 		GalleryComponent,
 		GalleryModalComponent,
 		HeaderComponent,
 		HtmlPipe,
 		MagazineComponent,
-		MagazineDropdownComponent,
 		ModalComponent,
 		ModalOutletComponent,
+		PortfolioComponent,
 		ScrollToDirective,
 		SecureDirective,
 		ShareComponent,

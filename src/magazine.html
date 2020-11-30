@@ -22,10 +22,10 @@
 		<!-- filters -->
 		<div class="listing--filters" *if="items.length">
 			<div class="listing__item">
-				<div magazine-dropdown label="Filtra per" [filter]="filters.category"></div>
+				<div filter-dropdown label="Filtra per" [filter]="filters.category"></div>
 			</div>
 			<div class="listing__item">
-				<div magazine-dropdown label="oppure per" [filter]="filters.year"></div>
+				<div filter-dropdown label="oppure per" [filter]="filters.year"></div>
 			</div>
 			<div class="listing__item" *for="let [key, filter] of filters">
 				<span *for="let item of filter.options">

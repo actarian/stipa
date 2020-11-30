@@ -12,8 +12,7 @@
         "value": 2,
         "label": "News"
       }
-    ],
-    "secondary": false
+    ]
   },
   "year": {
     "label": "Anno",
@@ -28,7 +27,6 @@
         "value": 2019,
         "label": "2019"
       }
-    ],
-    "secondary": false
+    ]
   }
 }
