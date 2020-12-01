@@ -2983,7 +2983,8 @@ var PortfolioComponent = /*#__PURE__*/function (_Component) {
     var _this = this;
 
     this.maxVisibleItems = ITEMS_PER_PAGE$1;
-    this.visibleItems = [];
+    this.firstItem = null;
+    this.visibleItems = null;
     this.items = [];
     this.filters = {};
     this.busy = true;
@@ -3020,7 +3021,9 @@ var PortfolioComponent = /*#__PURE__*/function (_Component) {
     });
     this.filterService = filterService;
     this.filters = filterService.filters;
-    filterService.items$(items).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (items) {
+    filterService.items$(items).pipe(operators.map(function (items) {
+      return _this2.sortPatternItems(items);
+    }), operators.takeUntil(this.unsubscribe$)).subscribe(function (items) {
       _this2.maxVisibleItems = ITEMS_PER_PAGE$1;
       _this2.items = items;
       _this2.visibleItems = items.slice(0, _this2.maxVisibleItems);
@@ -3028,6 +3031,43 @@ var PortfolioComponent = /*#__PURE__*/function (_Component) {
       _this2.pushChanges();
     });
     this.scroll$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
+  };
+
+  _proto.sortPatternItems = function sortPatternItems(items) {
+    var copy = items.slice();
+    var firstItem = this.firstItem = copy.find(function (x) {
+      return x.important;
+    });
+
+    if (firstItem) {
+      copy.splice(copy.indexOf(firstItem), 1);
+    }
+
+    var order = [false, false, true, false, false, false, false, true];
+    var sorted = [];
+    var i = 0;
+
+    var _loop = function _loop() {
+      var important = order[i % order.length];
+      var item = copy.find(function (x) {
+        return x.important === important;
+      });
+
+      if (item) {
+        copy.splice(copy.indexOf(item), 1);
+        sorted.push(item);
+      } else {
+        sorted.push(copy.shift());
+      }
+
+      i++;
+    };
+
+    while (copy.length) {
+      _loop();
+    }
+
+    return sorted;
   };
 
   _proto.scroll$ = function scroll$() {

@@ -1,6 +1,6 @@
 import { Component, getContext } from 'rxcomp';
 import { combineLatest, fromEvent } from 'rxjs';
-import { first, takeUntil, tap } from 'rxjs/operators';
+import { first, map, takeUntil, tap } from 'rxjs/operators';
 import { FilterMode } from '../filter/filter-item';
 import FilterService from '../filter/filter.service';
 import PortfolioService from './portfolio.service';
@@ -11,7 +11,8 @@ export default class PortfolioComponent extends Component {
 
 	onInit() {
 		this.maxVisibleItems = ITEMS_PER_PAGE;
-		this.visibleItems = [];
+		this.firstItem = null;
+		this.visibleItems = null;
 		this.items = [];
 		this.filters = {};
 		this.busy = true;
@@ -46,6 +47,7 @@ export default class PortfolioComponent extends Component {
 		this.filterService = filterService;
 		this.filters = filterService.filters;
 		filterService.items$(items).pipe(
+			map(items => this.sortPatternItems(items)),
 			takeUntil(this.unsubscribe$),
 		).subscribe(items => {
 			this.maxVisibleItems = ITEMS_PER_PAGE;
@@ -56,6 +58,29 @@ export default class PortfolioComponent extends Component {
 		this.scroll$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe();
+	}
+
+	sortPatternItems(items) {
+		const copy = items.slice();
+		const firstItem = this.firstItem = copy.find(x => x.important);
+		if (firstItem) {
+			copy.splice(copy.indexOf(firstItem), 1);
+		}
+		const order = [false, false, true, false, false, false, false, true];
+		const sorted = [];
+		let	i = 0;
+		while (copy.length) {
+			const important = order[i % order.length];
+			const item = copy.find(x => x.important === important);
+			if (item) {
+				copy.splice(copy.indexOf(item), 1);
+				sorted.push(item);
+			} else {
+				sorted.push(copy.shift());
+			}
+			i++;
+		}
+		return sorted;
 	}
 
 	scroll$() {

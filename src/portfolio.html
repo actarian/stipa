@@ -7,7 +7,7 @@
 <section class="section--portfolio" portfolio>
 	<div class="container">
 		<!-- filters -->
-		<div class="listing--filters" *if="items.length">
+		<div class="listing--filters" *if="visibleItems">
 			<div class="listing__item">
 				<div filter-dropdown label="Filtra per" [filter]="filters.area"></div>
 			</div>
@@ -24,37 +24,35 @@
 		</div>
 	</div>
 
-	<div class="card--portfolio important">
-		<div class="picture">
-			<img loading="lazy" src="/stipa/img/portfolio/stand/stand-01@2x.jpg" />
-		</div>
-		<div class="content">
-			<div class="container">
-				<div class="title">Eurotrias</div>
-				<div class="group--bottom">
-					<div class="abstract">Progetto Fuoco / Verona</div>
-					<div class="category">Case study</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<a [href]="firstItem.url" class="card--portfolio important" *if="firstItem">
+		<span class="picture" *if="firstItem.image"><img loading="lazy" [src]="firstItem.image"></span>
+		<span class="content">
+			<span class="container" appear-stagger>
+				<span class="title" [innerHTML]="firstItem.title"></span>
+				<span class="group--bottom">
+					<span class="abstract" [innerHTML]="firstItem.abstract"></span>
+					<span class="category" [innerHTML]="firstItem.category" *if="firstItem.category"></span>
+				</span>
+			</span>
+		</span>
+	</a>
 
-	<div class="container">
+	<div class="container" *if="visibleItems">
 		<!-- results -->
 		<div class="listing--portfolio">
-			<div class="listing__item" [class]="{ important: item.important }" *for="let item of items">
-				<div class="card--portfolio" [class]="{ important: item.important }">
-					<div class="picture" *if="item.image"><img loading="lazy" [src]="item.image"></div>
-					<div class="content">
-						<div class="container" appear-stagger>
-							<div class="title" [innerHTML]="item.title"></div>
-							<div class="group--bottom">
-								<div class="abstract" [innerHTML]="item.abstract"></div>
-								<div class="category" [innerHTML]="item.category" *if="item.category"></div>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="listing__item" [class]="{ important: item.important }" *for="let item of visibleItems">
+				<a [href]="item.url" class="card--portfolio" [class]="{ important: item.important }">
+					<span class="picture" *if="item.image"><img loading="lazy" [src]="item.image"></span>
+					<span class="content">
+						<span class="container" appear-stagger>
+							<span class="title" [innerHTML]="item.title"></span>
+							<span class="group--bottom">
+								<span class="abstract" [innerHTML]="item.abstract"></span>
+								<span class="category" [innerHTML]="item.category" *if="item.category"></span>
+							</span>
+						</span>
+					</span>
+				</a>
 			</div>
 		</div>
 

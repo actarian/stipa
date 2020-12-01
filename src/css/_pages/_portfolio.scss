@@ -34,6 +34,7 @@
 }
 
 .card--portfolio {
+	display: block;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -44,6 +45,12 @@
 	white-space: normal;
 
 	&>.picture {
+		display: block;
+
+		&>img {
+			// transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 350ms;
+			transition: all ease-in-out 350ms;
+		}
 
 		&:after {
 			content: '';
@@ -61,22 +68,30 @@
 	}
 
 	&>.content {
+		display: block;
 		position: absolute;
 		width: 100%;
 	}
 
+	.container {
+		display: block;
+	}
+
 	.title {
+		display: block;
 		@extend %title-secondary;
 		margin-bottom: 16px;
 		color: $foreground-negative;
 	}
 
 	.abstract {
+		display: block;
 		@extend %abstract;
 		color: $foreground-negative;
 	}
 
 	.category {
+		display: block;
 		padding: 5px 13px;
 		font-size: 18px;
 		font-weight: 400;
@@ -97,6 +112,15 @@
 
 	& p+p {
 		margin-top: 10px;
+	}
+
+	&:hover {
+		&>.picture {
+			&>img {
+				opacity: 0.8;
+				transform: scale(1.02, 1.02);
+			}
+		}
 	}
 
 	&:not(.important) {
@@ -192,10 +216,19 @@
 
 	@include media-down(xs) {
 		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
 
 		&>.listing__item {
 			margin-bottom: 40px;
 			@include as-col(12, 12, $gutter);
+
+			&.important {
+				flex: 0 0 100%;
+				max-width: 100%;
+				margin-left: 0;
+				margin-right: 0;
+			}
 		}
 	}
 }
