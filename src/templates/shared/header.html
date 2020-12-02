@@ -1,4 +1,4 @@
-<header class="header" header (toggle)="onMenuToggle($event)">
+<header class="header" header>
 	<div class="container">
 		<div class="group--header">
 			<div class="group--left">
@@ -8,7 +8,7 @@
 				<!--@@var=path-->
 			</div>
 			<div class="group--right">
-				<button type="button" class="btn--search"><svg class="search"><use xlink:href="#search"></use></svg></button>
+				<button type="button" class="btn--search" (click)="onSearchToggle($event)"><svg class="search"><use xlink:href="#search"></use></svg></button>
 				<button type="button" class="btn--hamburger" (click)="onMainToggle($event)"><svg class="hamburger"><use xlink:href="#hamburger"></use></svg></button>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 					<a href="/stipa/" class="brand"><svg class="logo-stipa"><use xlink:href="#logo-stipa"></use></svg></a>
 				</div>
 				<div class="group--right">
-					<button type="button" class="btn--search"><svg class="search"><use xlink:href="#search"></use></svg></button>
+					<!-- <button type="button" class="btn--search" (click)="onSearchToggle($event)"><svg class="search"><use xlink:href="#search"></use></svg></button> -->
 					<button type="button" class="btn--close" (click)="onMainToggle($event)"><svg class="close"><use xlink:href="#close"></use></svg></button>
 				</div>
 			</div>
@@ -51,6 +51,31 @@
 						<li><a href="#">FAQ</a></li>
 					</ul>
 				</div>
+			</div>
+			<div class="group--footer">
+				<div class="group--left"></div>
+				<div class="group--right">
+					<a href="#" class="btn--language">EN</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main-search" [class]="{ active: searchActive }">
+		<div class="container">
+			<div class="group--header">
+				<div class="group--left">
+					<a href="/stipa/" class="brand"><svg class="logo-stipa"><use xlink:href="#logo-stipa"></use></svg></a>
+				</div>
+				<div class="group--right">
+					<!-- <button type="button" class="btn--hamburger" (click)="onMainToggle($event)"><svg class="hamburger"><use xlink:href="#hamburger"></use></svg></button> -->
+					<button type="button" class="btn--close" (click)="onSearchToggle($event)"><svg class="close"><use xlink:href="#close"></use></svg></button>
+				</div>
+			</div>
+			<div class="group--main">
+				<form class="form form--positive" name="search" role="form" novalidate autocomplete="off">
+					<input class="form--control" placeholder="Search" type="text" />
+					<button type="submit" class="btn--submit-search"><svg class="search"><use xlink:href="#search"></use></svg></button>
+				</form>
 			</div>
 			<div class="group--footer">
 				<div class="group--left"></div>

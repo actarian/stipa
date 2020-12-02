@@ -1,0 +1,88 @@
+
+<section class="section--case-studies">
+	<div class="container">
+		<div class="section--case-studies__badge badge"></div>
+		<div class="section--case-studies__title"><!--@@var=title--></div>
+		<div class="slider__container slider--case-studies" slider-case-study>
+			<div class="slider__wrapper" [style]="wrapperStyle">
+				<div class="slider__inner" [style]="innerStyle">
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--case-study">
+							<div class="picture">
+								<img loading="lazy" src="/stipa/img/case-study/related-01@2x.jpg" ondragstart="return false;" />
+							</div>
+							<div class="container">
+								<div class="title">Loriblu showroom Milano</div>
+								<div class="group--cta">
+									<a href="#" class="btn--card"><span class="badge"></span> <span class="label">Guarda il case study</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--case-study">
+							<div class="picture">
+								<img loading="lazy" src="/stipa/img/case-study/related-02@2x.jpg" ondragstart="return false;" />
+							</div>
+							<div class="container">
+								<div class="title">Eurotrias Progetto Fuoco</div>
+								<div class="group--cta">
+									<a href="#" class="btn--card"><span class="badge"></span> <span class="label">Guarda il case study</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--case-study">
+							<div class="picture">
+								<img loading="lazy" src="/stipa/img/case-study/related-03@2x.jpg" ondragstart="return false;" />
+							</div>
+							<div class="container">
+								<div class="title">Sap Now 2019 Milano</div>
+								<div class="group--cta">
+									<a href="#" class="btn--card"><span class="badge"></span> <span class="label">Guarda il case study</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--case-study">
+							<div class="picture">
+								<img loading="lazy" src="/stipa/img/index/case-study-04@2x.jpg" ondragstart="return false;" />
+							</div>
+							<div class="container">
+								<div class="title">Fabbri 1905 Rimini</div>
+								<div class="group--cta">
+									<a href="#" class="btn--card"><span class="badge"></span> <span class="label">Guarda il case study</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slider__bullets">
+				<span class="slider__bullet" [class]="{ active: index === state.current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
+			</div>
+			<div class="slider__pagination" appear-stagger>
+				<div class="group--left">
+					<button type="button" class="btn--prev" [class]="{ disabled: !hasPrev() }" (click)="navTo(current - 1)">
+						<svg class="arrow-prev"><use xlink:href="#arrow-prev"></use></svg>
+					</button>
+				</div>
+				<div class="group--center">
+					<!-- <a href="#" class="btn--primary" data-title="Scopri tutti i progetti">Scopri tutti i progetti</a> -->
+				</div>
+				<div class="group--right">
+					<button type="button" class="btn--next" [class]="{ disabled: !hasNext() }" (click)="navTo(current + 1)">
+						<svg class="arrow-next"><use xlink:href="#arrow-next"></use></svg>
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>

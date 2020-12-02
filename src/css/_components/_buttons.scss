@@ -180,6 +180,12 @@
 	// transform: translateZ(0);
 	// backface-visibility: hidden;
 
+	svg {
+		width: 13px;
+		height: 13px;
+		margin-right: 8px;
+	}
+
 	&:before {
 		background: #004987;
 	}

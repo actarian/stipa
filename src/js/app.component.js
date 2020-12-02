@@ -17,10 +17,6 @@ export default class AppComponent extends Component {
 			this.pushChanges();
 		});
 	}
-
-	onMenuToggle(opened) {
-		console.log('AppComponent.onMenuToggle', opened);
-	}
 }
 
 AppComponent.meta = {

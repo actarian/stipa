@@ -1,10 +1,10 @@
 import { Component, getContext } from 'rxcomp';
 import { fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { BASE_HREF } from '../environment';
+import { BASE_HREF, STATIC } from '../environment';
 import ModalService from '../modal/modal.service';
 
-const GALLERY_MODAL = BASE_HREF + 'gallery-modal.html';
+const GALLERY_MODAL = STATIC ? BASE_HREF + 'gallery-modal.html' : 'template/gallery-modal.cshtml';
 
 export default class GalleryComponent extends Component {
 

@@ -8,7 +8,8 @@ export default class PortfolioService {
 		if (STATIC) {
 			return ApiService.staticGet$('/portfolio/stand/all').pipe(map(response => response.data));
 		} else {
-			return ApiService.get$('/portfolio/stand/all').pipe(map(response => response.data));
+			return ApiService.staticGet$('/portfolio/stand/all').pipe(map(response => response.data));
+			// return ApiService.get$('/portfolio/stand/all').pipe(map(response => response.data));
 		}
 	}
 
@@ -16,7 +17,8 @@ export default class PortfolioService {
 		if (STATIC) {
 			return ApiService.staticGet$('/portfolio/stand/filters').pipe(map(response => response.data));
 		} else {
-			return ApiService.get$('/portfolio/stand/filters').pipe(map(response => response.data));
+			return ApiService.staticGet$('/portfolio/stand/filters').pipe(map(response => response.data));
+			// return ApiService.get$('/portfolio/stand/filters').pipe(map(response => response.data));
 		}
 	}
 

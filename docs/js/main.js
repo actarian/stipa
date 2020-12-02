@@ -235,10 +235,6 @@ _defineProperty(BreakpointService, "queries_", {});var AppComponent = /*#__PURE_
     });
   };
 
-  _proto.onMenuToggle = function onMenuToggle(opened) {
-    console.log('AppComponent.onMenuToggle', opened);
-  };
-
   return AppComponent;
 }(rxcomp.Component);
 AppComponent.meta = {
@@ -375,7 +371,7 @@ var ENV = {
   RESOURCE: '/docs/',
   STATIC_RESOURCE: './',
   API: '/api',
-  STATIC_API: DEVELOPMENT && !STATIC ? '/Client/docs/api' : './api'
+  STATIC_API: STATIC ? './api' : '/Client/docs/api'
 };
 function getApiUrl(url, useStatic) {
   var base = useStatic || STATIC ? ENV.STATIC_API : ENV.API;
@@ -2168,7 +2164,7 @@ ErrorsComponent.meta = {
 }(rxcomp.Component);
 GalleryModalComponent.meta = {
   selector: '[gallery-modal]'
-};var GALLERY_MODAL = BASE_HREF + 'gallery-modal.html';
+};var GALLERY_MODAL = STATIC ? BASE_HREF + 'gallery-modal.html' : 'template/gallery-modal.cshtml';
 
 var GalleryComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(GalleryComponent, _Component);
@@ -2267,6 +2263,7 @@ GalleryComponent.meta = {
   var _proto = HeaderComponent.prototype;
 
   _proto.onInit = function onInit() {
+    this.searchActive = false;
     this.mainActive = false;
     CssService.height$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (height) {
       console.log('HeaderComponent.height$', height);
@@ -2274,6 +2271,7 @@ GalleryComponent.meta = {
   };
 
   _proto.onMainToggle = function onMainToggle() {
+    this.searchActive = false;
     this.mainActive = !this.mainActive;
 
     var _getContext = rxcomp.getContext(this),
@@ -2289,7 +2287,28 @@ GalleryComponent.meta = {
       }
     });
     this.pushChanges();
-    this.toggle.next(this.mainActive);
+  };
+
+  _proto.onSearchToggle = function onSearchToggle() {
+    this.mainActive = false;
+    this.searchActive = !this.searchActive;
+
+    var _getContext2 = rxcomp.getContext(this),
+        node = _getContext2.node;
+    /*
+    const items = Array.prototype.slice.call(node.querySelectorAll('.nav--primary-menu > li'));
+    gsap.to(items, {
+    	opacity: this.searchActive ? 1 : 0,
+    	duration: 0.35,
+    	stagger: {
+    		each: 0.05,
+    		ease: Power3.easeOut
+    	}
+    });
+    */
+
+
+    this.pushChanges();
   };
 
   _proto.onOpenSub = function onOpenSub(subId) {
@@ -2313,8 +2332,8 @@ GalleryComponent.meta = {
   };
 
   _proto.showPicture = function showPicture(src) {
-    var _getContext2 = rxcomp.getContext(this),
-        node = _getContext2.node;
+    var _getContext3 = rxcomp.getContext(this),
+        node = _getContext3.node;
 
     var picture = node.querySelector('.main-menu__picture');
     var img;
@@ -2359,8 +2378,7 @@ GalleryComponent.meta = {
   return HeaderComponent;
 }(rxcomp.Component);
 HeaderComponent.meta = {
-  selector: 'header',
-  outputs: ['toggle']
+  selector: 'header'
 };/*
 ['quot', 'amp', 'apos', 'lt', 'gt', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'AElig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'amp', 'bull', 'deg', 'infin', 'permil', 'sdot', 'plusmn', 'dagger', 'mdash', 'not', 'micro', 'perp', 'par', 'euro', 'pound', 'yen', 'cent', 'copy', 'reg', 'trade', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega'];
 ['"', '&', ''', '<', '>', ' ', '¡', '¢', '£', '¤', '¥', '¦', '§', '¨', '©', 'ª', '«', '¬', '­', '®', '¯', '°', '±', '²', '³', '´', 'µ', '¶', '·', '¸', '¹', 'º', '»', '¼', '½', '¾', '¿', 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', '×', 'Ø', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'Þ', 'ß', 'à', 'á', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù', 'ú', 'û', 'ü', 'ý', 'þ', 'ÿ', '&', '•', '°', '∞', '‰', '⋅', '±', '†', '—', '¬', 'µ', '⊥', '∥', '€', '£', '¥', '¢', '©', '®', '™', 'α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ', 'ν', 'ξ', 'ο', 'π', 'ρ', 'σ', 'τ', 'υ', 'φ', 'χ', 'ψ', 'ω', 'Α', 'Β', 'Γ', 'Δ', 'Ε', 'Ζ', 'Η', 'Θ', 'Ι', 'Κ', 'Λ', 'Μ', 'Ν', 'Ξ', 'Ο', 'Π', 'Ρ', 'Σ', 'Τ', 'Υ', 'Φ', 'Χ', 'Ψ', 'Ω'];
@@ -2776,9 +2794,9 @@ var FilterItem = /*#__PURE__*/function () {
         return response.data;
       }));
     } else {
-      return ApiService.get$('/magazine/all').pipe(operators.map(function (response) {
+      return ApiService.staticGet$('/magazine/all').pipe(operators.map(function (response) {
         return response.data;
-      }));
+      })); // return ApiService.get$('/magazine/all').pipe(map(response => response.data));
     }
   };
 
@@ -2788,9 +2806,9 @@ var FilterItem = /*#__PURE__*/function () {
         return response.data;
       }));
     } else {
-      return ApiService.get$('/magazine/filters').pipe(operators.map(function (response) {
+      return ApiService.staticGet$('/magazine/filters').pipe(operators.map(function (response) {
         return response.data;
-      }));
+      })); // return ApiService.get$('/magazine/filters').pipe(map(response => response.data));
     }
   };
 
@@ -2949,9 +2967,9 @@ ModalComponent.meta = {
         return response.data;
       }));
     } else {
-      return ApiService.get$('/portfolio/stand/all').pipe(operators.map(function (response) {
+      return ApiService.staticGet$('/portfolio/stand/all').pipe(operators.map(function (response) {
         return response.data;
-      }));
+      })); // return ApiService.get$('/portfolio/stand/all').pipe(map(response => response.data));
     }
   };
 
@@ -2961,9 +2979,9 @@ ModalComponent.meta = {
         return response.data;
       }));
     } else {
-      return ApiService.get$('/portfolio/stand/filters').pipe(operators.map(function (response) {
+      return ApiService.staticGet$('/portfolio/stand/filters').pipe(operators.map(function (response) {
         return response.data;
-      }));
+      })); // return ApiService.get$('/portfolio/stand/filters').pipe(map(response => response.data));
     }
   };
 

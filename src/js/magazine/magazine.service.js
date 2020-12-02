@@ -8,7 +8,8 @@ export default class MagazineService {
 		if (STATIC) {
 			return ApiService.staticGet$('/magazine/all').pipe(map(response => response.data));
 		} else {
-			return ApiService.get$('/magazine/all').pipe(map(response => response.data));
+			return ApiService.staticGet$('/magazine/all').pipe(map(response => response.data));
+			// return ApiService.get$('/magazine/all').pipe(map(response => response.data));
 		}
 	}
 
@@ -16,7 +17,8 @@ export default class MagazineService {
 		if (STATIC) {
 			return ApiService.staticGet$('/magazine/filters').pipe(map(response => response.data));
 		} else {
-			return ApiService.get$('/magazine/filters').pipe(map(response => response.data));
+			return ApiService.staticGet$('/magazine/filters').pipe(map(response => response.data));
+			// return ApiService.get$('/magazine/filters').pipe(map(response => response.data));
 		}
 	}
 

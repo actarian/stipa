@@ -6,6 +6,7 @@ import CssService from '../css/css.service';
 export default class HeaderComponent extends Component {
 
 	onInit() {
+		this.searchActive = false;
 		this.mainActive = false;
 		CssService.height$().pipe(
 			takeUntil(this.unsubscribe$)
@@ -15,6 +16,7 @@ export default class HeaderComponent extends Component {
 	}
 
 	onMainToggle() {
+		this.searchActive = false;
 		this.mainActive = !this.mainActive;
 		const { node } = getContext(this);
 		const items = Array.prototype.slice.call(node.querySelectorAll('.nav--primary-menu > li'));
@@ -27,7 +29,24 @@ export default class HeaderComponent extends Component {
 			}
 		});
 		this.pushChanges();
-		this.toggle.next(this.mainActive);
+	}
+
+	onSearchToggle() {
+		this.mainActive = false;
+		this.searchActive = !this.searchActive;
+		const { node } = getContext(this);
+		/*
+		const items = Array.prototype.slice.call(node.querySelectorAll('.nav--primary-menu > li'));
+		gsap.to(items, {
+			opacity: this.searchActive ? 1 : 0,
+			duration: 0.35,
+			stagger: {
+				each: 0.05,
+				ease: Power3.easeOut
+			}
+		});
+		*/
+		this.pushChanges();
 	}
 
 	onOpenSub(subId) {
@@ -88,6 +107,5 @@ export default class HeaderComponent extends Component {
 }
 
 HeaderComponent.meta = {
-	selector: 'header',
-	outputs: ['toggle']
+	selector: 'header'
 };
