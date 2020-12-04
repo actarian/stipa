@@ -3,6 +3,7 @@ import SliderComponent from './slider.component';
 export default class SliderGalleryComponent extends SliderComponent {
 
 	get current() { return super.getCurrent(); }
+	set current(current) { this.setCurrent(current); }
 
 	get wrapperStyle() {
 		return { 'transform': 'translate3d(' + -100 * this.current + '%, 0, 0)' };

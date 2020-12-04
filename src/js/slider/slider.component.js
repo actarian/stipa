@@ -13,6 +13,8 @@ export const SliderAutoplayMode = {
 export default class SliderComponent extends Component {
 
 	get current() { return this.getCurrent(); }
+	set current(current) { this.setCurrent(current); }
+
 	getCurrent() {
 		if (!this.state) {
 			this.state = { current: 0 };

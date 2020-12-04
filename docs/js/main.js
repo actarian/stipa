@@ -3750,6 +3750,9 @@ var SliderComponent = /*#__PURE__*/function (_Component) {
     key: "current",
     get: function get() {
       return this.getCurrent();
+    },
+    set: function set(current) {
+      this.setCurrent(current);
     }
   }, {
     key: "wrapperStyle",
@@ -3851,6 +3854,9 @@ SliderComponent.meta = {
     key: "current",
     get: function get() {
       return _SliderComponent.prototype.getCurrent.call(this);
+    },
+    set: function set(current) {
+      this.setCurrent(current);
     }
   }, {
     key: "wrapperStyle",
@@ -3913,6 +3919,9 @@ SliderCaseStudyComponent.meta = {
     key: "current",
     get: function get() {
       return _SliderComponent.prototype.getCurrent.call(this);
+    },
+    set: function set(current) {
+      this.setCurrent(current);
     }
   }, {
     key: "wrapperStyle",
@@ -4026,6 +4035,9 @@ SliderGalleryComponent.meta = {
     key: "current",
     get: function get() {
       return _SliderComponent.prototype.getCurrent.call(this);
+    },
+    set: function set(current) {
+      this.setCurrent(current);
     }
   }, {
     key: "wrapperStyle",

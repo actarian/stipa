@@ -6,6 +6,7 @@ import SliderComponent from './slider.component';
 export default class SliderCaseStudyComponent extends SliderComponent {
 
 	get current() { return super.getCurrent(); }
+	set current(current) { this.setCurrent(current); }
 
 	get wrapperStyle() {
 		return { 'transform': 'translate3d(' + -this.slideWidth * this.current + 'px, 0, 0)' };
