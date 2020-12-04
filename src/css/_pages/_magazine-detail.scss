@@ -1,0 +1,189 @@
+.section--hero-magazine-detail {
+	@extend .section--hero-tertiary;
+
+	.title {
+		margin-bottom: 0;
+		text-align: center;
+	}
+}
+
+.section--magazine-intro {
+	padding: 64px 0;
+
+	.date {
+		font-weight: 400;
+		text-align: center;
+		margin-bottom: 24px;
+
+		@include media-up(sm) {
+			font-size: 16px;
+		}
+
+		@include media-down(xs) {
+			font-size: 14px;
+		}
+	}
+
+	.abstract {
+		font-size: 28px;
+		line-height: 1.285;
+		font-weight: 400;
+		margin-bottom: 24px;
+	}
+}
+
+.nav--share {
+	@extend %nav;
+	margin: 32px 0;
+
+	@include media-up(sm) {
+		display: flex;
+		justify-content: center;
+	}
+
+	@include media-down(xs) {
+		display: flex;
+		justify-content: center;
+	}
+
+	&>li {
+		@extend %nav-item;
+		flex: 0 0 auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&>a {
+			@extend %btn;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 32px;
+			height: 32px;
+			margin: 8px;
+			border-radius: 16px;
+			background: #BAB8B8;
+			color: #FFFFFF;
+			transition: all ease-in-out 350ms;
+
+			svg {
+				max-width: 16px;
+				max-height: 16px;
+				fill: currentColor;
+				transition: fill ease-in-out 350ms;
+			}
+
+			&:hover {
+				background: $foreground;
+				color: #FFFFFF;
+			}
+		}
+	}
+}
+
+.section--magazine-text {
+
+	.text {
+		line-height: 1.4;
+
+		p {
+			margin: 0;
+		}
+
+		p+p {
+			margin-top: 1em;
+		}
+	}
+
+	@include media-up(md) {
+		padding: 64px 0;
+
+		.text {
+			font-size: 24px;
+		}
+	}
+
+	@include media-between(xs, sm) {
+		padding: 48px 0;
+
+		.text {
+			font-size: 22px;
+		}
+	}
+
+	@include media-down(xs) {
+		padding: 32px 0;
+
+		.text {
+			font-size: 18px;
+		}
+	}
+}
+
+.section--magazine-intro+.section--magazine-text {
+	padding-top: 0;
+}
+
+.section--magazine-text+.section--magazine-text {
+	padding-top: 0;
+}
+
+.section--magazine-gallery+.section--magazine-text {
+	padding-top: 0;
+}
+
+.section--picture-picture+.section--magazine-text {
+	padding-top: 0;
+}
+
+.section--picture-picture {
+
+	.row {
+		align-items: center;
+	}
+
+	.picture {
+		@include aspect-clip(507, 283);
+		margin-bottom: 16px;
+	}
+
+	@include media-up(sm) {
+		padding: 0 0 80px 0;
+	}
+
+	@include media-down(xs) {
+		padding: 0 0 40px 0;
+	}
+}
+
+.section--magazine-gallery {
+
+	&__badge {
+		margin-bottom: 16px;
+	}
+
+	&__title {
+		@extend %title-secondary;
+		margin-bottom: 32px;
+	}
+
+	.card--gallery {
+		&>.picture {
+			@include media-up(sm) {
+				@include aspect-clip(16, 9);
+			}
+
+			@include media-down(xs) {
+				@include aspect-clip(5, 4);
+			}
+		}
+	}
+
+	@include media-up(sm) {
+		padding: 0 0 80px 0;
+	}
+
+	@include media-down(xs) {
+		padding: 0 0 40px 0;
+	}
+}

@@ -87,7 +87,7 @@ export default class PortfolioComponent extends Component {
 		const { node } = getContext(this);
 		return fromEvent(window, 'scroll').pipe(
 			tap(() => {
-				if (this.items.length > this.visibleItems.length && !this.busy) {
+				if (!this.busy && this.items.length > this.visibleItems.length) {
 					const rect = node.getBoundingClientRect();
 					if (rect.bottom < window.innerHeight) {
 						this.busy = true;

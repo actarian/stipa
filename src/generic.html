@@ -7,9 +7,11 @@
 <!-- Tutte le section qui presenti sono componenti per il layoutBuilder -->
 
 <section class="section--hero-tertiary">
-	<div class="background">
-		<img loading="lazy" src="/stipa/img/generic/hero@2x.jpg" />
-	</div>
+	<picture class="background">
+		<source media="(max-width: 767px)" srcset="/stipa/img/generic/hero.jpg">
+		<source media="(min-width: 768px)" srcset="/stipa/img/generic/hero@2x.jpg">
+		<img loading="lazy" src="/stipa/img/generic/hero@2x.jpg" alt="Image title" ondragstart="return false;">
+	</picture>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8 col-md-6">

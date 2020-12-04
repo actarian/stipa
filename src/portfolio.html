@@ -42,7 +42,20 @@
 		<div class="listing--portfolio">
 			<div class="listing__item" [class]="{ important: item.important }" *for="let item of visibleItems">
 				<a [href]="item.url" class="card--portfolio" [class]="{ important: item.important }">
-					<span class="picture" *if="item.image"><img loading="lazy" [src]="item.image"></span>
+					<!-- single picture -->
+					<span class="picture" *if="item.images.length == 1"><img loading="lazy" [src]="item.image"></span>
+					<!-- max 3 pictures -->
+					<div class="slider__container" slider [items]="item.images" [focusAutoplay]="5000">
+						<div class="slider__wrapper" [style]="wrapperStyle">
+							<div class="slider__inner" [style]="innerStyle">
+								<div class="slider__slide" *for="let item of items">
+									<div class="picture">
+										<img loading="lazy" [src]="item" ondragstart="return false;" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					<span class="content">
 						<span class="container" appear-stagger>
 							<span class="title" [innerHTML]="item.title"></span>

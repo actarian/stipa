@@ -45,7 +45,6 @@
 }
 
 .section--gallery {
-	padding: 0 0 80px 0;
 
 	&__badge {
 		margin-bottom: 16px;
@@ -54,6 +53,14 @@
 	&__title {
 		@extend %title-secondary;
 		margin-bottom: 32px;
+	}
+
+	@include media-up(sm) {
+		padding: 0 0 80px 0;
+	}
+
+	@include media-down(xs) {
+		padding: 0 0 40px 0;
 	}
 }
 

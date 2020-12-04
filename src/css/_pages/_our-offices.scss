@@ -50,3 +50,49 @@
 .section--office + .section--office {
 	padding-top: 0;
 }
+
+.section--our-offices {
+
+	.badge {
+		margin-bottom: 24px;
+	}
+
+	&__title {
+		@extend %title-secondary;
+		margin-bottom: 40px;
+	}
+
+	.group--cta {
+		justify-content: center;
+		width: 100%;
+		margin-top: 24px;
+	}
+
+	@include media-up(sm) {
+		padding: 80px 0;
+	}
+
+	@include media-down(xs) {
+		padding: 40px 0;
+	}
+}
+
+.card--office {
+
+	.title {
+		margin-bottom: 16px;
+		padding-bottom: 8px;
+		font-size: 20px;
+		font-weight: 400;
+		border-bottom: 1px solid $foreground;
+	}
+
+	.abstract {
+		font-size: 16px;
+		margin-bottom: 32px;
+	}
+}
+
+.section--contacts + .section--our-offices {
+	padding-top: 0;
+}

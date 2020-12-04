@@ -13,7 +13,7 @@ export const ENV = {
 	RESOURCE: '/docs/',
 	STATIC_RESOURCE: './',
 	API: '/api',
-	STATIC_API: STATIC ? './api' : '/Client/docs/api',
+	STATIC_API: STATIC ? './api' : '/api-static',
 };
 
 export function getApiUrl(url, useStatic) {

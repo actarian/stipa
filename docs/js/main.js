@@ -39,177 +39,9 @@ function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
-}var EDGE = /(edge)/i.test(navigator.userAgent);
-var TRIDENT = /(msie|trident)/i.test(navigator.userAgent);
-var BLINK = !!window.chrome && typeof CSS !== 'undefined' && !EDGE && !TRIDENT;
-var WEBKIT = /AppleWebKit/i.test(navigator.userAgent) && !BLINK && !EDGE && !TRIDENT;
-var IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !('MSStream' in window);
-var FIREFOX = /(firefox|minefield)/i.test(navigator.userAgent);
-var ANDROID = /android/i.test(navigator.userAgent) && !TRIDENT;
-var SAFARI = /safari/i.test(navigator.userAgent) && WEBKIT;
-var mediaQueriesForWebkitCompatibility = new Set();
-var mediaQueryStyleNode;
-var MediaMatcher = /*#__PURE__*/function () {
-  function MediaMatcher() {}
+}// import { BreakpointService } from './breakpoint/breakpoint.service';
 
-  MediaMatcher.matchMedia = function matchMedia(query) {
-    if (WEBKIT) {
-      this.createEmptyStyleRule(query);
-    }
-
-    return this._matchMedia(query);
-  };
-
-  MediaMatcher.createEmptyStyleRule = function createEmptyStyleRule(query) {
-    if (mediaQueriesForWebkitCompatibility.has(query)) {
-      return;
-    }
-
-    try {
-      if (!mediaQueryStyleNode) {
-        mediaQueryStyleNode = document.createElement('style');
-        mediaQueryStyleNode.setAttribute('type', 'text/css');
-
-        if (document.head) {
-          document.head.appendChild(mediaQueryStyleNode);
-        }
-      }
-
-      if (mediaQueryStyleNode.sheet) {
-        mediaQueryStyleNode.sheet.insertRule("@media " + query + " {.fx-query-test{ }}", 0);
-        mediaQueriesForWebkitCompatibility.add(query);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  return MediaMatcher;
-}();
-
-function noopMatchMedia(query) {
-  return {
-    matches: query === 'all' || query === '',
-    media: query,
-    addListener: function addListener() {},
-    removeListener: function removeListener() {}
-  };
-}
-
-MediaMatcher._matchMedia = window.matchMedia ? window.matchMedia.bind(window) : noopMatchMedia;var BreakpointService = /*#__PURE__*/function () {
-  function BreakpointService() {}
-
-  BreakpointService.observe$ = function observe$(value) {
-    var _this = this;
-
-    var queries = Object.assign({}, value); // this.splitQueries(coerceArray(value));
-
-    var queries$_ = [];
-    Object.keys(queries).forEach(function (key) {
-      var query = queries[key];
-      var group = query.split('and').map(function (query) {
-        return query.trim();
-      });
-      group.forEach(function (query) {
-        return queries$_.push(_this.registerQuery$_(query).query$);
-      });
-      queries[key] = {
-        query: query,
-        group: group
-      };
-    }); // let queries$_ = Object.keys(queries).map(key => this.registerQuery$_(queries[key]).query$);
-
-    queries$_ = rxjs.combineLatest.apply(void 0, queries$_);
-    var queries$ = rxjs.concat(queries$_.pipe(operators.take(1)), queries$_.pipe(operators.skip(1), operators.debounceTime(0)));
-    return queries$.pipe(operators.map(function (breakpoints) {
-      var response = {};
-      breakpoints.forEach(function (b) {
-        Object.keys(queries).forEach(function (key) {
-          var query = queries[key];
-          var match = query.group.reduce(function (p, c) {
-            return p && (b.query !== c || b.matches);
-          }, true);
-          response[key] = match;
-        });
-      });
-      /*
-      const response = {
-      	matches: false,
-      	breakpoints: {},
-      };
-      breakpoints.forEach((state) => {
-      	response.matches = response.matches || state.matches;
-      	response.breakpoints[state.query] = state.matches;
-      });
-      console.log(breakpoints, response, queries);
-      */
-
-      return response;
-    }));
-  }
-  /*
-  static isMatched$(value) {
-  	const queries = this.splitQueries(coerceArray(value));
-  	return queries.some(mediaQuery => this.registerQuery$_(mediaQuery).mediaQueryList.matches);
-  }
-  */
-  ;
-
-  BreakpointService.has = function has(query) {
-    return this.queries_[query] !== undefined;
-  };
-
-  BreakpointService.get = function get(query) {
-    return this.queries_[query];
-  };
-
-  BreakpointService.set = function set(query, value) {
-    return this.queries_[query] = value;
-  };
-
-  BreakpointService.registerQuery$_ = function registerQuery$_(key) {
-    if (this.has(key)) {
-      return this.get(key);
-    }
-
-    var mediaQueryList = MediaMatcher.matchMedia(key);
-    var query$ = new rxjs.Observable(function (observer) {
-      var handler = function handler(e) {
-        return observer.next(e);
-      };
-
-      mediaQueryList.addListener(handler);
-      return function () {
-        mediaQueryList.removeListener(handler);
-      };
-    }).pipe(operators.startWith(mediaQueryList), operators.map(function (nextMediaQueryList) {
-      return {
-        query: key,
-        matches: nextMediaQueryList.matches
-      };
-    }));
-    var output = {
-      query$: query$,
-      mediaQueryList: mediaQueryList
-    };
-    this.set(key, output);
-    return output;
-  };
-
-  BreakpointService.splitQueries = function splitQueries(queries) {
-    return queries.map(function (query) {
-      return query.split(',');
-    }).reduce(function (a1, a2) {
-      return a1.concat(a2);
-    }).map(function (query) {
-      return query.trim();
-    });
-  };
-
-  return BreakpointService;
-}();
-
-_defineProperty(BreakpointService, "queries_", {});var AppComponent = /*#__PURE__*/function (_Component) {
+var AppComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(AppComponent, _Component);
 
   function AppComponent() {
@@ -219,20 +51,21 @@ _defineProperty(BreakpointService, "queries_", {});var AppComponent = /*#__PURE_
   var _proto = AppComponent.prototype;
 
   _proto.onInit = function onInit() {
-    var _this = this;
-
     var _getContext = rxcomp.getContext(this),
         node = _getContext.node;
 
     node.classList.remove('hidden');
+    /*
     BreakpointService.observe$({
-      isMobile: '(max-width: 767px)'
-    }).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (results) {
-      console.log('AppComponent.BreakpointService.results', results);
-      _this.isMobile = results.isMobile;
-
-      _this.pushChanges();
+    	isMobile: '(max-width: 767px)'
+    }).pipe(
+    	takeUntil(this.unsubscribe$),
+    ).subscribe(results => {
+    	console.log('AppComponent.BreakpointService.results', results);
+    	this.isMobile = results.isMobile;
+    	this.pushChanges();
     });
+    */
   };
 
   return AppComponent;
@@ -371,7 +204,7 @@ var ENV = {
   RESOURCE: '/docs/',
   STATIC_RESOURCE: './',
   API: '/api',
-  STATIC_API: STATIC ? './api' : '/Client/docs/api'
+  STATIC_API: STATIC ? './api' : '/api-static'
 };
 function getApiUrl(url, useStatic) {
   var base = useStatic || STATIC ? ENV.STATIC_API : ENV.API;
@@ -2882,7 +2715,7 @@ var MagazineComponent = /*#__PURE__*/function (_Component) {
         node = _getContext.node;
 
     return rxjs.fromEvent(window, 'scroll').pipe(operators.tap(function () {
-      if (_this3.items.length > _this3.visibleItems.length && !_this3.busy) {
+      if (!_this3.busy && _this3.items.length > _this3.visibleItems.length) {
         var rect = node.getBoundingClientRect();
 
         if (rect.bottom < window.innerHeight) {
@@ -3095,7 +2928,7 @@ var PortfolioComponent = /*#__PURE__*/function (_Component) {
         node = _getContext.node;
 
     return rxjs.fromEvent(window, 'scroll').pipe(operators.tap(function () {
-      if (_this3.items.length > _this3.visibleItems.length && !_this3.busy) {
+      if (!_this3.busy && _this3.items.length > _this3.visibleItems.length) {
         var rect = node.getBoundingClientRect();
 
         if (rect.bottom < window.innerHeight) {
@@ -3404,7 +3237,7 @@ ShareComponent.meta = {
   inputs: ['share', 'title'],
   template:
   /* html */
-  "\n\t<ul class=\"nav--share\">\n\t\t<li>\n\t\t\t<a [href]=\"facebookUrl\" target=\"_blank\"><svg class=\"facebook\"><use xlink:href=\"#facebook\"></use></svg></a>\n\t\t</li>\n\t\t<li>\n\t\t\t<a [href]=\"twitterUrl\" target=\"_blank\"><svg class=\"twitter\"><use xlink:href=\"#twitter\"></use></svg></a>\n\t\t</li>\n\t\t<li>\n\t\t\t<a [href]=\"pinterestUrl\" target=\"_blank\"><svg class=\"pinterest\"><use xlink:href=\"#pinterest\"></use></svg></a>\n\t\t</li>\n\t\t<li>\n\t\t\t<a [href]=\"linkedInUrl\" target=\"_blank\"><svg class=\"linkedin\"><use xlink:href=\"#linkedin\"></use></svg></a>\n\t\t</li>\n\t\t<!--\n\t\t<li>\n\t\t\t<a [href]=\"whatsappUrl\" target=\"_blank\"><svg class=\"whatsapp\"><use xlink:href=\"#whatsapp\"></use></svg></a>\n\t\t</li>\n\t\t<li>\n\t\t\t<a [href]=\"mailToUrl\"><svg class=\"email\"><use xlink:href=\"#email\"></use></svg></a>\n\t\t</li>\n\t\t-->\n\t</ul>\n\t"
+  "\n\t<ul class=\"nav--share\">\n\t\t<li>\n\t\t\t<a [href]=\"twitterUrl\" target=\"_blank\"><svg class=\"twitter\"><use xlink:href=\"#twitter\"></use></svg></a>\n\t\t</li>\n\t\t<li>\n\t\t\t<a [href]=\"facebookUrl\" target=\"_blank\"><svg class=\"facebook\"><use xlink:href=\"#facebook\"></use></svg></a>\n\t\t</li>\n\t\t<li>\n\t\t\t<a [href]=\"pinterestUrl\" target=\"_blank\"><svg class=\"pinterest\"><use xlink:href=\"#pinterest\"></use></svg></a>\n\t\t</li>\n\t\t<li>\n\t\t\t<a [href]=\"mailToUrl\"><svg class=\"email\"><use xlink:href=\"#email\"></use></svg></a>\n\t\t</li>\n\t\t<!--\n\t\t<li>\n\t\t\t<a [href]=\"whatsappUrl\" target=\"_blank\"><svg class=\"whatsapp\"><use xlink:href=\"#whatsapp\"></use></svg></a>\n\t\t</li>\n\t\t<li>\n\t\t\t<a [href]=\"linkedInUrl\" target=\"_blank\"><svg class=\"linkedin\"><use xlink:href=\"#linkedin\"></use></svg></a>\n\t\t</li>\n\t\t-->\n\t</ul>\n\t"
 };var DragPoint = function DragPoint() {
   this.x = 0;
   this.y = 0;
@@ -3559,7 +3392,13 @@ var DragService = /*#__PURE__*/function () {
   };
 
   return DragService;
-}();var SliderComponent = /*#__PURE__*/function (_Component) {
+}();var SliderAutoplayMode = {
+  None: 0,
+  Autoplay: 1,
+  FocusAutoplay: 2
+};
+
+var SliderComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(SliderComponent, _Component);
 
   function SliderComponent() {
@@ -3567,6 +3406,46 @@ var DragService = /*#__PURE__*/function () {
   }
 
   var _proto = SliderComponent.prototype;
+
+  _proto.getCurrent = function getCurrent() {
+    if (!this.state) {
+      this.state = {
+        current: 0
+      };
+    } // console.log('SliderComponent.get.current', this.state.current);
+
+
+    return this.state.current;
+  };
+
+  _proto.setCurrent = function setCurrent(current) {
+    if (current === void 0) {
+      current = 0;
+    }
+
+    // console.log('SliderComponent.setCurrent', current);
+    if (!this.state) {
+      this.state = {
+        current: 0
+      };
+    }
+
+    if (this.state.current !== current) {
+      this.state.current = current;
+      this.change.next(current);
+    }
+  };
+
+  _proto.onActivate = function onActivate() {
+    // console.log('SliderComponent.onActivate');
+    this.checkAutoplay();
+  };
+
+  _proto.onDeactivate = function onDeactivate() {
+    // console.log('SliderComponent.onDeactivate');
+    this.userGesture = false;
+    this.disableAutoplay();
+  };
 
   _proto.onInit = function onInit() {
     var _this = this;
@@ -3576,12 +3455,15 @@ var DragService = /*#__PURE__*/function () {
 
     this.container = node;
     this.wrapper = node.querySelector('.slider__wrapper');
+    var items;
 
-    if (this.items.length === 0) {
-      var items = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-      this.items = items;
-    } // console.log('SliderComponent.onInit', this.items);
+    if (node.hasAttribute('[items]')) {
+      items = this.items || [];
+    } else {
+      items = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+    }
 
+    this.items = items; // console.log('SliderComponent.onInit', this.items);
 
     this.userGesture = false; // this.userGesture$ = new Subject();
 
@@ -3597,9 +3479,11 @@ var DragService = /*#__PURE__*/function () {
       });
     }, 1);
     this.changed$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
-    setTimeout(function () {
-      _this.setActiveState();
-    }, 500);
+    this.intersect$(node).pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
+
+    if (typeof this.focusAutoplay === 'number') {
+      rxjs.merge(this.resize$(), this.over$(node), this.leave$(node)).pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
+    }
     /*
     this.autoplay$().pipe(
     	takeUntil(this.unsubscribe$),
@@ -3607,94 +3491,182 @@ var DragService = /*#__PURE__*/function () {
     	this.pushChanges();
     });
     */
+
+
+    setTimeout(function () {
+      _this.setActiveState();
+    }, 500);
   };
 
   _proto.changed$ = function changed$() {
     var _this2 = this;
 
     return this.change.pipe(operators.tap(function () {
-      return _this2.setActiveState();
+      _this2.setActiveState();
+
+      _this2.checkAutoplay();
+    }));
+  };
+
+  _proto.intersect$ = function intersect$(node) {
+    var _this3 = this;
+
+    return IntersectionService.intersection$(node).pipe(operators.tap(function (entry) {
+      return _this3.active = entry.isIntersecting;
+    }));
+  };
+
+  _proto.resize$ = function resize$() {
+    var _this4 = this;
+
+    return rxjs.fromEvent(window, 'resize').pipe(operators.tap(function () {
+      return _this4.mobile = window.innerWidth < 768;
+    }));
+  };
+
+  _proto.over$ = function over$(node) {
+    var _this5 = this;
+
+    return rxjs.fromEvent(node, 'mouseover').pipe(operators.tap(function () {
+      return _this5.over = true;
+    }));
+  };
+
+  _proto.leave$ = function leave$(node) {
+    var _this6 = this;
+
+    return rxjs.fromEvent(node, 'mouseleave').pipe(operators.tap(function () {
+      return _this6.over = false;
     }));
   };
 
   _proto.setActiveState = function setActiveState() {
-    var _this3 = this;
-
-    if (this.to) {
-      clearTimeout(this.to);
-      this.to = null;
-    }
-
     var current = this.current;
 
     var _getContext2 = rxcomp.getContext(this),
         node = _getContext2.node;
 
     var slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-    var currentSlide;
     slides.forEach(function (slide, i) {
       if (i === current) {
-        currentSlide = slide;
         slide.classList.add('active');
       } else {
         slide.classList.remove('active');
       }
     });
-    var videos = Array.prototype.slice.call(node.querySelectorAll('video'));
-    videos.forEach(function (video) {
-      if (!video.paused) {
-        video.pause();
-      }
-    });
+  };
+
+  _proto.checkAutoplay = function checkAutoplay() {
+    var _this7 = this;
+
+    this.disableAutoplay();
+    var mode = SliderAutoplayMode.None;
+    var autoplay = 0;
+
+    if (typeof this.autoplay === 'number') {
+      autoplay = this.autoplay;
+      mode = SliderAutoplayMode.Autoplay;
+    }
+
+    if (typeof this.focusAutoplay === 'number') {
+      autoplay = this.focusAutoplay;
+      mode = SliderAutoplayMode.FocusAutoplay;
+    }
+
+    if (mode === SliderAutoplayMode.None) {
+      return;
+    }
+
+    var current = this.current;
+
+    var _getContext3 = rxcomp.getContext(this),
+        node = _getContext3.node;
+
+    var slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
+    var currentSlide = slides[current]; // console.log('SliderComponent.checkAutoplay', mode, this.active_, autoplay, currentSlide, node);
 
     if (currentSlide) {
       var video = currentSlide.querySelector('video');
 
       if (video) {
         var onEnded = function onEnded() {
-          // console.log(video, 'onEnded');
-          video.removeEventListener('ended', onEnded); // if (!this.userGesture) {
+          video.removeEventListener('ended', onEnded);
 
-          _this3.current = (_this3.current + 1) % _this3.items.length;
+          if (mode === SliderAutoplayMode.Autoplay && _this7.active_ || mode === SliderAutoplayMode.FocusAutoplay && (_this7.mobile_ && _this7.active_ || !_this7.mobile_ && _this7.over_)) {
+            // if (autoplay && !this.userGesture) {
+            _this7.setCurrent((current + 1) % _this7.items.length);
 
-          _this3.pushChanges(); // }
-
+            _this7.pushChanges();
+          }
         };
 
         video.addEventListener('ended', onEnded);
         video.play();
       } else {
-        var autoplay = typeof this.autoplay === 'number' ? this.autoplay : 4000;
-
-        if (!this.userGesture) {
+        if (mode === SliderAutoplayMode.Autoplay && this.active_ && !this.userGesture || mode === SliderAutoplayMode.FocusAutoplay && (this.mobile_ && this.active_ || !this.mobile_ && this.over_)) {
           this.to = setTimeout(function () {
-            _this3.current = (_this3.current + 1) % _this3.items.length;
+            _this7.setCurrent((current + 1) % _this7.items.length);
 
-            _this3.pushChanges();
+            _this7.pushChanges();
           }, autoplay);
         }
       }
-    } // console.log('SliderComponent.setActiveState', current, currentSlide);
+    }
+  };
 
+  _proto.disableAutoplay = function disableAutoplay() {
+    if (this.to) {
+      clearTimeout(this.to);
+      this.to = null;
+    }
+
+    var _getContext4 = rxcomp.getContext(this),
+        node = _getContext4.node;
+
+    var videos = Array.prototype.slice.call(node.querySelectorAll('video'));
+    videos.forEach(function (video) {
+      if (!video.paused) {
+        video.pause();
+      }
+    }); // console.log('SliderComponent.disableAutoplay', node);
+  };
+
+  _proto.checkFocusAutoplay = function checkFocusAutoplay() {
+    if (this.mobile_) {
+      if (this.active_) {
+        this.checkAutoplay();
+      } else {
+        this.disableAutoplay();
+      }
+    } else {
+      if (this.over_) {
+        // this.checkAutoplay();
+        // fire immediately !!!
+        this.setCurrent((this.current + 1) % this.items.length);
+        this.pushChanges();
+      } else {
+        this.disableAutoplay();
+      }
+    }
   };
 
   _proto.slider$ = function slider$() {
-    var _this4 = this;
+    var _this8 = this;
 
     var translation, dragDownEvent, dragMoveEvent;
     return DragService.events$(this.wrapper).pipe(operators.tap(function (event) {
       if (event instanceof DragDownEvent) {
-        translation = _this4.getTranslation(_this4.wrapper, _this4.container);
+        translation = _this8.getTranslation(_this8.wrapper, _this8.container);
         dragDownEvent = event;
       } else if (event instanceof DragMoveEvent) {
-        dragMoveEvent = _this4.onDragMoveEvent(dragDownEvent, event, translation); // console.log('DragMoveEvent');
+        dragMoveEvent = _this8.onDragMoveEvent(dragDownEvent, event, translation); // console.log('DragMoveEvent');
       } else if (event instanceof DragUpEvent) {
         if (dragMoveEvent) {
-          _this4.container.classList.remove('dragging');
+          _this8.container.classList.remove('dragging');
 
-          _this4.wrapper.style.transform = null;
+          _this8.wrapper.style.transform = null;
 
-          _this4.onDragUpEvent(dragDownEvent, dragMoveEvent);
+          _this8.onDragUpEvent(dragDownEvent, dragMoveEvent);
         } // console.log('DragUpEvent');
 
       }
@@ -3707,7 +3679,7 @@ var DragService = /*#__PURE__*/function () {
   		return interval(autoplay).pipe(
   			takeUntil(this.userGesture$),
   			tap(() => {
-  				this.current = (this.current + 1) % this.items.length;
+  				this.setCurrent((this.current + 1) % this.items.length);
   			}),
   		);
   	} else {
@@ -3732,14 +3704,13 @@ var DragService = /*#__PURE__*/function () {
     } else if (dragMoveEvent.distance.x * -1 < width * -0.25 && this.hasPrev()) {
       this.navTo(this.current - 1);
     } else {
-      this.wrapper.style.transform = "translate3d(" + -100 * this.current + "%, 0, 0)"; // this.navTo(this.current);
-    } // this.navTo(current);
-
+      this.wrapper.style.transform = "translate3d(" + -100 * this.current + "%, 0, 0)";
+    }
   };
 
   _proto.navTo = function navTo(current) {
     current = (current > 0 ? current : this.items.length + current) % this.items.length;
-    this.current = current;
+    this.setCurrent(current);
     this.userGesture = true; // this.userGesture$.next();
 
     this.pushChanges();
@@ -3776,48 +3747,15 @@ var DragService = /*#__PURE__*/function () {
   };
 
   _createClass(SliderComponent, [{
-    key: "items",
-    get: function get() {
-      return this.items_ || [];
-    },
-    set: function set(items) {
-      if (this.items_ !== items) {
-        this.items_ = items;
-      }
-    }
-  }, {
     key: "current",
     get: function get() {
-      return this.state.current || 0;
-    },
-    set: function set(current) {
-      if (current === void 0) {
-        current = 0;
-      }
-
-      if (this.state.current !== current) {
-        this.state.current = current; // console.log('current');
-
-        this.change.next(current);
-      } // this.state.current = Math.min(current, items ? items.length - 1 : 0);
-
-    }
-  }, {
-    key: "state",
-    get: function get() {
-      if (!this.state_) {
-        this.state_ = {
-          current: 0
-        };
-      }
-
-      return this.state_;
+      return this.getCurrent();
     }
   }, {
     key: "wrapperStyle",
     get: function get() {
       return {
-        'transform': 'translate3d(' + -100 * this.state.current + '%, 0, 0)'
+        'transform': 'translate3d(' + -100 * this.current + '%, 0, 0)'
       };
     }
   }, {
@@ -3827,13 +3765,46 @@ var DragService = /*#__PURE__*/function () {
         'width': 100 * this.items.length + '%'
       };
     }
+  }, {
+    key: "active",
+    get: function get() {
+      return this.active_;
+    },
+    set: function set(active) {
+      if (this.active_ !== active) {
+        this.active_ = active;
+        active ? this.onActivate() : this.onDeactivate();
+      }
+    }
+  }, {
+    key: "mobile",
+    get: function get() {
+      return this.mobile_;
+    },
+    set: function set(mobile) {
+      if (this.mobile_ !== mobile) {
+        this.mobile_ = mobile;
+        this.checkFocusAutoplay();
+      }
+    }
+  }, {
+    key: "over",
+    get: function get() {
+      return this.over_;
+    },
+    set: function set(over) {
+      if (this.over_ !== over) {
+        this.over_ = over;
+        this.checkFocusAutoplay();
+      }
+    }
   }]);
 
   return SliderComponent;
 }(rxcomp.Component);
 SliderComponent.meta = {
   selector: '[slider]',
-  inputs: ['items', 'current', 'autoplay'],
+  inputs: ['items', 'current', 'autoplay', 'focusAutoplay'],
   outputs: ['change', 'tween']
 };var SliderCaseStudyComponent = /*#__PURE__*/function (_SliderComponent) {
   _inheritsLoose(SliderCaseStudyComponent, _SliderComponent);
@@ -3852,34 +3823,11 @@ SliderComponent.meta = {
     this.resize$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
       return _this.pushChanges();
     });
-    /*
-    this.changed$().pipe(
-    	takeUntil(this.unsubscribe$)
-    ).subscribe();
-    setTimeout(() => {
-    	this.setActiveState();
-    }, 500);
-    */
   };
 
   _proto.resize$ = function resize$() {
     return rxjs.fromEvent(window, 'resize');
-  }
-  /*
-  changed$() {
-  	return this.change.pipe(
-  		tap(() => this.setActiveState()),
-  	);
-  }
-  
-  setActiveState() {
-  	const current = this.current;
-  	const { node } = getContext(this);
-  	const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-  	slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
-  }
-  */
-  ;
+  };
 
   _proto.onContentOver = function onContentOver() {
     var _getContext = rxcomp.getContext(this),
@@ -3900,46 +3848,15 @@ SliderComponent.meta = {
   };
 
   _createClass(SliderCaseStudyComponent, [{
-    key: "items",
-    get: function get() {
-      return this.items_ || [];
-    },
-    set: function set(items) {
-      if (this.items_ !== items) {
-        this.items_ = items;
-      }
-    }
-  }, {
     key: "current",
     get: function get() {
-      return this.state.current || 0;
-    },
-    set: function set(current) {
-      if (current === void 0) {
-        current = 0;
-      }
-
-      if (this.state.current !== current) {
-        this.state.current = current;
-        this.change.next(current);
-      }
-    }
-  }, {
-    key: "state",
-    get: function get() {
-      if (!this.state_) {
-        this.state_ = {
-          current: 0
-        };
-      }
-
-      return this.state_;
+      return _SliderComponent.prototype.getCurrent.call(this);
     }
   }, {
     key: "wrapperStyle",
     get: function get() {
       return {
-        'transform': 'translate3d(' + -this.slideWidth * this.state.current + 'px, 0, 0)'
+        'transform': 'translate3d(' + -this.slideWidth * this.current + 'px, 0, 0)'
       };
     }
   }, {
@@ -3978,31 +3895,7 @@ SliderCaseStudyComponent.meta = {
 
   _proto.onInit = function onInit() {
     _SliderComponent.prototype.onInit.call(this);
-    /*
-    this.changed$().pipe(
-    	takeUntil(this.unsubscribe$)
-    ).subscribe();
-    setTimeout(() => {
-    	this.setActiveState();
-    }, 500);
-    */
-
-  }
-  /*
-  changed$() {
-  	return this.change.pipe(
-  		tap(() => this.setActiveState()),
-  	);
-  }
-  
-  setActiveState() {
-  	const current = this.current;
-  	const { node } = getContext(this);
-  	const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-  	slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
-  }
-  */
-  ;
+  };
 
   _proto.navTo = function navTo(current) {
     _SliderComponent.prototype.navTo.call(this, current);
@@ -4017,46 +3910,15 @@ SliderCaseStudyComponent.meta = {
   };
 
   _createClass(SliderGalleryComponent, [{
-    key: "items",
-    get: function get() {
-      return this.items_ || [];
-    },
-    set: function set(items) {
-      if (this.items_ !== items) {
-        this.items_ = items;
-      }
-    }
-  }, {
     key: "current",
     get: function get() {
-      return this.state.current || 0;
-    },
-    set: function set(current) {
-      if (current === void 0) {
-        current = 0;
-      }
-
-      if (this.state.current !== current) {
-        this.state.current = current;
-        this.change.next(current);
-      }
-    }
-  }, {
-    key: "state",
-    get: function get() {
-      if (!this.state_) {
-        this.state_ = {
-          current: 0
-        };
-      }
-
-      return this.state_;
+      return _SliderComponent.prototype.getCurrent.call(this);
     }
   }, {
     key: "wrapperStyle",
     get: function get() {
       return {
-        'transform': 'translate3d(' + -100 * this.state.current + '%, 0, 0)'
+        'transform': 'translate3d(' + -100 * this.current + '%, 0, 0)'
       };
     }
   }, {
@@ -4088,14 +3950,6 @@ SliderGalleryComponent.meta = {
 
     this.pagination$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
     this.click$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
-    /*
-    this.changed$().pipe(
-    	takeUntil(this.unsubscribe$)
-    ).subscribe();
-    setTimeout(() => {
-    	this.setActiveState();
-    }, 500);
-    */
   };
 
   _proto.raf$ = function raf$() {
@@ -4144,30 +3998,15 @@ SliderGalleryComponent.meta = {
     return rxjs.fromEvent(node, 'click').pipe(operators.map(function (event) {
       if (event.clientX > window.innerWidth / 2) {
         // if (this.hasNext()) {
-        _this2.navTo(_this2.state.current + 1); // }
+        _this2.navTo(_this2.current + 1); // }
 
       } else {
         // if (this.hasPrev()) {
-        _this2.navTo(_this2.state.current - 1); // }
+        _this2.navTo(_this2.current - 1); // }
 
       }
     }));
-  }
-  /*
-  changed$() {
-  	return this.change.pipe(
-  		tap(() => this.setActiveState()),
-  	);
-  }
-  
-  setActiveState() {
-  	const current = this.current;
-  	const { node } = getContext(this);
-  	const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-  	slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
-  }
-  */
-  ;
+  };
 
   _proto.onContentOver = function onContentOver() {
     var _getContext3 = rxcomp.getContext(this),
@@ -4184,46 +4023,15 @@ SliderGalleryComponent.meta = {
   };
 
   _createClass(SliderHeroComponent, [{
-    key: "items",
-    get: function get() {
-      return this.items_ || [];
-    },
-    set: function set(items) {
-      if (this.items_ !== items) {
-        this.items_ = items;
-      }
-    }
-  }, {
     key: "current",
     get: function get() {
-      return this.state.current || 0;
-    },
-    set: function set(current) {
-      if (current === void 0) {
-        current = 0;
-      }
-
-      if (this.state.current !== current) {
-        this.state.current = current;
-        this.change.next(current);
-      }
-    }
-  }, {
-    key: "state",
-    get: function get() {
-      if (!this.state_) {
-        this.state_ = {
-          current: 0
-        };
-      }
-
-      return this.state_;
+      return _SliderComponent.prototype.getCurrent.call(this);
     }
   }, {
     key: "wrapperStyle",
     get: function get() {
       return {
-        'transform': 'translate3d(' + -100 * this.state.current + '%, 0, 0)'
+        'transform': 'translate3d(' + -100 * this.current + '%, 0, 0)'
       };
     }
   }, {

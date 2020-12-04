@@ -5,34 +5,10 @@ import SliderComponent from './slider.component';
 
 export default class SliderHeroComponent extends SliderComponent {
 
-	get items() {
-		return this.items_ || [];
-	}
-	set items(items) {
-		if (this.items_ !== items) {
-			this.items_ = items;
-		}
-	}
-
-	get current() {
-		return this.state.current || 0;
-	}
-	set current(current = 0) {
-		if (this.state.current !== current) {
-			this.state.current = current;
-			this.change.next(current);
-		}
-	}
-
-	get state() {
-		if (!this.state_) {
-			this.state_ = { current: 0 };
-		}
-		return this.state_;
-	}
+	get current() { return super.getCurrent(); }
 
 	get wrapperStyle() {
-		return { 'transform': 'translate3d(' + -100 * this.state.current + '%, 0, 0)' };
+		return { 'transform': 'translate3d(' + -100 * this.current + '%, 0, 0)' };
 	}
 
 	get innerStyle() {
@@ -47,14 +23,6 @@ export default class SliderHeroComponent extends SliderComponent {
 		this.click$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe();
-		/*
-		this.changed$().pipe(
-			takeUntil(this.unsubscribe$)
-		).subscribe();
-		setTimeout(() => {
-			this.setActiveState();
-		}, 500);
-		*/
 	}
 
 	set direction(direction) {
@@ -109,31 +77,16 @@ export default class SliderHeroComponent extends SliderComponent {
 			map(event => {
 				if (event.clientX > window.innerWidth / 2) {
 					// if (this.hasNext()) {
-						this.navTo(this.state.current + 1);
+						this.navTo(this.current + 1);
 					// }
 				} else {
 					// if (this.hasPrev()) {
-						this.navTo(this.state.current - 1);
+						this.navTo(this.current - 1);
 					// }
 				}
 			}),
 		);
 	}
-
-	/*
-	changed$() {
-		return this.change.pipe(
-			tap(() => this.setActiveState()),
-		);
-	}
-
-	setActiveState() {
-		const current = this.current;
-		const { node } = getContext(this);
-		const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-		slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
-	}
-	*/
 
 	onContentOver() {
 		const { node } = getContext(this);

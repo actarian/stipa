@@ -1,12 +1,13 @@
 import { Component, getContext } from 'rxcomp';
-import { takeUntil } from 'rxjs/operators';
-import { BreakpointService } from './breakpoint/breakpoint.service';
+// import { takeUntil } from 'rxjs/operators';
+// import { BreakpointService } from './breakpoint/breakpoint.service';
 
 export default class AppComponent extends Component {
 
 	onInit() {
 		const { node } = getContext(this);
 		node.classList.remove('hidden');
+		/*
 		BreakpointService.observe$({
 			isMobile: '(max-width: 767px)'
 		}).pipe(
@@ -16,6 +17,7 @@ export default class AppComponent extends Component {
 			this.isMobile = results.isMobile;
 			this.pushChanges();
 		});
+		*/
 	}
 }
 

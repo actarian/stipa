@@ -5,9 +5,11 @@
 <!-- @@include ./templates/shared/header.html { "path": "<ul class=\"nav--path\"><li>Contatti</li></ul>" } -->
 
 <section class="section--hero-tertiary">
-	<div class="background">
-		<img loading="lazy" src="/stipa/img/contacts/hero@2x.jpg" />
-	</div>
+	<picture class="background">
+		<source media="(max-width: 767px)" srcset="/stipa/img/contacts/hero.jpg">
+		<source media="(min-width: 768px)" srcset="/stipa/img/contacts/hero@2x.jpg">
+		<img loading="lazy" src="/stipa/img/contacts/hero@2x.jpg" alt="Image title" ondragstart="return false;">
+	</picture>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8 col-md-6">
@@ -19,30 +21,31 @@
 </section>
 
 <script>
-	window.antiforgery = "949c21d9-2e33-44df-8560-9d5b502c02fc";
-	window.labels = {
-		select: "Seleziona",
-		error_required: "Il campo &#232; obbligatorio",
-		error_email: "Email non valida",
-		error_match: "I campi non corrispondono"
-	};
-	window.data = {
-		reason: [
-			{ id: 1, name: "Ragione 1" },
-			{ id: 2, name: "Ragione 2" },
-			{ id: 3, name: "Ragione 3" },
-		],
-		firstCategory: [
-			{ id: 1, name: "Categoria 1" },
-			{ id: 2, name: "Categoria 2" },
-			{ id: 3, name: "Categoria 3" },
-		],
-		secondCategory: [
-			{ id: 1, name: "Categoria 1" },
-			{ id: 2, name: "Categoria 2" },
-			{ id: 3, name: "Categoria 3" },
-		]
-	};
+window.antiforgery = "949c21d9-2e33-44df-8560-9d5b502c02fc";
+window.labels = {
+	select: "Seleziona",
+	error_required: "Il campo &#232; obbligatorio",
+	error_email: "Email non valida",
+	error_match: "I campi non corrispondono"
+};
+window.data = {
+	reason: [
+		{ id: 1, name: "Ragione 1" },
+		{ id: 2, name: "Ragione 2" },
+		{ id: 3, name: "Ragione 3" },
+	],
+	firstCategory: [
+		{ id: 1, name: "Categoria 1" },
+		{ id: 2, name: "Categoria 2" },
+		{ id: 3, name: "Categoria 3" },
+	],
+	secondCategory: [
+		{ id: 1, name: "Categoria 1" },
+		{ id: 2, name: "Categoria 2" },
+		{ id: 3, name: "Categoria 3" },
+	]
+};
+
 </script>
 
 <section class="section--contacts" contacts>
@@ -84,6 +87,48 @@
 	</div>
 </section>
 
+<section class="section--our-offices">
+	<div class="container">
+		<!-- <div class="badge"></div> -->
+		<div class="section--our-offices__title">Sedi</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card--office">
+					<div class="title">Milano - Rho</div>
+					<div class="abstract">
+						Viale A. De Gasperi n° 101<br>
+						Tel +39 02 25067.1<br>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card--office">
+					<div class="title">Bologna</div>
+					<div class="abstract">
+						Via Ferrarese n° 3<br>
+						Tel +39 051 5941395<br>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card--office">
+					<div class="title">Ascoli Piceno</div>
+					<div class="abstract">
+						Via Mutilati ed Invalidi del Lavoro n° 5<br>
+						Tel +39 0736 235.1<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="group--cta">
+				<a href="/stipa/our-offices.html" class="btn--primary" data-title="Scopri le nostre sedi">Scopri le nostre sedi</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--
 <section class="section--card">
 	<div class="container">
 		<div class="card--generic">
@@ -99,5 +144,6 @@
 		</div>
 	</div>
 </section>
+-->
 
 <!-- @@close-->

@@ -9,9 +9,11 @@
 				<!-- SLIDE -->
 				<div class="slider__slide">
 					<div class="card--hero">
-						<div class="picture">
-							<img loading="lazy" src="/stipa/img/index/hero@2x.jpg" ondragstart="return false;" />
-						</div>
+						<picture class="picture">
+							<source media="(max-width: 767px)" srcset="/stipa/img/index/hero.jpg">
+							<source media="(min-width: 768px)" srcset="/stipa/img/index/hero@2x.jpg">
+							<img loading="lazy" src="/stipa/img/index/hero@2x.jpg" alt="Image title" ondragstart="return false;">
+						</picture>
 						<div class="container">
 							<div class="row">
 								<div class="col-sm-8 col-md-6" (mouseover)="onContentOver()" (mouseout)="onContentOut()">
@@ -45,9 +47,11 @@
 				<!-- SLIDE -->
 				<div class="slider__slide">
 					<div class="card--hero">
-						<div class="picture">
-							<img loading="lazy" src="/stipa/img/index/case-study-02@2x.jpg" ondragstart="return false;" />
-						</div>
+						<picture class="picture">
+							<source media="(max-width: 767px)" srcset="/stipa/img/index/case-study-02.jpg">
+							<source media="(min-width: 768px)" srcset="/stipa/img/index/case-study-02@2x.jpg">
+							<img loading="lazy" src="/stipa/img/index/case-study-02@2x.jpg" alt="Image title" ondragstart="return false;">
+						</picture>
 						<div class="container">
 							<div class="row">
 								<div class="col-sm-8 col-md-6" (mouseover)="onContentOver()" (mouseout)="onContentOut()">
@@ -63,9 +67,11 @@
 				<!-- SLIDE -->
 				<div class="slider__slide">
 					<div class="card--hero">
-						<div class="picture">
-							<img loading="lazy" src="/stipa/img/index/case-study-01@2x.jpg" ondragstart="return false;" />
-						</div>
+						<picture class="picture">
+							<source media="(max-width: 767px)" srcset="/stipa/img/index/case-study-01.jpg">
+							<source media="(min-width: 768px)" srcset="/stipa/img/index/case-study-01@2x.jpg">
+							<img loading="lazy" src="/stipa/img/index/case-study-01@2x.jpg" alt="Image title" ondragstart="return false;">
+						</picture>
 						<div class="container">
 							<div class="row">
 								<div class="col-sm-8 offset-sm-4 col-md-6 offset-md-6" (mouseover)="onContentOver()" (mouseout)="onContentOut()">
@@ -97,7 +103,7 @@
 			</button>
 		</div>
 		<div class="slider__bullets">
-			<span class="slider__bullet" [class]="{ active: index === state.current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
+			<span class="slider__bullet" [class]="{ active: index === current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
 		</div>
 	</div>
 </section>
@@ -108,7 +114,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-5 col-md-4" appear-stagger>
-				<div class="badge"></div>
+				<!-- <div class="badge"></div> -->
 				<div class="title">Esperienza, creatività, affidabilità e modernità dal 1967</div>
 				<div class="abstract">Stipa rappresenta l’eccellenza nel design e nella produzione di stand per fiere, eventi e congressi, interior design per negozi e showroom, ambienti dedicati a musei e mostre, installazioni e manifestazioni all’aperto.</div>
 				<div class="group--cta">
@@ -128,7 +134,7 @@
 	<div class="container">
 		<div class="section--case-studies__badge badge"></div>
 		<div class="section--case-studies__title">Case studies</div>
-		<div class="slider__container slider--case-studies" slider-case-study>
+		<div class="slider__container slider--case-studies" slider-case-study [autoplay]="5000">
 			<div class="slider__wrapper" [style]="wrapperStyle">
 				<div class="slider__inner" [style]="innerStyle">
 					<!-- SLIDE -->
@@ -194,7 +200,7 @@
 				</div>
 			</div>
 			<div class="slider__bullets">
-				<span class="slider__bullet" [class]="{ active: index === state.current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
+				<span class="slider__bullet" [class]="{ active: index === current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
 			</div>
 			<div class="slider__pagination" appear-stagger>
 				<div class="group--left">
@@ -227,7 +233,7 @@
 						<div class="date">Set. 16, 2020</div>
 						<div class="title">MV Agusta accoglie i suoi visitatori con un look tutto nuovo!</div>
 						<div class="group--cta">
-							<a href="/stipa/magazine.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
+							<a href="/stipa/magazine-detail.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
 						</div>
 					</div>
 				</div>
@@ -240,7 +246,7 @@
 						<div class="date">Feb. 24, 2020</div>
 						<div class="title">Con Keraglass Industries al Vitrum Milano</div>
 						<div class="group--cta">
-							<a href="/stipa/magazine.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
+							<a href="/stipa/magazine-detail.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
 						</div>
 					</div>
 				</div>
@@ -253,7 +259,7 @@
 						<div class="date">Gen. 11, 2020</div>
 						<div class="title">Con LU-VE Group all’Euroshop | Dusseldorf</div>
 						<div class="group--cta">
-							<a href="/stipa/magazine.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
+							<a href="/stipa/magazine-detail.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
 						</div>
 					</div>
 				</div>
@@ -266,7 +272,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-5 col-md-4" appear-stagger>
-				<div class="badge"></div>
+				<!-- <div class="badge"></div> -->
 				<div class="title">Vorresti parlarci del tuo progetto?</div>
 				<div class="abstract">Il nostro team di progettisti e specialisti è pronto per sviluppare le tue idee e le tue esigenze. Se hai già un progetto siamo in grado di realizzarlo e di seguirlo fino in fondo, in Italia e nel mondo</div>
 				<div class="group--cta">

@@ -76,6 +76,19 @@
 	justify-content: flex-end;
 	align-items: center;
 
+	a {
+		&,
+		&:link,
+		&:active,
+		&:focus {
+			color: white;
+		}
+
+		&:hover {
+			color: white;
+		}
+	}
+
 	svg {
 		fill: currentColor;
 		margin: 0 12px;

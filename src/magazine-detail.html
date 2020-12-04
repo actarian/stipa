@@ -1,0 +1,238 @@
+<!-- @@master = ./templates/layout.html { "baseHref": "/stipa/" } -->
+
+<!-- @@block = main-->
+
+<!-- @@include ./templates/shared/header.html { "path": "<ul class=\"nav--path\"><li>Magazine</li></ul>" } -->
+
+<section class="section--hero-magazine-detail">
+	<picture class="background">
+		<source media="(max-width: 767px)" srcset="/stipa/img/magazine-detail/hero.jpg">
+		<source media="(min-width: 768px)" srcset="/stipa/img/magazine-detail/hero@2x.jpg">
+		<img loading="lazy" src="/stipa/img/magazine-detail/hero@2x.jpg" alt="Image title" ondragstart="return false;">
+	</picture>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 offset-sm-2">
+				<div class="title">MV Agusta accoglie i suoi visitatori con un look tutto nuovo!</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--magazine-intro">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1">
+				<div class="date">Gen. 11, 2020</div>
+				<div class="share" share></div>
+				<div class="abstract">La collaborazione tra MV Agusta e Stipa S.p.A. continua con l'allestimento della sede storica di Varese, dove emozionanti foto storiche e una fantastica Brutale accolgono i visitatori.</div>
+			</div>
+		</div>
+</section>
+
+<section class="section--magazine-text">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="text">
+					<p>Vicino alla sponde del lago di Varese, si respira un'aria carica di storia e passione, i motociclisti sanno bene che qua si trova un tempio delle due ruote sportive. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--magazine-text">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--magazine-gallery">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1">
+				<div class="slider__container slider--gallery" slider-gallery [autoplay]="5000">
+					<div class="slider__wrapper" [style]="wrapperStyle">
+						<div class="slider__inner" [style]="innerStyle">
+							<!-- SLIDE -->
+							<div class="slider__slide">
+								<div class="card--gallery">
+									<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-01@2x.jpg">
+										<img loading="lazy" src="/stipa/img/magazine-detail/gallery-01@2x.jpg" ondragstart="return false;" />
+										<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+									</div>
+								</div>
+							</div>
+							<!-- SLIDE -->
+							<div class="slider__slide">
+								<div class="card--gallery">
+									<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-02.jpg">
+										<img loading="lazy" src="/stipa/img/magazine-detail/gallery-02.jpg" ondragstart="return false;" />
+										<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+									</div>
+								</div>
+							</div>
+							<!-- SLIDE -->
+							<div class="slider__slide">
+								<div class="card--gallery">
+									<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-03.jpg">
+										<img loading="lazy" src="/stipa/img/magazine-detail/gallery-03.jpg" ondragstart="return false;" />
+										<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="slider__bullets">
+						<span class="slider__bullet" [class]="{ active: index === current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
+					</div>
+					<div class="slider__pagination" appear-stagger>
+						<div class="group--left">
+							<button type="button" class="btn--prev" [class]="{ disabled: !hasPrev() }" (click)="navTo(current - 1)">
+								<svg class="arrow-prev"><use xlink:href="#arrow-prev"></use></svg>
+							</button>
+						</div>
+						<div class="group--center">
+						<!--
+							<button type="button" class="btn--primary" [gallery]="['/stipa/img/magazine-detail/gallery-01@2x.jpg', '/stipa/img/magazine-detail/gallery-02.jpg', '/stipa/img/magazine-detail/gallery-03.jpg']" data-title="Guarda la gallery completa">Guarda la gallery completa</button>
+						-->
+						</div>
+						<div class="group--right">
+							<button type="button" class="btn--next" [class]="{ disabled: !hasNext() }" (click)="navTo(current + 1)">
+								<svg class="arrow-next"><use xlink:href="#arrow-next"></use></svg>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--magazine-text">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1">
+				<!-- !!! cambiano le colonne -->
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--magazine-text">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1">
+				<!-- !!! cambiano le colonne -->
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--picture-picture">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/picture-01@2x.jpg">
+					<img loading="lazy" src="/stipa/img/magazine-detail/picture-01@2x.jpg" />
+					<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/picture-02@2x.jpg">
+					<img loading="lazy" src="/stipa/img/magazine-detail/picture-02@2x.jpg" />
+					<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--magazine-text">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1">
+				<!-- !!! cambiano le colonne -->
+				<div class="text">
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+					<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--magazine-share">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1">
+				<div class="share" share></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--listing">
+	<div class="container">
+		<!--
+		<div class="section--listing__badge badge"></div>
+		<div class="section--listing__title">Magazine</div>
+		-->
+		<div class="listing--magazine">
+			<!-- ITEM -->
+			<div class="listing__item">
+				<div class="card--magazine">
+					<div class="picture"><img loading="lazy" src="/stipa/img/index/magazine-01@2x.jpg"></div>
+					<div class="content" appear-stagger>
+						<div class="date">Set. 16, 2020</div>
+						<div class="title">MV Agusta accoglie i suoi visitatori con un look tutto nuovo!</div>
+						<div class="group--cta">
+							<a href="/stipa/magazine-detail.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ITEM -->
+			<div class="listing__item">
+				<div class="card--magazine">
+					<div class="picture"><img loading="lazy" src="/stipa/img/index/magazine-02@2x.jpg"></div>
+					<div class="content" appear-stagger>
+						<div class="date">Feb. 24, 2020</div>
+						<div class="title">Con Keraglass Industries al Vitrum Milano</div>
+						<div class="group--cta">
+							<a href="/stipa/magazine-detail.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ITEM -->
+			<div class="listing__item">
+				<div class="card--magazine">
+					<div class="picture"><img loading="lazy" src="/stipa/img/index/magazine-03@2x.jpg"></div>
+					<div class="content" appear-stagger>
+						<div class="date">Gen. 11, 2020</div>
+						<div class="title">Con LU-VE Group all’Euroshop | Dusseldorf</div>
+						<div class="group--cta">
+							<a href="/stipa/magazine-detail.html" class="btn--card"><span class="badge"></span> <span class="label">Leggi l'articolo</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- @@close-->

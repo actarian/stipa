@@ -5,34 +5,10 @@ import SliderComponent from './slider.component';
 
 export default class SliderCaseStudyComponent extends SliderComponent {
 
-	get items() {
-		return this.items_ || [];
-	}
-	set items(items) {
-		if (this.items_ !== items) {
-			this.items_ = items;
-		}
-	}
-
-	get current() {
-		return this.state.current || 0;
-	}
-	set current(current = 0) {
-		if (this.state.current !== current) {
-			this.state.current = current;
-			this.change.next(current);
-		}
-	}
-
-	get state() {
-		if (!this.state_) {
-			this.state_ = { current: 0 };
-		}
-		return this.state_;
-	}
+	get current() { return super.getCurrent(); }
 
 	get wrapperStyle() {
-		return { 'transform': 'translate3d(' + -this.slideWidth * this.state.current + 'px, 0, 0)' };
+		return { 'transform': 'translate3d(' + -this.slideWidth * this.current + 'px, 0, 0)' };
 	}
 
 	get innerStyle() {
@@ -51,34 +27,11 @@ export default class SliderCaseStudyComponent extends SliderComponent {
 		this.resize$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe(() => this.pushChanges());
-		/*
-		this.changed$().pipe(
-			takeUntil(this.unsubscribe$)
-		).subscribe();
-		setTimeout(() => {
-			this.setActiveState();
-		}, 500);
-		*/
 	}
 
 	resize$() {
 		return fromEvent(window, 'resize');
 	}
-
-	/*
-	changed$() {
-		return this.change.pipe(
-			tap(() => this.setActiveState()),
-		);
-	}
-
-	setActiveState() {
-		const current = this.current;
-		const { node } = getContext(this);
-		const slides = Array.prototype.slice.call(node.querySelectorAll('.slider__slide'));
-		slides.forEach((slide, i) => i === current ? slide.classList.add('active') : slide.classList.remove('active'));
-	}
-	*/
 
 	onContentOver() {
 		const { node } = getContext(this);

@@ -65,23 +65,23 @@ ShareComponent.meta = {
 	template: /* html */`
 	<ul class="nav--share">
 		<li>
-			<a [href]="facebookUrl" target="_blank"><svg class="facebook"><use xlink:href="#facebook"></use></svg></a>
+			<a [href]="twitterUrl" target="_blank"><svg class="twitter"><use xlink:href="#twitter"></use></svg></a>
 		</li>
 		<li>
-			<a [href]="twitterUrl" target="_blank"><svg class="twitter"><use xlink:href="#twitter"></use></svg></a>
+			<a [href]="facebookUrl" target="_blank"><svg class="facebook"><use xlink:href="#facebook"></use></svg></a>
 		</li>
 		<li>
 			<a [href]="pinterestUrl" target="_blank"><svg class="pinterest"><use xlink:href="#pinterest"></use></svg></a>
 		</li>
 		<li>
-			<a [href]="linkedInUrl" target="_blank"><svg class="linkedin"><use xlink:href="#linkedin"></use></svg></a>
+			<a [href]="mailToUrl"><svg class="email"><use xlink:href="#email"></use></svg></a>
 		</li>
 		<!--
 		<li>
 			<a [href]="whatsappUrl" target="_blank"><svg class="whatsapp"><use xlink:href="#whatsapp"></use></svg></a>
 		</li>
 		<li>
-			<a [href]="mailToUrl"><svg class="email"><use xlink:href="#email"></use></svg></a>
+			<a [href]="linkedInUrl" target="_blank"><svg class="linkedin"><use xlink:href="#linkedin"></use></svg></a>
 		</li>
 		-->
 	</ul>
