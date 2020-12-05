@@ -40,7 +40,17 @@
 		}
 	}
 
+	@include media-up(sm) {
+		.picture {
+			@include aspect-clip(1180, 647);
+		}
+	}
+
 	@include media-down(xs) {
+		.picture {
+			@include aspect-clip(5, 4);
+		}
+
 		.group--cta {
 			margin-bottom: 32px;
 		}

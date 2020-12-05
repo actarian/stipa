@@ -5,6 +5,14 @@
 		margin-bottom: 0;
 		text-align: center;
 	}
+
+	@include media-up(sm) {
+		min-height: 360px;
+	}
+
+	@include media-down(xs) {
+		min-height: 70vh;
+	}
 }
 
 .section--magazine-intro {
@@ -62,8 +70,6 @@
 			height: 32px;
 			margin: 8px;
 			border-radius: 16px;
-			background: #BAB8B8;
-			color: #FFFFFF;
 			transition: all ease-in-out 350ms;
 
 			svg {
@@ -71,6 +77,15 @@
 				max-height: 16px;
 				fill: currentColor;
 				transition: fill ease-in-out 350ms;
+			}
+
+			&,
+			&:link,
+			&:active,
+			&:focus,
+			&:visited {
+				background: #BAB8B8;
+				color: #FFFFFF;
 			}
 
 			&:hover {
@@ -142,17 +157,21 @@
 		align-items: center;
 	}
 
-	.picture {
-		@include aspect-clip(507, 283);
-		margin-bottom: 16px;
-	}
-
 	@include media-up(sm) {
 		padding: 0 0 80px 0;
+
+		.picture {
+			@include aspect-clip(507, 283);
+		}
 	}
 
 	@include media-down(xs) {
 		padding: 0 0 40px 0;
+
+		.picture {
+			@include aspect-clip(5, 4);
+			margin-bottom: 16px;
+		}
 	}
 }
 

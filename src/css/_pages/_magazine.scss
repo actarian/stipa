@@ -2,7 +2,6 @@
 	padding: 0 0 48px 0;
 
 	.picture {
-		@include aspect-clip(1440, 543);
 		margin-bottom: 24px;
 
 		&>img {
@@ -26,6 +25,18 @@
 
 	.btn--card {
 		font-size: 16px;
+	}
+
+	@include media-up(sm) {
+		.picture {
+			@include aspect-clip(1440, 543);
+		}
+	}
+
+	@include media-down(xs) {
+		.picture {
+			@include aspect-clip(5, 4);
+		}
 	}
 }
 
@@ -116,7 +127,7 @@
 	&:focus,
 	&:visited,
 	&:hover {
-		color:#AC3C72;
+		color: #AC3C72;
 	}
 }
 
@@ -129,7 +140,7 @@
 	border: thin solid transparent;
 	border-radius: 2px;
 
-    font-size: 12px;
+	font-size: 12px;
 	font-weight: 400;
 	line-height: 1;
 	text-transform: uppercase;
@@ -139,7 +150,7 @@
 		width: 8px;
 		height: 8px;
 		margin-left: 4px;
-		fill: currentColor!important;
+		fill: currentColor !important;
 	}
 
 	&,
