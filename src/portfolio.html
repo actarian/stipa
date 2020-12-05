@@ -28,7 +28,7 @@
 		<span class="picture" *if="firstItem.image"><img loading="lazy" [src]="firstItem.image"></span>
 		<span class="content">
 			<span class="container" appear-stagger>
-				<span class="title" [innerHTML]="firstItem.title"></span>
+				<h3 class="title" [innerHTML]="firstItem.title"></h3>
 				<span class="group--bottom">
 					<span class="abstract" [innerHTML]="firstItem.abstract"></span>
 					<span class="category" [innerHTML]="firstItem.category" *if="firstItem.category"></span>
@@ -58,7 +58,7 @@
 					</div>
 					<span class="content">
 						<span class="container" appear-stagger>
-							<span class="title" [innerHTML]="item.title"></span>
+							<h3 class="title" [innerHTML]="item.title"></h3>
 							<span class="group--bottom">
 								<span class="abstract" [innerHTML]="item.abstract"></span>
 								<span class="category" [innerHTML]="item.category" *if="item.category"></span>
@@ -68,7 +68,6 @@
 				</a>
 			</div>
 		</div>
-
 		<!-- spinner -->
 		<div class="spinner" *if="busy"></div>
 	</div>
