@@ -49,15 +49,14 @@
             "node_modules/gsap/dist/gsap.js",
             "node_modules/rxjs/bundles/rxjs.umd.js",
             "node_modules/rxcomp/dist/iife/rxcomp.js",
-            "node_modules/rxcomp-form/dist/iife/rxcomp-form.js",
-            "node_modules/swiper/js/swiper.js"
+            "node_modules/rxcomp-form/dist/iife/rxcomp-form.js"
           ],
           "output": "docs/js/vendors.js",
           "minify": true
         },
         {
           "input": [
-            "node_modules/swiper/css/swiper.css"
+            "node_modules/rxcomp/dist/rxcomp-light.css"
           ],
           "output": "docs/css/vendors.css",
           "minify": true
