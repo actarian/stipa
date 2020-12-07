@@ -3,7 +3,6 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	min-height: 360px;
 	padding: 48px 0;
 	background: black;
 	color: white;
@@ -44,6 +43,13 @@
 	.abstract {
 		font-size: 18px;
 		line-height: 1.2;
+	}
+
+	// hack IE 11
+	height: 360px;
+	@media (-webkit-min-device-pixel-ratio:0) {
+		height: auto;
+		min-height: 360px;
 	}
 }
 
@@ -109,6 +115,7 @@
 
 	&>.container {
 		position: absolute;
+		bottom: 0;
 	}
 
 	.category {

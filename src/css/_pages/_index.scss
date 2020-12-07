@@ -57,8 +57,15 @@
 		}
 	}
 
+	// hack IE 11
 	.card--hero {
-		min-height: calc(100vh - 90px);
+		height: calc(100vh - 90px);
+	}
+	@media (-webkit-min-device-pixel-ratio:0) {
+		.card--hero {
+			height: auto;
+			min-height: calc(100vh - 90px);
+		}
 	}
 
 	.slider__slide {
@@ -351,6 +358,7 @@
 
 	&>.container {
 		position: absolute;
+		bottom: 0;
 	}
 
 	.category {

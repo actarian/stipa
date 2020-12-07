@@ -7,11 +7,21 @@
 	}
 
 	@include media-up(sm) {
-		min-height: 360px;
+		// hack IE 11
+		height: 360px;
+		@media (-webkit-min-device-pixel-ratio:0) {
+			height: auto;
+			min-height: 360px;
+		}
 	}
 
 	@include media-down(xs) {
-		min-height: 70vh;
+		// hack IE 11
+		height: 70vh;
+		@media (-webkit-min-device-pixel-ratio:0) {
+			height: auto;
+			min-height: 70vh;
+		}
 	}
 }
 

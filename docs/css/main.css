@@ -3908,13 +3908,19 @@ errors-component {
   color: #152154;
   -webkit-clip-path: inset(0 0 100vh 0);
           clip-path: inset(0 0 100vh 0);
-  transition: all ease-in-out 350ms; }
+  transition: all ease-in-out 350ms;
+  display: none; }
   .main-menu > .container, .main-search > .container {
     height: 100%; }
   .main-menu.active, .main-search.active {
-    pointer-events: all;
-    -webkit-clip-path: inset(0 0 0 0);
-            clip-path: inset(0 0 0 0); }
+    display: block;
+    pointer-events: all; }
+  @media (-webkit-min-device-pixel-ratio: 0) {
+    .main-menu, .main-search {
+      display: block; }
+      .main-menu.active, .main-search.active {
+        -webkit-clip-path: inset(0 0 0 0);
+                clip-path: inset(0 0 0 0); } }
   .main-menu .group--header,
   .main-menu .group--footer, .main-search .group--header,
   .main-search .group--footer {
@@ -4534,7 +4540,11 @@ errors-component {
     .slider--hero.content-over .slider__pagination .btn--next {
       display: none; }
   .slider--hero .card--hero {
-    min-height: calc(100vh - 90px); }
+    height: calc(100vh - 90px); }
+  @media (-webkit-min-device-pixel-ratio: 0) {
+    .slider--hero .card--hero {
+      height: auto;
+      min-height: calc(100vh - 90px); } }
   .slider--hero .slider__slide .card--hero .picture {
     cursor: none; }
     .slider--hero .slider__slide .card--hero .picture img {
@@ -4756,7 +4766,8 @@ errors-component {
           height: 100%;
           object-fit: cover; } }
   .card--case-study > .container {
-    position: absolute; }
+    position: absolute;
+    bottom: 0; }
   .card--case-study .category {
     color: #ffffff; }
   .card--case-study .title {
@@ -4788,10 +4799,10 @@ errors-component {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 360px;
   padding: 48px 0;
   background: black;
-  color: white; }
+  color: white;
+  height: 360px; }
   .section--hero-tertiary .picture, .section--hero-magazine-detail .picture {
     position: absolute;
     display: flex;
@@ -4819,6 +4830,10 @@ errors-component {
   .section--hero-tertiary .abstract, .section--hero-magazine-detail .abstract {
     font-size: 18px;
     line-height: 1.2; }
+  @media (-webkit-min-device-pixel-ratio: 0) {
+    .section--hero-tertiary, .section--hero-magazine-detail {
+      height: auto;
+      min-height: 360px; } }
 
 .section--contacts {
   padding: 80px 0; }
@@ -4902,7 +4917,8 @@ errors-component {
           height: 100%;
           object-fit: cover; } }
   .card--generic > .container {
-    position: absolute; }
+    position: absolute;
+    bottom: 0; }
   .card--generic .category {
     color: #ffffff; }
   .card--generic .title {
@@ -4930,10 +4946,10 @@ errors-component {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: calc(100vh - 90px);
   padding: 48px 0;
   background: black;
-  color: white; }
+  color: white;
+  height: calc(100vh - 90px); }
   .section--hero-secondary .picture {
     position: absolute;
     display: flex;
@@ -4949,6 +4965,10 @@ errors-component {
       object-fit: cover; }
   .section--hero-secondary .title {
     margin-bottom: 24px; }
+  @media (-webkit-min-device-pixel-ratio: 0) {
+    .section--hero-secondary {
+      height: auto;
+      min-height: calc(100vh - 90px); } }
 
 .section--text {
   padding: 80px 0; }
@@ -5073,7 +5093,8 @@ errors-component {
           height: 100%;
           object-fit: cover; } }
   .card--gallery > .container {
-    position: absolute; }
+    position: absolute;
+    bottom: 0; }
   .card--gallery .category {
     color: #ffffff; }
   .card--gallery .title {
@@ -5469,11 +5490,19 @@ errors-component {
 
 @media (min-width: 768px) {
   .section--hero-magazine-detail {
-    min-height: 360px; } }
+    height: 360px; } }
+  @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 0) {
+    .section--hero-magazine-detail {
+      height: auto;
+      min-height: 360px; } }
 
 @media (max-width: 767.98px) {
   .section--hero-magazine-detail {
-    min-height: 70vh; } }
+    height: 70vh; } }
+  @media (max-width: 767.98px) and (-webkit-min-device-pixel-ratio: 0) {
+    .section--hero-magazine-detail {
+      height: auto;
+      min-height: 70vh; } }
 
 .section--magazine-intro {
   padding: 64px 0; }
@@ -5832,7 +5861,8 @@ errors-component {
   .card--portfolio > .content {
     display: block;
     position: absolute;
-    width: 100%; }
+    width: 100%;
+    bottom: 0; }
   .card--portfolio .container {
     display: block; }
   .card--portfolio .title {

@@ -182,10 +182,19 @@
 		height: 100%;
 	}
 
+	// hack IE 11
+	display: none;
 	&.active {
+		display: block;
 		pointer-events: all;
-		clip-path: inset(0 0 0 0);
-		// opacity: 1;
+	}
+	@media (-webkit-min-device-pixel-ratio:0) {
+		display: block;
+
+		&.active {
+			clip-path: inset(0 0 0 0);
+			// opacity: 1;
+		}
 	}
 
 	.group--header,

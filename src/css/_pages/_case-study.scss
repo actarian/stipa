@@ -3,7 +3,6 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	min-height: calc(100vh - 90px);
 	padding: 48px 0;
 	background: black;
 	color: white;
@@ -32,6 +31,13 @@
 
 	.abstract {
 		@extend %abstract;
+	}
+
+	// hack IE 11
+	height: calc(100vh - 90px);
+	@media (-webkit-min-device-pixel-ratio:0) {
+		height: auto;
+		min-height: calc(100vh - 90px);
 	}
 }
 
@@ -169,6 +175,7 @@
 
 	&>.container {
 		position: absolute;
+		bottom: 0;
 	}
 
 	.category {
