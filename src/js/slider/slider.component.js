@@ -265,6 +265,12 @@ export default class SliderComponent extends Component {
 				} else if (event instanceof DragMoveEvent) {
 					dragMoveEvent = this.onDragMoveEvent(dragDownEvent, event, translation);
 					// console.log('DragMoveEvent');
+					/*
+					if (Math.abs(dragMoveEvent.distance.x) > Math.abs(dragMoveEvent.distance.y)) {
+						dragMoveEvent.originalEvent.preventDefault();
+						dragMoveEvent.originalEvent.stopImmediatePropagation();
+					}
+					*/
 				} else if (event instanceof DragUpEvent) {
 					if (dragMoveEvent) {
 						this.container.classList.remove('dragging');

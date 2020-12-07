@@ -83,6 +83,9 @@ img {
 .hidden {
   display: none; }
 
+section {
+  overflow-x: hidden; }
+
 body {
   font-family: "Lato", sans-serif;
   font-weight: 300;

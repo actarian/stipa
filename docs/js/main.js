@@ -3660,6 +3660,13 @@ var SliderComponent = /*#__PURE__*/function (_Component) {
         dragDownEvent = event;
       } else if (event instanceof DragMoveEvent) {
         dragMoveEvent = _this8.onDragMoveEvent(dragDownEvent, event, translation); // console.log('DragMoveEvent');
+
+        /*
+        if (Math.abs(dragMoveEvent.distance.x) > Math.abs(dragMoveEvent.distance.y)) {
+        	dragMoveEvent.originalEvent.preventDefault();
+        	dragMoveEvent.originalEvent.stopImmediatePropagation();
+        }
+        */
       } else if (event instanceof DragUpEvent) {
         if (dragMoveEvent) {
           _this8.container.classList.remove('dragging');
