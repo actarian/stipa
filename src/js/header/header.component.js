@@ -70,7 +70,7 @@ export default class HeaderComponent extends Component {
 	}
 
 	onShowSub(subId) {
-		this.showPicture();
+		this.showPictureOrDefault();
 		if (window.innerWidth > 768) {
 			this.subId = subId || null;
 			this.pushChanges();
@@ -112,6 +112,31 @@ export default class HeaderComponent extends Component {
 					},
 				});
 			}
+		}
+	}
+
+	showPictureOrDefault(src) {
+		src = src || '/stipa/img/header/default.jpg';
+		const { node } = getContext(this);
+		const picture = node.querySelector('.main-menu__picture');
+		let img = picture.querySelector('img');
+		if (!img || img.getAttribute('src') !== src) {
+			img = document.createElement('img');
+			img.onload = () => {
+				picture.appendChild(img);
+				gsap.set(img, { opacity: 0 });
+				gsap.to(img, {
+					opacity: 1,
+					duration: 0.35,
+					overwrite: 'all',
+					onComplete: () => {
+						while(picture.childElementCount > 1) {
+							picture.removeChild(picture.children[0]);
+						}
+					},
+				});
+			};
+			img.src = src;
 		}
 	}
 }

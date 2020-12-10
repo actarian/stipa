@@ -1,5 +1,7 @@
 <div class="main-menu header-opening" [class]="{ active: mainActive }">
-	<div class="main-menu__picture"></div>
+	<div class="main-menu__picture">
+		<img src="/stipa/img/header/default.jpg" />
+	</div>
 	<div class="container">
 		<div class="group--header">
 			<div class="group--left">
@@ -24,16 +26,16 @@
 					<li><a href="#" (mouseenter)="onShowSub()">Faq</a></li>
 				</ul>
 				<ul class="nav--primary-menu" *if="isSubOpen(1)">
-					<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-01.jpg')">Lorem</a></li>
-					<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-02.jpg')">Ipsum</a></li>
-					<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-03.jpg')">Dolor sit</a></li>
-					<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-04.jpg')">Amet</a></li>
+					<li><a href="#" (mouseenter)="showPictureOrDefault('/stipa/img/index/case-study-01.jpg')">Lorem</a></li>
+					<li><a href="#" (mouseenter)="showPictureOrDefault('/stipa/img/index/case-study-02.jpg')">Ipsum</a></li>
+					<li><a href="#" (mouseenter)="showPictureOrDefault('/stipa/img/index/case-study-03.jpg')">Dolor sit</a></li>
+					<li><a href="#" (mouseenter)="showPictureOrDefault('/stipa/img/index/case-study-04.jpg')">Amet</a></li>
 				</ul>
 				<ul class="nav--primary-menu" *if="isSubOpen(2)">
-					<li><a href="/stipa/portfolio.html" (mouseenter)="showPicture('/stipa/img/index/case-study-01.jpg')">Stands</a></li>
-					<li><a href="/stipa/portfolio.html" (mouseenter)="showPicture('/stipa/img/index/case-study-02.jpg')">Events</a></li>
-					<li><a href="/stipa/portfolio.html" (mouseenter)="showPicture('/stipa/img/index/case-study-03.jpg')">Mostre e musei</a></li>
-					<li><a href="/stipa/portfolio.html" (mouseenter)="showPicture('/stipa/img/index/case-study-04.jpg')">Showroom e negozi</a></li>
+					<li><a href="/stipa/portfolio.html" (mouseenter)="showPictureOrDefault('/stipa/img/index/case-study-01.jpg')">Stands</a></li>
+					<li><a href="/stipa/portfolio.html" (mouseenter)="showPictureOrDefault('/stipa/img/index/case-study-02.jpg')">Events</a></li>
+					<li><a href="/stipa/portfolio.html" (mouseenter)="showPictureOrDefault('/stipa/img/index/case-study-03.jpg')">Mostre e musei</a></li>
+					<li><a href="/stipa/portfolio.html" (mouseenter)="showPictureOrDefault('/stipa/img/index/case-study-04.jpg')">Showroom e negozi</a></li>
 				</ul>
 			</div>
 		</div>

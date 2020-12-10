@@ -24,6 +24,16 @@
 		}
 	}
 
+	.main-menu {
+		&__picture {
+			background: #2f3a67;
+
+			img {
+				mix-blend-mode: luminosity;
+			}
+		}
+	}
+
 	.group--main {
 		@include media-down(xs) {
 			align-items: flex-start;

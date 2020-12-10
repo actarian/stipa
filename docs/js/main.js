@@ -2165,7 +2165,7 @@ GalleryComponent.meta = {
   };
 
   _proto.onShowSub = function onShowSub(subId) {
-    this.showPicture();
+    this.showPictureOrDefault();
 
     if (window.innerWidth > 768) {
       this.subId = subId || null;
@@ -2216,6 +2216,39 @@ GalleryComponent.meta = {
           }
         });
       }
+    }
+  };
+
+  _proto.showPictureOrDefault = function showPictureOrDefault(src) {
+    src = src || '/stipa/img/header/default.jpg';
+
+    var _getContext4 = rxcomp.getContext(this),
+        node = _getContext4.node;
+
+    var picture = node.querySelector('.main-menu__picture');
+    var img = picture.querySelector('img');
+
+    if (!img || img.getAttribute('src') !== src) {
+      img = document.createElement('img');
+
+      img.onload = function () {
+        picture.appendChild(img);
+        gsap.set(img, {
+          opacity: 0
+        });
+        gsap.to(img, {
+          opacity: 1,
+          duration: 0.35,
+          overwrite: 'all',
+          onComplete: function onComplete() {
+            while (picture.childElementCount > 1) {
+              picture.removeChild(picture.children[0]);
+            }
+          }
+        });
+      };
+
+      img.src = src;
     }
   };
 
