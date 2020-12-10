@@ -2160,6 +2160,13 @@ GalleryComponent.meta = {
     return this.subId === subId;
   };
 
+  _proto.onShowSub = function onShowSub(subId) {
+    if (window.innerWidth > 768) {
+      this.subId = subId || null;
+      this.pushChanges();
+    }
+  };
+
   _proto.isPrimaryHidden = function isPrimaryHidden() {
     return this.subId != null;
   };
@@ -2627,9 +2634,8 @@ var FilterItem = /*#__PURE__*/function () {
         return response.data;
       }));
     } else {
-      return ApiService.staticGet$('/magazine/all').pipe(operators.map(function (response) {
-        return response.data;
-      })); // return ApiService.get$('/magazine/all').pipe(map(response => response.data));
+      return rxjs.from([window.all]); //return ApiService.staticGet$('/magazine/all').pipe(map(response => response.data));
+      // return ApiService.get$('/magazine/all').pipe(map(response => response.data));
     }
   };
 
@@ -2639,9 +2645,8 @@ var FilterItem = /*#__PURE__*/function () {
         return response.data;
       }));
     } else {
-      return ApiService.staticGet$('/magazine/filters').pipe(operators.map(function (response) {
-        return response.data;
-      })); // return ApiService.get$('/magazine/filters').pipe(map(response => response.data));
+      return rxjs.from([window.filters]); //return ApiService.staticGet$('/magazine/filters').pipe(map(response => response.data));
+      // return ApiService.get$('/magazine/filters').pipe(map(response => response.data));
     }
   };
 

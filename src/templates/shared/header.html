@@ -1,4 +1,4 @@
-<header class="header" header>
+<header class="header header-v2" header>
 	<div class="container">
 		<div class="group--header">
 			<div class="group--left">
@@ -13,54 +13,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="main-menu" [class]="{ active: mainActive }">
-		<div class="container">
-			<div class="group--header">
-				<div class="group--left">
-					<a href="/stipa/" class="brand"><svg class="logo-stipa"><use xlink:href="#logo-stipa"></use></svg></a>
-				</div>
-				<div class="group--right">
-					<!-- <button type="button" class="btn--search" (click)="onSearchToggle($event)"><svg class="search"><use xlink:href="#search"></use></svg></button> -->
-					<button type="button" class="btn--close" (click)="onMainToggle($event)"><svg class="close"><use xlink:href="#close"></use></svg></button>
-				</div>
-			</div>
-			<div class="group--main">
-				<div class="main-menu__background">
-					<div class="main-menu__picture"></div>
-					<ul class="nav--primary-menu">
-						<li class="secondary" [class]="{ active: isSubOpen(1) }">
-							<span (click)="onOpenSub(1)" (clickOutside)="onCloseSub(1)">About <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></span>
-							<ul (mouseleave)="showPicture()">
-								<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-01.jpg')">Lorem</a></li>
-								<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-02.jpg')">Ipsum</a></li>
-								<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-03.jpg')">Dolor sit</a></li>
-								<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-04.jpg')">Amet</a></li>
-							</ul>
-						</li>
-						<li class="secondary" [class]="{ active: isSubOpen(2) }">
-							<span (click)="onOpenSub(2)" (clickOutside)="onCloseSub(2)">Portfolio <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></span>
-							<ul (mouseleave)="showPicture()">
-								<li><a href="/stipa/portfolio.html" (mouseenter)="showPicture('/stipa/img/index/case-study-01.jpg')">Stands</a></li>
-								<li><a href="/stipa/portfolio.html" (mouseenter)="showPicture('/stipa/img/index/case-study-02.jpg')">Events</a></li>
-								<li><a href="/stipa/portfolio.html" (mouseenter)="showPicture('/stipa/img/index/case-study-03.jpg')">Mostre e musei</a></li>
-								<li><a href="/stipa/portfolio.html" (mouseenter)="showPicture('/stipa/img/index/case-study-04.jpg')">Showroom e negozi</a></li>
-							</ul>
-						</li>
-						<li><a href="/stipa/magazine.html">Magazine</a></li>
-						<li><a href="/stipa/contacts.html">Contatti</a></li>
-						<li><a href="#">FAQ</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="group--footer">
-				<div class="group--left"></div>
-				<div class="group--right">
-					<a href="#" class="btn--language">EN</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="main-search" [class]="{ active: searchActive }">
+	<!-- @@include ./header-main-menu-v2.html -->
+	<div class="main-search header-opening" [class]="{ active: searchActive }">
 		<div class="container">
 			<div class="group--header">
 				<div class="group--left">

@@ -65,6 +65,13 @@ export default class HeaderComponent extends Component {
 		return this.subId === subId;
 	}
 
+	onShowSub(subId) {
+		if (window.innerWidth > 768) {
+			this.subId = subId || null;
+			this.pushChanges();
+		}
+	}
+
 	isPrimaryHidden() {
 		return this.subId != null;
 	}
