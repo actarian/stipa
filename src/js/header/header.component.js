@@ -65,15 +65,16 @@ export default class HeaderComponent extends Component {
 		return this.subId === subId;
 	}
 
+	isPrimaryHidden() {
+		return this.subId != null;
+	}
+
 	onShowSub(subId) {
+		this.showPicture();
 		if (window.innerWidth > 768) {
 			this.subId = subId || null;
 			this.pushChanges();
 		}
-	}
-
-	isPrimaryHidden() {
-		return this.subId != null;
 	}
 
 	showPicture(src) {
@@ -88,6 +89,7 @@ export default class HeaderComponent extends Component {
 				gsap.to(img, {
 					opacity: 1,
 					duration: 0.35,
+					overwrite: 'all',
 					onComplete: () => {
 						while(picture.childElementCount > 1) {
 							picture.removeChild(picture.children[0]);
@@ -102,6 +104,7 @@ export default class HeaderComponent extends Component {
 				gsap.to(img, {
 					opacity: 0,
 					duration: 0.35,
+					overwrite: 'all',
 					onComplete: () => {
 						while(picture.childElementCount > 0) {
 							picture.removeChild(picture.children[0]);

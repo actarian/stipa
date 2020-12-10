@@ -2160,15 +2160,17 @@ GalleryComponent.meta = {
     return this.subId === subId;
   };
 
+  _proto.isPrimaryHidden = function isPrimaryHidden() {
+    return this.subId != null;
+  };
+
   _proto.onShowSub = function onShowSub(subId) {
+    this.showPicture();
+
     if (window.innerWidth > 768) {
       this.subId = subId || null;
       this.pushChanges();
     }
-  };
-
-  _proto.isPrimaryHidden = function isPrimaryHidden() {
-    return this.subId != null;
   };
 
   _proto.showPicture = function showPicture(src) {
@@ -2189,6 +2191,7 @@ GalleryComponent.meta = {
         gsap.to(img, {
           opacity: 1,
           duration: 0.35,
+          overwrite: 'all',
           onComplete: function onComplete() {
             while (picture.childElementCount > 1) {
               picture.removeChild(picture.children[0]);
@@ -2205,6 +2208,7 @@ GalleryComponent.meta = {
         gsap.to(img, {
           opacity: 0,
           duration: 0.35,
+          overwrite: 'all',
           onComplete: function onComplete() {
             while (picture.childElementCount > 0) {
               picture.removeChild(picture.children[0]);

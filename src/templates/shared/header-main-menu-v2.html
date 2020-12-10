@@ -14,14 +14,14 @@
 			<div class="group--menus" [class]="{ active: isPrimaryHidden() }">
 				<ul class="nav--primary-menu">
 					<li [class]="{ active: isSubOpen(1) }">
-						<span (click)="onOpenSub(1)" (clickOutside)="onCloseSub(1)" (mouseenter)="onShowSub(1) && showPicture()">About</span>
+						<span (click)="onOpenSub(1)" (clickOutside)="onCloseSub(1)" (mouseenter)="onShowSub(1)">About</span>
 					</li>
 					<li [class]="{ active: isSubOpen(2) }">
-						<span (click)="onOpenSub(2)" (clickOutside)="onCloseSub(2)" (mouseenter)="onShowSub(2) && showPicture()">Portfolio</span>
+						<span (click)="onOpenSub(2)" (clickOutside)="onCloseSub(2)" (mouseenter)="onShowSub(2)">Portfolio</span>
 					</li>
-					<li><a href="/stipa/magazine.html" (mouseenter)="onShowSub() && showPicture()">Magazine</a></li>
-					<li><a href="/stipa/contacts.html" (mouseenter)="onShowSub() && showPicture()">Contatti</a></li>
-					<li><a href="#" (mouseenter)="onShowSub() && showPicture()">Faq</a></li>
+					<li><a href="/stipa/magazine.html" (mouseenter)="onShowSub()">Magazine</a></li>
+					<li><a href="/stipa/contacts.html" (mouseenter)="onShowSub()">Contatti</a></li>
+					<li><a href="#" (mouseenter)="onShowSub()">Faq</a></li>
 				</ul>
 				<ul class="nav--primary-menu" *if="isSubOpen(1)">
 					<li><a href="#" (mouseenter)="showPicture('/stipa/img/index/case-study-01.jpg')">Lorem</a></li>
