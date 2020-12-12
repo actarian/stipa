@@ -1,0 +1,47 @@
+<!-- @@master = ./templates/layout.html { "baseHref": "/stipa/" } -->
+
+<!-- @@block = main-->
+
+<!-- @@include ./templates/shared/header.html { "path": "<ul class=\"nav--path\"><li>Ricerca</li></ul>" } -->
+
+<section class="section--search" search>
+	<div class="container">
+		<!-- head -->
+		<form class="form form--positive" (submit)="onSearch()" name="search" role="form" novalidate autocomplete="off">
+			<h1 class="title">Stai cercando <input class="form--control" [formControl]="controls.search" placeholder="Search" type="text" /></h1>
+		</form>
+		<div *if="items.length"><span [innerHTML]="items.length"></span> risultati</div>
+		<!-- filters -->
+		<div class="listing--filters" *if="items.length">
+			<div class="listing__item">
+				<div filter-dropdown label="Filtra per" [filter]="filters.category"></div>
+			</div>
+			<div class="listing__item" *for="let [key, filter] of filters">
+				<span *for="let item of filter.options">
+					<button type="button" class="btn--option" *if="filter.has(item)" (click)="filter.remove(item)">
+						<span class="name" [innerHTML]="item.label"></span> <svg class="close"><use xlink:href="#close"></use></svg>
+					</button>
+				</span>
+			</div>
+		</div>
+		<!-- results -->
+		<div class="listing--search">
+			<div class="listing__item" *for="let item of items">
+				<div class="card--search">
+					<div class="content" appear-stagger>
+						<div class="category" [innerHTML]="item.category.name"></div>
+						<h3 class="title" [innerHTML]="item.title"></h3>
+						<div class="abstract" [innerHTML]="item.abstract" *if="item.abstract"></div>
+						<div class="group--cta">
+							<a [href]="item.url" class="btn--card"><span class="badge"></span> <span class="label">Apri</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- spinner -->
+		<div class="spinner" *if="busy"></div>
+	</div>
+</section>
+
+<!-- @@close-->

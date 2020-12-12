@@ -8,7 +8,7 @@
 	display: none;
 	position: absolute;
 	max-height: 350px;
-	top: -22px;
+	// top: -22px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	@include scrollbar();
@@ -55,7 +55,8 @@
 	@include media-down(sm) {
 		left: 0;
 		top: 56px;
-		width: 100%;
+		min-width: 100%;
+		max-width: 100vw;
 	}
 }
 

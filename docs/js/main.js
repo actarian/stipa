@@ -2098,17 +2098,36 @@ GalleryComponent.meta = {
   _proto.onInit = function onInit() {
     this.searchActive = false;
     this.mainActive = false;
+    var form = this.form = new rxcompForm.FormGroup({
+      search: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator())
+    });
+    var controls = this.controls = form.controls;
     CssService.height$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (height) {
       console.log('HeaderComponent.height$', height);
     });
+  };
+
+  _proto.onSearch = function onSearch() {
+    var _getContext = rxcomp.getContext(this),
+        node = _getContext.node;
+
+    var form = node.querySelector('form');
+    var action = form.getAttribute('action');
+
+    if (this.form.valid) {
+      this.form.submitted = true;
+      window.location.href = action + "?search=" + this.form.value.search;
+    } else {
+      this.form.touched = true;
+    }
   };
 
   _proto.onMainToggle = function onMainToggle() {
     this.searchActive = false;
     this.mainActive = !this.mainActive;
 
-    var _getContext = rxcomp.getContext(this),
-        node = _getContext.node;
+    var _getContext2 = rxcomp.getContext(this),
+        node = _getContext2.node;
 
     var items = Array.prototype.slice.call(node.querySelectorAll('.nav--primary-menu > li'));
     gsap.to(items, {
@@ -2126,8 +2145,8 @@ GalleryComponent.meta = {
     this.mainActive = false;
     this.searchActive = !this.searchActive;
 
-    var _getContext2 = rxcomp.getContext(this),
-        node = _getContext2.node;
+    var _getContext3 = rxcomp.getContext(this),
+        node = _getContext3.node;
     /*
     const items = Array.prototype.slice.call(node.querySelectorAll('.nav--primary-menu > li'));
     gsap.to(items, {
@@ -2174,8 +2193,8 @@ GalleryComponent.meta = {
   };
 
   _proto.showPicture = function showPicture(src) {
-    var _getContext3 = rxcomp.getContext(this),
-        node = _getContext3.node;
+    var _getContext4 = rxcomp.getContext(this),
+        node = _getContext4.node;
 
     var picture = node.querySelector('.main-menu__picture');
     var img;
@@ -2222,8 +2241,8 @@ GalleryComponent.meta = {
   _proto.showPictureOrDefault = function showPictureOrDefault(src) {
     src = src || '/stipa/img/header/default.jpg';
 
-    var _getContext4 = rxcomp.getContext(this),
-        node = _getContext4.node;
+    var _getContext5 = rxcomp.getContext(this),
+        node = _getContext5.node;
 
     var picture = node.querySelector('.main-menu__picture');
     var img = picture.querySelector('img');
@@ -3098,6 +3117,178 @@ PortfolioComponent.meta = {
 }(rxcomp.Directive);
 ScrollToDirective.meta = {
   selector: "[(scrollTo)]"
+};var SearchService = /*#__PURE__*/function () {
+  function SearchService() {}
+
+  SearchService.all$ = function all$() {
+    if (STATIC) {
+      return ApiService.staticGet$('/search/all').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    } else {
+      // return from([window.all]);
+      return ApiService.staticGet$('/search/all').pipe(operators.map(function (response) {
+        return response.data;
+      })); // return ApiService.get$('/search/all').pipe(map(response => response.data));
+    }
+  };
+
+  SearchService.filters$ = function filters$() {
+    if (STATIC) {
+      return ApiService.staticGet$('/search/filters').pipe(operators.map(function (response) {
+        return response.data;
+      }));
+    } else {
+      // return from([window.filters]);
+      return ApiService.staticGet$('/search/filters').pipe(operators.map(function (response) {
+        return response.data;
+      })); // return ApiService.get$('/search/filters').pipe(map(response => response.data));
+    }
+  };
+
+  return SearchService;
+}();var ITEMS_PER_PAGE$2 = 9;
+
+var SearchComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(SearchComponent, _Component);
+
+  function SearchComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = SearchComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    var form = this.form = new rxcompForm.FormGroup({
+      search: new rxcompForm.FormControl(LocationService.get('search'), rxcompForm.Validators.RequiredValidator())
+    });
+    var controls = this.controls = form.controls;
+    this.maxVisibleItems = ITEMS_PER_PAGE$2;
+    this.visibleItems = [];
+    this.items = [];
+    this.filters = {};
+    this.onSearch();
+  };
+
+  _proto.load$ = function load$() {
+    return rxjs.combineLatest([SearchService.all$(), SearchService.filters$()]);
+  };
+
+  _proto.onSearch = function onSearch() {
+    var _this = this;
+
+    if (this.form.valid) {
+      this.busy = true;
+      this.items = [];
+      this.filters = {};
+      this.pushChanges();
+      this.load$(this.form.value.search).pipe(operators.delay(STATIC ? 1000 : 1), operators.first()).subscribe(function (data) {
+        _this.busy = false;
+        _this.items = data[0];
+        _this.filters = data[1];
+
+        _this.onSearchResults();
+
+        _this.pushChanges();
+
+        LocationService.set('search', _this.form.value.search);
+      });
+    } else {
+      this.form.touched = true;
+    }
+  };
+
+  _proto.onSearchResults = function onSearchResults() {
+    var _this2 = this;
+
+    var items = this.items;
+    var filters = this.filters;
+    Object.keys(filters).forEach(function (key) {
+      filters[key].mode = FilterMode.SELECT;
+    });
+    var initialParams = {};
+    var filterService = new FilterService(filters, initialParams, function (key, filter) {
+      switch (key) {
+        case 'category':
+          filter.filter = function (item, value) {
+            return item.category.id === value;
+          };
+
+          break;
+
+        case 'year':
+          filter.filter = function (item, value) {
+            return item[key] === value;
+          };
+
+          break;
+      }
+    });
+    this.filterService = filterService;
+    this.filters = filterService.filters;
+    filterService.items$(items).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (items) {
+      _this2.maxVisibleItems = ITEMS_PER_PAGE$2;
+      _this2.items = items;
+      _this2.visibleItems = items.slice(0, _this2.maxVisibleItems);
+
+      _this2.pushChanges();
+    });
+    this.scroll$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe();
+  };
+
+  _proto.scroll$ = function scroll$() {
+    var _this3 = this;
+
+    var _getContext = rxcomp.getContext(this),
+        node = _getContext.node;
+
+    return rxjs.fromEvent(window, 'scroll').pipe(operators.tap(function () {
+      if (!_this3.busy && _this3.items.length > _this3.visibleItems.length) {
+        var rect = node.getBoundingClientRect();
+
+        if (rect.bottom < window.innerHeight) {
+          _this3.busy = true;
+
+          _this3.pushChanges();
+
+          setTimeout(function () {
+            _this3.busy = false;
+            _this3.maxVisibleItems += ITEMS_PER_PAGE$2;
+            _this3.visibleItems = _this3.items.slice(0, _this3.maxVisibleItems);
+
+            _this3.pushChanges();
+          }, 1000);
+        }
+      }
+    }));
+  };
+
+  _proto.toggleFilter = function toggleFilter(filter) {
+    var _this4 = this;
+
+    Object.keys(this.filters).forEach(function (key) {
+      var f = _this4.filters[key];
+
+      if (f === filter) {
+        f.active = !f.active;
+      } else {
+        f.active = false;
+      }
+    });
+    this.pushChanges();
+  };
+
+  _proto.clearFilter = function clearFilter(event, filter) {
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    filter.clear();
+    this.pushChanges();
+  };
+
+  return SearchComponent;
+}(rxcomp.Component);
+SearchComponent.meta = {
+  selector: '[search]'
 };var DownloadService = /*#__PURE__*/function () {
   function DownloadService() {}
 
@@ -4592,6 +4783,6 @@ VirtualStructure.meta = {
 }(rxcomp.Module);
 AppModule.meta = {
   imports: [rxcomp.CoreModule, rxcompForm.FormModule],
-  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ContactsSimpleComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, FilterDropdownComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, MagazineComponent, ModalComponent, ModalOutletComponent, PortfolioComponent, ScrollToDirective, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, VirtualStructure],
+  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ContactsSimpleComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, FilterDropdownComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, MagazineComponent, ModalComponent, ModalOutletComponent, PortfolioComponent, ScrollToDirective, SearchComponent, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, VirtualStructure],
   bootstrap: AppComponent
 };rxcomp.Browser.bootstrap(AppModule);})));

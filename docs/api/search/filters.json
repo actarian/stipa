@@ -1,0 +1,25 @@
+{
+  "category": {
+    "label": "Categoria",
+    "placeholder": "Tutte",
+    "mode": "or",
+    "options": [
+      {
+        "value": 1,
+        "label": "Eventi"
+      },
+      {
+        "value": 2,
+        "label": "News"
+      },
+      {
+        "value": 3,
+        "label": "Case study"
+      },
+      {
+        "value": 4,
+        "label": "Stand"
+      }
+    ]
+  }
+}

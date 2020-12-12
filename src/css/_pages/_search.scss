@@ -1,0 +1,145 @@
+.section--search {
+	padding: 48px 0;
+	min-height: 80vh;
+
+	.title {
+		@extend %title;
+		margin-bottom: 0;
+
+		display: flex;
+	}
+
+	.form--control {
+		flex: 1 1 auto;
+		margin-left: 18px;
+
+		$c:  #ae4075;
+		$b: #ffe9f3;
+
+		&,
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus {
+			border: none;
+			border-radius: 0;
+			font-family: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+			letter-spacing: inherit;
+			line-height: inherit;
+			-webkit-text-fill-color: $c;
+			box-shadow: 0 0 0px 1000px $b inset;
+			transition: background-color 5000s ease-in-out 0s;
+			color: $c;
+			background: $b;
+		}
+
+		&::placeholder {
+			font-family: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+			letter-spacing: inherit;
+			line-height: inherit;
+			@extend %placeholder;
+		}
+
+		@extend %title;
+
+		margin-bottom: 0;
+		padding: 0 16px;
+		min-width: 160px;
+		padding: 0 16px;
+		display: inline-flex;
+		width: auto;
+		appearance: none;
+		border: none;
+		font-weight: 100;
+	}
+
+	.search {
+		padding: 0 16px;
+		background: #ffe9f3;
+		color: #ae4075;
+	}
+}
+
+.card--search {
+	text-align: left;
+	border-top: 1px solid #e2e2e2;
+	padding-top: 8px;
+
+	.category {
+		margin-bottom: 8px;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 1.2;
+		color: #767676;
+	}
+
+	.title {
+		@extend %title-listing;
+		margin-bottom: 8px;
+	}
+
+	.abstract {
+		@extend %abstract-listing;
+		margin-bottom: 8px;
+	}
+
+	.btn--card {
+		margin: 16px 0 24px 0;
+		font-size: 16px;
+	}
+}
+
+.listing--search {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+
+	&>.listing__item {
+		margin-bottom: 13px;
+	}
+
+	@include media-up(lg) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(3, 12, $gutter);
+		}
+	}
+
+	@include media-between(sm, md) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(4, 12, $gutter);
+		}
+	}
+
+	@include media-between(xs, sm) {
+		$gutter: 32px;
+		margin-left: - $gutter / 2;
+		margin-right: - $gutter / 2;
+		align-items: stretch;
+
+		&>.listing__item {
+			@include as-col(6, 12, $gutter);
+		}
+	}
+
+	@include media-down(xs) {
+		$gutter: 32px;
+
+		&>.listing__item {
+			@include as-col(12, 12, $gutter);
+		}
+	}
+}

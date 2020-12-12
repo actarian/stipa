@@ -56,60 +56,56 @@
 
 <section class="section--magazine-gallery">
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-10 offset-sm-1">
-				<div class="slider__container slider--gallery" slider-gallery [autoplay]="5000">
-					<div class="slider__wrapper" [style]="wrapperStyle">
-						<div class="slider__inner" [style]="innerStyle">
-							<!-- SLIDE -->
-							<div class="slider__slide">
-								<div class="card--gallery">
-									<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-01@2x.jpg">
-										<img loading="lazy" src="/stipa/img/magazine-detail/gallery-01@2x.jpg" ondragstart="return false;" />
-										<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
-									</div>
-								</div>
-							</div>
-							<!-- SLIDE -->
-							<div class="slider__slide">
-								<div class="card--gallery">
-									<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-02.jpg">
-										<img loading="lazy" src="/stipa/img/magazine-detail/gallery-02.jpg" ondragstart="return false;" />
-										<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
-									</div>
-								</div>
-							</div>
-							<!-- SLIDE -->
-							<div class="slider__slide">
-								<div class="card--gallery">
-									<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-03.jpg">
-										<img loading="lazy" src="/stipa/img/magazine-detail/gallery-03.jpg" ondragstart="return false;" />
-										<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
-									</div>
-								</div>
+		<div class="slider__container slider--gallery" slider-gallery [autoplay]="5000">
+			<div class="slider__wrapper" [style]="wrapperStyle">
+				<div class="slider__inner" [style]="innerStyle">
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--gallery">
+							<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-01@2x.jpg">
+								<img loading="lazy" src="/stipa/img/magazine-detail/gallery-01@2x.jpg" ondragstart="return false;" />
+								<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
 							</div>
 						</div>
 					</div>
-					<div class="slider__bullets">
-						<span class="slider__bullet" [class]="{ active: index === current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
-					</div>
-					<div class="slider__pagination" appear-stagger>
-						<div class="group--left">
-							<button type="button" class="btn--prev" [class]="{ disabled: !hasPrev() }" (click)="navTo(current - 1)">
-								<svg class="arrow-prev"><use xlink:href="#arrow-prev"></use></svg>
-							</button>
-						</div>
-						<div class="group--center">
-						<!--
-							<button type="button" class="btn--primary" [gallery]="['/stipa/img/magazine-detail/gallery-01@2x.jpg', '/stipa/img/magazine-detail/gallery-02.jpg', '/stipa/img/magazine-detail/gallery-03.jpg']" data-title="Guarda la gallery completa">Guarda la gallery completa</button>
-						-->
-						</div>
-						<div class="group--right">
-							<button type="button" class="btn--next" [class]="{ disabled: !hasNext() }" (click)="navTo(current + 1)">
-								<svg class="arrow-next"><use xlink:href="#arrow-next"></use></svg>
-							</button>
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--gallery">
+							<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-02.jpg">
+								<img loading="lazy" src="/stipa/img/magazine-detail/gallery-02.jpg" ondragstart="return false;" />
+								<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+							</div>
 						</div>
 					</div>
+					<!-- SLIDE -->
+					<div class="slider__slide">
+						<div class="card--gallery">
+							<div class="picture picture--gallery" gallery="/stipa/img/magazine-detail/gallery-03.jpg">
+								<img loading="lazy" src="/stipa/img/magazine-detail/gallery-03.jpg" ondragstart="return false;" />
+								<svg class="icon"><use xlink:href="#gallery"></use></svg></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slider__bullets">
+				<span class="slider__bullet" [class]="{ active: index === current }" *for="let item of items; let index = index;" (click)="navTo(index)"></span>
+			</div>
+			<div class="slider__pagination" appear-stagger>
+				<div class="group--left">
+					<button type="button" class="btn--prev" [class]="{ disabled: !hasPrev() }" (click)="navTo(current - 1)">
+						<svg class="arrow-prev"><use xlink:href="#arrow-prev"></use></svg>
+					</button>
+				</div>
+				<div class="group--center">
+				<!--
+					<button type="button" class="btn--primary" [gallery]="['/stipa/img/magazine-detail/gallery-01@2x.jpg', '/stipa/img/magazine-detail/gallery-02.jpg', '/stipa/img/magazine-detail/gallery-03.jpg']" data-title="Guarda la gallery completa">Guarda la gallery completa</button>
+				-->
+				</div>
+				<div class="group--right">
+					<button type="button" class="btn--next" [class]="{ disabled: !hasNext() }" (click)="navTo(current + 1)">
+						<svg class="arrow-next"><use xlink:href="#arrow-next"></use></svg>
+					</button>
 				</div>
 			</div>
 		</div>

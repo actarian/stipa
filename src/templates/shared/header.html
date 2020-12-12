@@ -26,8 +26,8 @@
 				</div>
 			</div>
 			<div class="group--main">
-				<form class="form form--positive" name="search" role="form" novalidate autocomplete="off">
-					<input class="form--control" placeholder="Search" type="text" />
+				<form class="form form--positive" (submit)="onSearch()" action="/stipa/search.html" name="search" role="form" novalidate autocomplete="off">
+					<input class="form--control" [formControl]="controls.search" placeholder="Search" type="text" />
 					<button type="submit" class="btn--submit-search"><svg class="search"><use xlink:href="#search"></use></svg></button>
 				</form>
 			</div>

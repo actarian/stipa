@@ -9,8 +9,8 @@
     "image": "/stipa/img/portfolio/stand/stand-01@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-01@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-02@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-03@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": true
@@ -25,8 +25,8 @@
     "image": "/stipa/img/portfolio/stand/stand-02@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-02@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-03@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-04@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": false
@@ -41,8 +41,8 @@
     "image": "/stipa/img/portfolio/stand/stand-03@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-03@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-04@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-05@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": false
@@ -57,8 +57,8 @@
     "image": "/stipa/img/portfolio/stand/stand-04@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-04@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-05@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-06@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": true
@@ -73,8 +73,8 @@
     "image": "/stipa/img/portfolio/stand/stand-05@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-05@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-06@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-07@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": false
@@ -89,8 +89,8 @@
     "image": "/stipa/img/portfolio/stand/stand-06@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-06@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-07@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-08@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": false
@@ -105,8 +105,8 @@
     "image": "/stipa/img/portfolio/stand/stand-07@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-07@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-08@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-09@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": false
@@ -121,8 +121,8 @@
     "image": "/stipa/img/portfolio/stand/stand-08@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-08@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-09@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-01@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": false
@@ -137,8 +137,8 @@
     "image": "/stipa/img/portfolio/stand/stand-09@2x.jpg",
     "images": [
       "/stipa/img/portfolio/stand/stand-09@2x.jpg",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=2",
-      "http://placehold.jp/300/cccccc/ffffff/1440x630.png?text=3"
+      "/stipa/img/portfolio/stand/stand-01@2x.jpg",
+      "/stipa/img/portfolio/stand/stand-02@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
     "important": true

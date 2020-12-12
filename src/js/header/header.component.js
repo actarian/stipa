@@ -1,4 +1,5 @@
 import { Component, getContext } from 'rxcomp';
+import { FormControl, FormGroup, Validators } from 'rxcomp-form';
 import { takeUntil } from 'rxjs/operators';
 import CssService from '../css/css.service';
 // import UserService from '../user/user.service';
@@ -8,11 +9,30 @@ export default class HeaderComponent extends Component {
 	onInit() {
 		this.searchActive = false;
 		this.mainActive = false;
+
+		const form = this.form = new FormGroup({
+			search: new FormControl(null, Validators.RequiredValidator()),
+		});
+
+		const controls = this.controls = form.controls;
+
 		CssService.height$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe(height => {
 			console.log('HeaderComponent.height$', height);
 		});
+	}
+
+	onSearch() {
+		const { node } = getContext(this);
+		const form = node.querySelector('form');
+		const action = form.getAttribute('action');
+		if (this.form.valid) {
+			this.form.submitted = true;
+			window.location.href = `${action}?search=${this.form.value.search}`;
+		} else {
+			this.form.touched = true;
+		}
 	}
 
 	onMainToggle() {
