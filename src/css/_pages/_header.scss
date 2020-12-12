@@ -274,10 +274,11 @@
 		@extend %control--text;
 		@include autofill-positive(#004987, #ffffff);
 		@include autofill-size(60px);
-		font-weight: 400;
+		font-weight: 100;
 		margin: 0;
 		padding: 0;
 		line-height: 1;
+		outline: none;
 	}
 
 	.btn--submit-search {

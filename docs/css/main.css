@@ -3978,10 +3978,11 @@ errors-component {
   color: #004987;
   border-color: transparent;
   font-size: 60px;
-  font-weight: 400;
+  font-weight: 100;
   margin: 0;
   padding: 0;
-  line-height: 1; }
+  line-height: 1;
+  outline: none; }
   .main-search .form--control:-webkit-autofill, .main-search .form--control:-webkit-autofill:hover, .main-search .form--control:-webkit-autofill:focus {
     background: #ffffff;
     color: #004987;
