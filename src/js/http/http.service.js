@@ -22,48 +22,54 @@ export class HttpResponse {
 export default class HttpService {
 
 	static http$(method, url, data, format = 'json') {
-		method = url.indexOf('.json') !== -1 ? 'GET' : method;
 		const methods = ['POST', 'PUT', 'PATCH'];
-		let response_ = null;
-		let qstring = methods.indexOf(method) !== -1 ? Object.keys(data).map(function(key) {
-		    return key + '=' + encodeURI(data[key])
+		const body = (data && methods.indexOf(method) !== -1) ? JSON.stringify(data) : undefined;
+		const queryString = (data && methods.indexOf(method) !== -1) ? Object.keys(data).map(function(key) {
+		    return key + '=' + encodeURI(data[key]);
 		}).join('&') : undefined;
-		return from(fetch(url, url.indexOf('.json') !== -1 ? {
+		if (queryString) {
+			url = `${url}?${queryString}`;
+		}
+		let response_ = null;
+		return from(fetch(url, {
 			method: method,
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
-			body: methods.indexOf(method) !== -1 ? JSON.stringify(data) : undefined
-		} : {
-		    method: method,
-		    headers: {
-		        'Content-Type': 'application/x-www-form-urlencoded'
-		    },
-		    body: qstring
+			body: body,
 		}).then((response) => {
 			response_ = new HttpResponse(response);
-			return response[format]().then(json => {
-				response_.data = json;
+			try {
+				const contentType = response.headers.get('content-type');
+				let typedResponse;
+				if (contentType && format === 'json' && contentType.indexOf('application/json') !== -1) {
+					typedResponse = response.json();
+				} else if (format === 'blob') {
+					typedResponse = response.blob();
+				} else {
+					typedResponse = response.text();
+				}
+				return typedResponse.then(data => {
+					response_.data = data;
+					if (response.ok) {
+						return Promise.resolve(response_);
+					} else {
+						return Promise.reject(response_);
+					}
+				});
+			} catch(error) {
 				if (response.ok) {
+					console.warn('HttpService.http$', 'Cannot parse response');
 					return Promise.resolve(response_);
 				} else {
-					return Promise.reject(response_);
+					return Promise.reject(this.getError(error, response_));
 				}
-			});
-			/*
-			if (response.ok) {
-				return response[format]();
-			} else {
-				return response.json().then(json => {
-					return Promise.reject(json);
-				});
 			}
-			*/
 		})).pipe(
 			catchError(error => {
 				return throwError(this.getError(error, response_));
-			})
+			}),
 		);
 	}
 

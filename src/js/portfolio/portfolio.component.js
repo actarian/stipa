@@ -19,6 +19,7 @@ export default class PortfolioComponent extends Component {
 		this.load$().pipe(
 			first(),
 		).subscribe(data => {
+			console.log(data);
 			this.busy = false;
 			this.items = data[0];
 			this.filters = data[1];

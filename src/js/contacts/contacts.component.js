@@ -1,4 +1,4 @@
-import { Component } from 'rxcomp';
+import { Component, getContext } from 'rxcomp';
 import { FormControl, FormGroup, Validators } from 'rxcomp-form';
 import { takeUntil } from 'rxjs/operators';
 import HttpService from '../http/http.service';
@@ -68,7 +68,7 @@ export default class ContactsComponent extends Component {
 	onSubmit() {
 		if (this.form.valid) {
 			this.form.submitted = true;
-			HttpService.post$('/api/contacts', this.form.value)
+			HttpService.post$(this.action, { data: this.form.value })
 				.subscribe(response => {
 					this.success = true;
 					this.form.reset();
@@ -87,6 +87,12 @@ export default class ContactsComponent extends Component {
 		} else {
 			this.form.touched = true;
 		}
+	}
+
+	get action() {
+		const { node } = getContext(this);
+		const form = node.querySelector('form');
+		return form.getAttribute('action');
 	}
 
 }

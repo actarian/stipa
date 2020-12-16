@@ -55,7 +55,7 @@ window.data = {
 				<div class="text">Compila il form per entrare in contatto con il nostro team di progettisti.</div>
 			</div>
 			<div class="col-md-8 offset-md-1">
-				<form class="form form--positive" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
+				<form class="form form--positive" [formGroup]="form" (submit)="onSubmit()" action="/api/contacts" name="form" role="form" novalidate autocomplete="off">
 					<div class="listing--form">
 						<input name="checkField" [formControl]="controls.checkField" value="" type="text" style="display:none !important;" />
 						<div control-text [control]="controls.firstName" label="Nome"></div>

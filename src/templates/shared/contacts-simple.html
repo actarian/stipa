@@ -19,7 +19,7 @@
 				<div class="abstract">Nice to show you!</div>
 			</div>
 			<div class="col-md-6 offset-md-1">
-				<form class="form form--negative" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
+				<form class="form form--negative" [formGroup]="form" (submit)="onSubmit()" action="/api/contacts" name="form" role="form" novalidate autocomplete="off">
 					<div class="listing--form-compact">
 						<input name="checkField" [formControl]="controls.checkField" value="" type="text" style="display:none !important;" />
 						<div control-text [control]="controls.firstName" label="Nome"></div>

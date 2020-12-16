@@ -13,7 +13,8 @@
       "/stipa/img/portfolio/stand/stand-03@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": true
+    "important": true,
+    "long": true
   },
   {
     "id": 2,
@@ -29,7 +30,8 @@
       "/stipa/img/portfolio/stand/stand-04@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": false
+    "important": false,
+    "long": false
   },
   {
     "id": 3,
@@ -45,7 +47,8 @@
       "/stipa/img/portfolio/stand/stand-05@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": false
+    "important": false,
+    "long": true
   },
   {
     "id": 4,
@@ -61,7 +64,8 @@
       "/stipa/img/portfolio/stand/stand-06@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": true
+    "important": true,
+    "long": false
   },
   {
     "id": 5,
@@ -77,7 +81,8 @@
       "/stipa/img/portfolio/stand/stand-07@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": false
+    "important": false,
+    "long": true
   },
   {
     "id": 6,
@@ -93,7 +98,8 @@
       "/stipa/img/portfolio/stand/stand-08@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": false
+    "important": false,
+    "long": false
   },
   {
     "id": 7,
@@ -109,7 +115,8 @@
       "/stipa/img/portfolio/stand/stand-09@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": false
+    "important": false,
+    "long": true
   },
   {
     "id": 8,
@@ -125,7 +132,8 @@
       "/stipa/img/portfolio/stand/stand-01@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": false
+    "important": false,
+    "long": false
   },
   {
     "id": 9,
@@ -141,6 +149,7 @@
       "/stipa/img/portfolio/stand/stand-02@2x.jpg"
     ],
     "url": "/stipa/case-study.html",
-    "important": true
+    "important": true,
+    "long": true
   }
 ]

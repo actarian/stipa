@@ -10,7 +10,6 @@ export default class AccordionComponent extends Component {
 
 	register(item) {
 		this.items[++ACCORDION_UID] = item;
-		console.log(this.items);
 	}
 
 	unregister(item) {

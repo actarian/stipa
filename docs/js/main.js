@@ -56,7 +56,6 @@ var AccordionComponent = /*#__PURE__*/function (_Component) {
 
   _proto.register = function register(item) {
     this.items[++ACCORDION_UID] = item;
-    console.log(this.items);
   };
 
   _proto.unregister = function unregister(item) {
@@ -387,45 +386,56 @@ var HttpService = /*#__PURE__*/function () {
       format = 'json';
     }
 
-    method = url.indexOf('.json') !== -1 ? 'GET' : method;
     var methods = ['POST', 'PUT', 'PATCH'];
-    var response_ = null;
-    var qstring = methods.indexOf(method) !== -1 ? Object.keys(data).map(function (key) {
+    var body = data && methods.indexOf(method) !== -1 ? JSON.stringify(data) : undefined;
+    var queryString = data && methods.indexOf(method) !== -1 ? Object.keys(data).map(function (key) {
       return key + '=' + encodeURI(data[key]);
     }).join('&') : undefined;
-    return rxjs.from(fetch(url, url.indexOf('.json') !== -1 ? {
+
+    if (queryString) {
+      url = url + "?" + queryString;
+    }
+
+    var response_ = null;
+    return rxjs.from(fetch(url, {
       method: method,
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: methods.indexOf(method) !== -1 ? JSON.stringify(data) : undefined
-    } : {
-      method: method,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: qstring
+      body: body
     }).then(function (response) {
       response_ = new HttpResponse(response);
-      return response[format]().then(function (json) {
-        response_.data = json;
 
+      try {
+        var contentType = response.headers.get('content-type');
+        var typedResponse;
+
+        if (contentType && format === 'json' && contentType.indexOf('application/json') !== -1) {
+          typedResponse = response.json();
+        } else if (format === 'blob') {
+          typedResponse = response.blob();
+        } else {
+          typedResponse = response.text();
+        }
+
+        return typedResponse.then(function (data) {
+          response_.data = data;
+
+          if (response.ok) {
+            return Promise.resolve(response_);
+          } else {
+            return Promise.reject(response_);
+          }
+        });
+      } catch (error) {
         if (response.ok) {
+          console.warn('HttpService.http$', 'Cannot parse response');
           return Promise.resolve(response_);
         } else {
-          return Promise.reject(response_);
+          return Promise.reject(_this.getError(error, response_));
         }
-      });
-      /*
-      if (response.ok) {
-      	return response[format]();
-      } else {
-      	return response.json().then(json => {
-      		return Promise.reject(json);
-      	});
       }
-      */
     })).pipe(operators.catchError(function (error) {
       return rxjs.throwError(_this.getError(error, response_));
     }));
@@ -1399,7 +1409,7 @@ ClickOutsideDirective.meta = {
 
     if (this.form.valid) {
       this.form.submitted = true;
-      HttpService.post$('/api/contacts', this.form.value).subscribe(function (response) {
+      HttpService.post$(this.action, this.form.value).subscribe(function (response) {
         _this2.success = true;
 
         _this2.form.reset(); // this.pushChanges();
@@ -1421,6 +1431,17 @@ ClickOutsideDirective.meta = {
       this.form.touched = true;
     }
   };
+
+  _createClass(ContactsSimpleComponent, [{
+    key: "action",
+    get: function get() {
+      var _getContext = rxcomp.getContext(this),
+          node = _getContext.node;
+
+      var form = node.querySelector('form');
+      return form.getAttribute('action');
+    }
+  }]);
 
   return ContactsSimpleComponent;
 }(rxcomp.Component);
@@ -1497,7 +1518,9 @@ ContactsSimpleComponent.meta = {
 
     if (this.form.valid) {
       this.form.submitted = true;
-      HttpService.post$('/api/contacts', this.form.value).subscribe(function (response) {
+      HttpService.post$(this.action, {
+        data: this.form.value
+      }).subscribe(function (response) {
         _this2.success = true;
 
         _this2.form.reset(); // this.pushChanges();
@@ -1519,6 +1542,17 @@ ContactsSimpleComponent.meta = {
       this.form.touched = true;
     }
   };
+
+  _createClass(ContactsComponent, [{
+    key: "action",
+    get: function get() {
+      var _getContext = rxcomp.getContext(this),
+          node = _getContext.node;
+
+      var form = node.querySelector('form');
+      return form.getAttribute('action');
+    }
+  }]);
 
   return ContactsComponent;
 }(rxcomp.Component);
@@ -3024,6 +3058,7 @@ var PortfolioComponent = /*#__PURE__*/function (_Component) {
     this.filters = {};
     this.busy = true;
     this.load$().pipe(operators.first()).subscribe(function (data) {
+      console.log(data);
       _this.busy = false;
       _this.items = data[0];
       _this.filters = data[1];

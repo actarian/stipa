@@ -5,6 +5,19 @@
 <!-- @@include ./templates/shared/header.html { "path": "<ul class=\"nav--path\"><li>Portfolio</li><li>/</li><li>Stand</li></ul>" } -->
 
 <section class="section--portfolio" portfolio>
+	<!-- hero -->
+	<a [href]="firstItem.url" class="card--portfolio important" *if="firstItem">
+		<span class="picture" *if="firstItem.image"><img loading="lazy" [src]="firstItem.image"></span>
+		<span class="content">
+			<span class="container" appear-stagger>
+				<h3 class="title" [innerHTML]="firstItem.title"></h3>
+				<span class="group--bottom">
+					<span class="abstract" [innerHTML]="firstItem.abstract"></span>
+					<span class="category" [innerHTML]="firstItem.category" *if="firstItem.category"></span>
+				</span>
+			</span>
+		</span>
+	</a>
 	<div class="container">
 		<div class="group--title-filters">
 			<h1 class="title">Portfolio / Stand</h1>
@@ -30,20 +43,6 @@
 			</div>
 		</div>
 	</div>
-
-	<a [href]="firstItem.url" class="card--portfolio important" *if="firstItem">
-		<span class="picture" *if="firstItem.image"><img loading="lazy" [src]="firstItem.image"></span>
-		<span class="content">
-			<span class="container" appear-stagger>
-				<h3 class="title" [innerHTML]="firstItem.title"></h3>
-				<span class="group--bottom">
-					<span class="abstract" [innerHTML]="firstItem.abstract"></span>
-					<span class="category" [innerHTML]="firstItem.category" *if="firstItem.category"></span>
-				</span>
-			</span>
-		</span>
-	</a>
-
 	<div class="container" *if="visibleItems">
 		<!-- results -->
 		<div class="listing--portfolio">
@@ -68,7 +67,7 @@
 							<h3 class="title" [innerHTML]="item.title"></h3>
 							<span class="group--bottom">
 								<span class="abstract" [innerHTML]="item.abstract"></span>
-								<span class="category" [innerHTML]="item.category" *if="item.category"></span>
+                                <span class="category" *if="item.long">Case Study</span>
 							</span>
 						</span>
 					</span>
