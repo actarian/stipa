@@ -13,7 +13,8 @@ export default class ContactsComponent extends Component {
 		};
 
 		const form = new FormGroup({
-			fullName: new FormControl(null, Validators.RequiredValidator()),
+			firstName: new FormControl(null, Validators.RequiredValidator()),
+			lastName: new FormControl(null, Validators.RequiredValidator()),
 			email: new FormControl(null, [Validators.RequiredValidator(), Validators.EmailValidator()]),
 			company: new FormControl(null, Validators.RequiredValidator()),
 			reason: new FormControl(null, Validators.RequiredValidator()),
@@ -46,7 +47,8 @@ export default class ContactsComponent extends Component {
 		const firstCategory = this.controls.firstCategory.options.length ? this.controls.firstCategory.options[0].id : null;
 		const secondCategory = this.controls.secondCategory.options.length ? this.controls.secondCategory.options[0].id : null;
 		this.form.patch({
-			fullName: 'Jhon Appleseed',
+			firstName: 'Jhon',
+			lastName: 'Appleseed',
 			email: 'jhonappleseed@gmail.com',
 			company: 'Websolute',
 			reason: reason,

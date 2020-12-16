@@ -22,7 +22,8 @@
 				<form class="form form--negative" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
 					<div class="listing--form-compact">
 						<input name="checkField" [formControl]="controls.checkField" value="" type="text" style="display:none !important;" />
-						<div control-text [control]="controls.fullName" label="Nome"></div>
+						<div control-text [control]="controls.firstName" label="Nome"></div>
+						<div control-text [control]="controls.lastName" label="Cognome"></div>
 						<div control-text [control]="controls.email" label="Email"></div>
 						<!-- <div class="full" control-checkbox [control]="controls.privacy" label="Ho letto l&amp;#39;&amp;lt;a href=&amp;quot;/privacy/&amp;quot; target=&amp;quot;_blank&amp;quot;&gt;informativa&amp;lt;/a&gt; e do il consenso al trattamento del dato"></div> -->
 					</div>

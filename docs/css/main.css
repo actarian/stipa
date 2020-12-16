@@ -8,7 +8,7 @@ $container-max-widths: (sm: calc(100% - 70px),
   box-sizing: border-box; }
 
 .card--hero .title, .section--hero-tertiary .title, .section--hero-magazine-detail .title, .section--hero-secondary .title, .card--generic .title, .section--office .title, .section--search .title, .section--search .form--control, .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
-.section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
+.section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
 .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--hero-magazine .title, .card--magazine .title, .section--hero-portfolio .title, .card--search .title, .card--search .abstract {
   text-decoration: none;
   outline: none;
@@ -118,28 +118,34 @@ h1, h2, h3, h4, h5, h6 {
       margin-bottom: 24px; } }
   @media (max-width: 1439.98px) {
     .card--generic .title, .section--office .title, .section--search .title, .section--search .form--control {
-      font-size: 36px;
+      font-size: 40px;
       margin-bottom: 20px; } }
   @media (max-width: 767.98px) {
     .card--generic .title, .section--office .title, .section--search .title, .section--search .form--control {
-      font-size: 24px;
+      font-size: 32px;
       margin-bottom: 16px; } }
 
 .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
-.section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
+.section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
 .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title {
   line-height: 1.2; }
-  @media (min-width: 768px) {
+  @media (min-width: 1440px) {
     .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
-    .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
+    .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
     .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title {
       font-size: 40px;
       margin-bottom: 24px; } }
+  @media (max-width: 1439.98px) {
+    .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
+    .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
+    .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title {
+      font-size: 34px;
+      margin-bottom: 20px; } }
   @media (max-width: 767.98px) {
     .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
-    .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
+    .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
     .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title {
-      font-size: 24px;
+      font-size: 28px;
       margin-bottom: 16px; } }
 
 .section--hero-magazine .title, .card--magazine .title, .section--hero-portfolio .title, .card--search .title {
@@ -147,16 +153,16 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin-bottom: 24px; }
 
-.section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract {
+.section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .listing--accordion .listing__item .question .title {
   line-height: 1.2; }
   @media (min-width: 1440px) {
-    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract {
+    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .listing--accordion .listing__item .question .title {
       font-size: 24px; } }
   @media (max-width: 1439.98px) {
-    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract {
+    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .listing--accordion .listing__item .question .title {
       font-size: 22px; } }
   @media (max-width: 767.98px) {
-    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract {
+    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .listing--accordion .listing__item .question .title {
       font-size: 20px; } }
 
 .card--search .abstract {
@@ -3524,7 +3530,7 @@ errors-component {
   color: white; }
 
 .form--negative .group--form--results {
-  background: rgba(255, 255, 255, 0.8); }
+  background: #004987; }
 
 .form--negative .btn--submit:before {
   background: #ffffff; }
@@ -4218,7 +4224,7 @@ errors-component {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   max-width: 800px; }
   @media (max-width: 767.98px) {
@@ -5988,6 +5994,39 @@ errors-component {
 .section--portfolio {
   padding: 0 0 48px 0; }
 
+.group--title-filters {
+  padding: 24px 0 36px 0; }
+  .group--title-filters .title {
+    margin: 0; }
+  @media (min-width: 768px) {
+    .group--title-filters {
+      display: flex;
+      justify-content: space-between; } }
+
+.group--filters .listing--filters {
+  padding: 0; }
+  .group--filters .listing--filters > .listing__item:last-child {
+    margin-right: 0; }
+
+.group--filters .listing--options .btn--option {
+  display: inline-flex; }
+
+@media (min-width: 768px) {
+  .group--filters .listing--options {
+    text-align: right; } }
+
+@media (min-width: 1440px) {
+  .group--filters .listing--filters {
+    margin-top: 16px; } }
+
+@media (max-width: 1439.98px) {
+  .group--filters .listing--filters {
+    margin-top: 8px; } }
+
+@media (max-width: 767.98px) {
+  .group--filters .listing--filters {
+    margin-top: 16px; } }
+
 .card--portfolio {
   display: block;
   position: relative;
@@ -6470,3 +6509,40 @@ errors-component {
       max-width: calc(100% - 32px);
       margin-left: 16px;
       margin-right: 16px; } }
+
+.section--accordion {
+  padding: 80px 0; }
+
+.listing--accordion .listing__item {
+  border-bottom: 1px solid #d5defd; }
+  .listing--accordion .listing__item .question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    -webkit-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    cursor: pointer; }
+    .listing--accordion .listing__item .question .title {
+      display: inline;
+      font-weight: 500;
+      transition: all ease-in-out 250ms; }
+    .listing--accordion .listing__item .question .arrow-down {
+      width: 14.5px;
+      height: 8px;
+      transition: all ease-in-out 250ms; }
+  .listing--accordion .listing__item .answer {
+    font-weight: 500;
+    display: none;
+    padding: 0 0 32px 0; }
+    .listing--accordion .listing__item .answer p {
+      margin: 0; }
+    .listing--accordion .listing__item .answer > p + p {
+      margin-top: 16px; }
+  .listing--accordion .listing__item.active .question .arrow-down {
+    transform: rotate(180deg); }
+  .listing--accordion .listing__item.active .answer {
+    display: block; }
+  .listing--accordion .listing__item:not(.active) .question:hover .title {
+    transform: translateX(10px); }

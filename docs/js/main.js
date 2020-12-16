@@ -39,7 +39,99 @@ function _inheritsLoose(subClass, superClass) {
   subClass.prototype = Object.create(superClass.prototype);
   subClass.prototype.constructor = subClass;
   subClass.__proto__ = superClass;
-}// import { BreakpointService } from './breakpoint/breakpoint.service';
+}var ACCORDION_UID = 0;
+
+var AccordionComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AccordionComponent, _Component);
+
+  function AccordionComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = AccordionComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    this.items = {};
+  };
+
+  _proto.register = function register(item) {
+    this.items[++ACCORDION_UID] = item;
+    console.log(this.items);
+  };
+
+  _proto.unregister = function unregister(item) {
+    var _this = this;
+
+    var uid = Object.keys(this.items).reduce(function (uid, key) {
+      if (_this.items[key] === item) {
+        return key;
+      } else {
+        return uid;
+      }
+    }, -1);
+
+    if (uid !== -1) {
+      delete this.items[uid];
+    }
+  };
+
+  _proto.toggle = function toggle(item) {
+    var _this2 = this;
+
+    Object.keys(this.items).forEach(function (key) {
+      var accordionItem = _this2.items[key];
+
+      if (accordionItem === item) {
+        accordionItem.active = !accordionItem.active;
+      } else {
+        accordionItem.active = false;
+      }
+    });
+    this.pushChanges();
+  };
+
+  return AccordionComponent;
+}(rxcomp.Component);
+AccordionComponent.meta = {
+  selector: '[accordion]'
+};var AccordionItemComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(AccordionItemComponent, _Component);
+
+  function AccordionItemComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = AccordionItemComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    if (!this.host) {
+      throw 'missing Accordion host';
+    }
+
+    this.host.register(this);
+    this.active = false;
+  };
+
+  _proto.onDestroy = function onDestroy() {
+    if (this.host) {
+      this.host.unregister(this);
+    }
+  };
+
+  _proto.onToggle = function onToggle() {
+    if (this.host) {
+      this.host.toggle(this);
+    }
+  };
+
+  return AccordionItemComponent;
+}(rxcomp.Component);
+AccordionItemComponent.meta = {
+  selector: '[accordion-item]',
+  hosts: {
+    host: AccordionComponent
+  }
+};// import { BreakpointService } from './breakpoint/breakpoint.service';
 
 var AppComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(AppComponent, _Component);
@@ -1271,7 +1363,8 @@ ClickOutsideDirective.meta = {
     var _this = this;
 
     var form = new rxcompForm.FormGroup({
-      fullName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      firstName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      lastName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
       email: new rxcompForm.FormControl(null, [rxcompForm.Validators.RequiredValidator(), rxcompForm.Validators.EmailValidator()]),
       // privacy: new FormControl(null, Validators.RequiredValidator()),
       checkRequest: window.antiforgery,
@@ -1287,9 +1380,9 @@ ClickOutsideDirective.meta = {
   };
 
   _proto.test = function test() {
-    var role = this.controls.role.options.length ? this.controls.role.options[0].id : null;
     this.form.patch({
-      fullName: 'Jhon Appleseed',
+      firstName: 'Jhon',
+      lastName: 'Appleseed',
       email: 'jhonappleseed@gmail.com',
       // privacy: true,
       checkRequest: window.antiforgery,
@@ -1352,7 +1445,8 @@ ContactsSimpleComponent.meta = {
       secondCategory: []
     };
     var form = new rxcompForm.FormGroup({
-      fullName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      firstName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
+      lastName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
       email: new rxcompForm.FormControl(null, [rxcompForm.Validators.RequiredValidator(), rxcompForm.Validators.EmailValidator()]),
       company: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
       reason: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
@@ -1380,7 +1474,8 @@ ContactsSimpleComponent.meta = {
     var firstCategory = this.controls.firstCategory.options.length ? this.controls.firstCategory.options[0].id : null;
     var secondCategory = this.controls.secondCategory.options.length ? this.controls.secondCategory.options[0].id : null;
     this.form.patch({
-      fullName: 'Jhon Appleseed',
+      firstName: 'Jhon',
+      lastName: 'Appleseed',
       email: 'jhonappleseed@gmail.com',
       company: 'Websolute',
       reason: reason,
@@ -1947,6 +2042,36 @@ ErrorsComponent.meta = {
   template:
   /* html */
   "\n\t<div class=\"inner\" [style]=\"{ display: control.invalid && control.touched ? 'block' : 'none' }\">\n\t\t<div class=\"error\" *for=\"let [key, value] of control.errors\">\n\t\t\t<span [innerHTML]=\"getLabel(key, value)\"></span>\n\t\t\t<!-- <span class=\"key\" [innerHTML]=\"key\"></span> <span class=\"value\" [innerHTML]=\"value | json\"></span> -->\n\t\t</div>\n\t</div>\n\t"
+};var TestComponent = /*#__PURE__*/function (_Component) {
+  _inheritsLoose(TestComponent, _Component);
+
+  function TestComponent() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = TestComponent.prototype;
+
+  _proto.onInit = function onInit() {
+    this.env = ENV;
+  };
+
+  _proto.onTest = function onTest(event) {
+    this.test.next(event);
+  };
+
+  _proto.onReset = function onReset(event) {
+    this.reset.next(event);
+  };
+
+  return TestComponent;
+}(rxcomp.Component);
+TestComponent.meta = {
+  selector: 'test-component',
+  inputs: ['form'],
+  outputs: ['test', 'reset'],
+  template:
+  /* html */
+  "\n\t<div class=\"group--form--results\" *if=\"env.DEVELOPMENT\">\n\t\t<code [innerHTML]=\"form.value | json\"></code>\n\t\t<button type=\"button\" class=\"btn--link\" (click)=\"onTest($event)\"><span>test</span></button>\n\t\t<button type=\"button\" class=\"btn--link\" (click)=\"onReset($event)\"><span>reset</span></button>\n\t</div>\n\t"
 };var GalleryModalComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(GalleryModalComponent, _Component);
 
@@ -2239,13 +2364,13 @@ GalleryComponent.meta = {
   };
 
   _proto.showPictureOrDefault = function showPictureOrDefault(src) {
-    src = src || '/stipa/img/header/default.jpg';
-
     var _getContext5 = rxcomp.getContext(this),
         node = _getContext5.node;
 
     var picture = node.querySelector('.main-menu__picture');
     var img = picture.querySelector('img');
+    var defaultSrc = this.defaultSrc = this.defaultSrc || img.getAttribute('src');
+    src = src || defaultSrc;
 
     if (!img || img.getAttribute('src') !== src) {
       img = document.createElement('img');
@@ -2861,9 +2986,8 @@ ModalComponent.meta = {
         return response.data;
       }));
     } else {
-      return ApiService.staticGet$('/portfolio/stand/all').pipe(operators.map(function (response) {
-        return response.data;
-      })); // return ApiService.get$('/portfolio/stand/all').pipe(map(response => response.data));
+      return rxjs.from([window.all]); //return ApiService.staticGet$('/portfolio/stand/all').pipe(map(response => response.data));
+      // return ApiService.get$('/portfolio/stand/all').pipe(map(response => response.data));
     }
   };
 
@@ -2873,9 +2997,8 @@ ModalComponent.meta = {
         return response.data;
       }));
     } else {
-      return ApiService.staticGet$('/portfolio/stand/filters').pipe(operators.map(function (response) {
-        return response.data;
-      })); // return ApiService.get$('/portfolio/stand/filters').pipe(map(response => response.data));
+      return rxjs.from([window.filters]); //return ApiService.staticGet$('/portfolio/stand/filters').pipe(map(response => response.data));
+      // return ApiService.get$('/portfolio/stand/filters').pipe(map(response => response.data));
     }
   };
 
@@ -3126,10 +3249,8 @@ ScrollToDirective.meta = {
         return response.data;
       }));
     } else {
-      // return from([window.all]);
-      return ApiService.staticGet$('/search/all').pipe(operators.map(function (response) {
-        return response.data;
-      })); // return ApiService.get$('/search/all').pipe(map(response => response.data));
+      return rxjs.from([window.all]); //return ApiService.staticGet$('/search/all').pipe(map(response => response.data));
+      // return ApiService.get$('/search/all').pipe(map(response => response.data));
     }
   };
 
@@ -3139,10 +3260,8 @@ ScrollToDirective.meta = {
         return response.data;
       }));
     } else {
-      // return from([window.filters]);
-      return ApiService.staticGet$('/search/filters').pipe(operators.map(function (response) {
-        return response.data;
-      })); // return ApiService.get$('/search/filters').pipe(map(response => response.data));
+      return rxjs.from([window.filters]); //return ApiService.staticGet$('/search/filters').pipe(map(response => response.data));
+      // return ApiService.get$('/search/filters').pipe(map(response => response.data));
     }
   };
 
@@ -4783,6 +4902,6 @@ VirtualStructure.meta = {
 }(rxcomp.Module);
 AppModule.meta = {
   imports: [rxcomp.CoreModule, rxcompForm.FormModule],
-  declarations: [AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ContactsSimpleComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, FilterDropdownComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, MagazineComponent, ModalComponent, ModalOutletComponent, PortfolioComponent, ScrollToDirective, SearchComponent, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, VirtualStructure],
+  declarations: [AccordionComponent, AccordionItemComponent, AppearDirective, AppearStaggerDirective, AuthComponent, AuthForgotComponent, AuthModalComponent, AuthSigninComponent, AuthSignupComponent, ClickOutsideDirective, ContactsComponent, ContactsSimpleComponent, ControlCheckboxComponent, ControlCustomSelectComponent, ControlPasswordComponent, ControlTextComponent, ControlTextareaComponent, DropdownDirective, DropdownItemDirective, ErrorsComponent, FilterDropdownComponent, GalleryComponent, GalleryModalComponent, HeaderComponent, HtmlPipe, MagazineComponent, ModalComponent, ModalOutletComponent, PortfolioComponent, ScrollToDirective, SearchComponent, SecureDirective, ShareComponent, SliderComponent, SliderCaseStudyComponent, SliderGalleryComponent, SliderHeroComponent, SlugPipe, TestComponent, VirtualStructure],
   bootstrap: AppComponent
 };rxcomp.Browser.bootstrap(AppModule);})));

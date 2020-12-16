@@ -136,10 +136,11 @@ export default class HeaderComponent extends Component {
 	}
 
 	showPictureOrDefault(src) {
-		src = src || '/stipa/img/header/default.jpg';
 		const { node } = getContext(this);
 		const picture = node.querySelector('.main-menu__picture');
 		let img = picture.querySelector('img');
+		const defaultSrc = this.defaultSrc = (this.defaultSrc || img.getAttribute('src'));
+		src = src || defaultSrc;
 		if (!img || img.getAttribute('src') !== src) {
 			img = document.createElement('img');
 			img.onload = () => {

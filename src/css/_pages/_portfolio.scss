@@ -33,6 +33,63 @@
 	padding: 0 0 48px 0;
 }
 
+.group--title-filters {
+	padding: 24px 0 36px 0;
+
+	.title {
+		@extend %title-secondary;
+		margin: 0;
+	}
+
+	@include media-up(sm) {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.group--filters {
+
+	.listing--filters {
+		padding: 0;
+
+		&>.listing__item {
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.listing--options {
+		.btn--option {
+			display: inline-flex;
+		}
+	}
+
+	@include media-up(sm) {
+		.listing--options {
+			text-align: right;
+		}
+	}
+
+	@include media-up(lg) {
+		.listing--filters {
+			margin-top: 16px;
+		}
+	}
+
+	@include media-between(xs, md) {
+		.listing--filters {
+			margin-top: 8px;
+		}
+	}
+
+	@include media-down(xs) {
+		.listing--filters {
+			margin-top: 16px;
+		}
+	}
+}
+
 .card--portfolio {
 	display: block;
 	position: relative;

@@ -2,226 +2,172 @@
   {
     "id": 1,
     "category": { "id": 1, "name": "Eventi" },
-    "year": 2020,
-    "date": "Set. 16, 2020",
     "title": "MV Agusta accoglie i suoi visitatori con un look tutto nuovo!",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 2,
     "category": { "id": 2, "name": "News" },
-    "year": 2020,
-    "date": "Giu. 24, 2020",
     "title": "Con Keraglass Industries al Vitrum Milano",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 3,
     "category": { "id": 2, "name": "News" },
-    "year": 2020,
-    "date": "Apr. 11, 2020",
     "title": "Con LU-VE Group all’Euroshop | Dusseldorf",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 4,
     "category": { "id": 1, "name": "Eventi" },
-    "year": 2020,
-    "date": "Mar. 16, 2020",
     "title": "MV Agusta accoglie i suoi visitatori con un look tutto nuovo!",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 5,
     "category": { "id": 2, "name": "News" },
-    "year": 2020,
-    "date": "Feb. 24, 2020",
     "title": "Con Keraglass Industries al Vitrum Milano",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 6,
     "category": { "id": 2, "name": "News" },
-    "year": 2020,
-    "date": "Gen. 11, 2020",
     "title": "Con LU-VE Group all’Euroshop | Dusseldorf",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 7,
     "category": { "id": 1, "name": "Eventi" },
-    "year": 2019,
-    "date": "Set. 16, 2019",
     "title": "MV Agusta accoglie i suoi visitatori con un look tutto nuovo!",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 8,
     "category": { "id": 2, "name": "News" },
-    "year": 2019,
-    "date": "Feb. 24, 2019",
     "title": "Con Keraglass Industries al Vitrum Milano",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 9,
     "category": { "id": 2, "name": "News" },
-    "year": 2019,
-    "date": "Gen. 11, 2019",
     "title": "Con LU-VE Group all’Euroshop | Dusseldorf",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 10,
     "category": { "id": 1, "name": "Eventi" },
-    "year": 2020,
-    "date": "Set. 16, 2020",
     "title": "MV Agusta accoglie i suoi visitatori con un look tutto nuovo!",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 11,
     "category": { "id": 2, "name": "News" },
-    "year": 2020,
-    "date": "Giu. 24, 2020",
     "title": "Con Keraglass Industries al Vitrum Milano",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 12,
     "category": { "id": 2, "name": "News" },
-    "year": 2020,
-    "date": "Apr. 11, 2020",
     "title": "Con LU-VE Group all’Euroshop | Dusseldorf",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 13,
     "category": { "id": 1, "name": "Eventi" },
-    "year": 2020,
-    "date": "Mar. 16, 2020",
     "title": "MV Agusta accoglie i suoi visitatori con un look tutto nuovo!",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 14,
     "category": { "id": 2, "name": "News" },
-    "year": 2020,
-    "date": "Feb. 24, 2020",
     "title": "Con Keraglass Industries al Vitrum Milano",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 15,
     "category": { "id": 2, "name": "News" },
-    "year": 2020,
-    "date": "Gen. 11, 2020",
     "title": "Con LU-VE Group all’Euroshop | Dusseldorf",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 16,
     "category": { "id": 1, "name": "Eventi" },
-    "year": 2019,
-    "date": "Set. 16, 2019",
     "title": "MV Agusta accoglie i suoi visitatori con un look tutto nuovo!",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 17,
     "category": { "id": 2, "name": "News" },
-    "year": 2019,
-    "date": "Feb. 24, 2019",
     "title": "Con Keraglass Industries al Vitrum Milano",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 18,
     "category": { "id": 2, "name": "News" },
-    "year": 2019,
-    "date": "Gen. 11, 2019",
     "title": "Con LU-VE Group all’Euroshop | Dusseldorf",
     "url": "/stipa/magazine-detail.html"
   },
   {
     "id": 19,
-    "city": "Verona",
+    "category": { "id": 3, "name": "Case study" },
     "title": "Eurotrias",
     "abstract": "Progetto Fuoco / Verona",
-    "category": { "id": 3, "name": "Case study" },
-    "url": "/stipa/case-study.html",
-    "important": true
+    "url": "/stipa/case-study.html"
   },
   {
     "id": 20,
-    "city": "Milano",
+    "category": { "id": 3, "name": "Case study" },
     "title": "Loriblu",
     "abstract": "Micam / Milano",
-    "category": { "id": 3, "name": "Case study" },
-    "url": "/stipa/case-study.html",
-    "important": false
+    "url": "/stipa/case-study.html"
   },
   {
     "id": 21,
-    "city": "Milano",
+    "category": { "id": 4, "name": "Stand" },
     "title": "Keraglass Industries",
     "abstract": "Vitrum / Milano",
-    "category": { "id": 4, "name": "Stand" },
-    "url": "/stipa/case-study.html",
-    "important": false
+    "url": "/stipa/case-study.html"
   },
   {
     "id": 22,
-    "city": "Milano",
+    "category": { "id": 3, "name": "Case study" },
     "title": "MV Agusta",
     "abstract": "Eicma / Milano",
-    "category": { "id": 3, "name": "Case study" },
-    "url": "/stipa/case-study.html",
-    "important": true
+    "url": "/stipa/case-study.html"
   },
   {
     "id": 23,
-    "city": "Milano",
+    "category": { "id": 4, "name": "Stand" },
     "title": "Elle Decore",
     "abstract": "Design Expo / Milano",
-    "category": { "id": 4, "name": "Stand" },
-    "url": "/stipa/case-study.html",
-    "important": false
+    "url": "/stipa/case-study.html"
   },
   {
     "id": 24,
-    "city": "Dusseldorf",
+    "category": { "id": 3, "name": "Case study" },
     "title": "Eni Versalis",
     "abstract": "K / Dusseldorf",
-    "category": { "id": 3, "name": "Case study" },
-    "url": "/stipa/case-study.html",
-    "important": false
+    "url": "/stipa/case-study.html"
   },
   {
     "id": 25,
-    "city": "Milano",
+    "category": { "id": 4, "name": "Stand" },
     "title": "A.N.C.I. Vip Lounge",
     "abstract": "Micam / Milano",
-    "category": { "id": 4, "name": "Stand" },
-    "url": "/stipa/case-study.html",
-    "important": false
+    "url": "/stipa/case-study.html"
   },
   {
     "id": 26,
-    "city": "Milano",
+    "category": { "id": 4, "name": "Stand" },
     "title": "Giovanni Fabiani",
     "abstract": "Micam / Milano",
-    "category": { "id": 4, "name": "Stand" },
-    "url": "/stipa/case-study.html",
-    "important": false
+    "url": "/stipa/case-study.html"
   },
   {
     "id": 27,
-    "city": "Milano",
+    "category": { "id": 3, "name": "Case study" },
     "title": "Sap",
     "abstract": "Sap Now 2019 / Milano",
-    "category": { "id": 3, "name": "Case study" },
-    "url": "/stipa/case-study.html",
-    "important": true
+    "url": "/stipa/case-study.html"
   }
 ]

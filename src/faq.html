@@ -1,0 +1,443 @@
+<!-- @@master = ./templates/layout.html { "baseHref": "/stipa/" } -->
+
+<!-- @@block = main-->
+
+<!-- @@include ./templates/shared/header.html { "path": "<ul class=\"nav--path\"><li>Faq</li></ul>" } -->
+
+<!-- Tutte le section qui presenti sono componenti per il layoutBuilder -->
+
+<section class="section--hero-tertiary">
+	<picture class="picture">
+		<source media="(max-width: 767px)" srcset="/stipa/img/generic/hero.jpg">
+		<source media="(min-width: 768px)" srcset="/stipa/img/generic/hero@2x.jpg">
+		<img loading="lazy" src="/stipa/img/generic/hero@2x.jpg" alt="Image title" ondragstart="return false;">
+	</picture>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-md-6">
+				<h1 class="title">Faq</h1>
+				<h2 class="abstract">Frequently asked questions</h2>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section--accordion">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 offset-sm-1">
+				<div class="listing--accordion" accordion>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Networked bottom-line analyzer?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Proactive multi-tasking data-warehouse?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Universal explicit synergy?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Face to face client-driven info-mediaries?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>In sagittis dui vel nisl. Duis ac nibh.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Multi-layered zero tolerance instruction set?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Phasellus sit amet erat. Nulla tempus.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Future-proofed logistical application?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Devolved global solution?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Nulla tellus. In sagittis dui vel nisl.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Optimized dedicated function?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Stand-alone analyzing algorithm?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Fully-configurable demand-driven infrastructure?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Decentralized bifurcated groupware?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Ut at dolor quis odio consequat varius. Integer ac leo.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Seamless mission-critical hub?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Future-proofed radical time-frame?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Diverse systematic extranet?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Nulla justo.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">User-centric intangible contingency?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Extended next generation analyzer?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Reverse-engineered systemic architecture?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Fully-configurable demand-driven website?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Total even-keeled access?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Morbi ut odio.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Diverse optimizing forecast?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Adaptive intangible array?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Innovative asymmetric interface?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Centralized 24/7 focus group?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Robust global productivity?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Operative background project?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Configurable bifurcated neural-net?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Self-enabling needs-based process improvement?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Organized 24/7 concept?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Mauris sit amet eros.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Self-enabling directional moratorium?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Persistent value-added data-warehouse?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Realigned explicit workforce?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Nulla justo. Aliquam quis turpis eget elit sodales scelerisque.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Optional motivating application?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Compatible neutral artificial intelligence?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Function-based 24/7 pricing structure?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Compatible multi-tasking groupware?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Distributed zero tolerance data-warehouse?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Re-contextualized even-keeled projection?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Multi-tiered multi-state standardization?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Mandatory radical moratorium?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Etiam pretium iaculis justo.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Automated local help-desk?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Pre-emptive holistic paradigm?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Distributed transitional forecast?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Organic contextually-based help-desk?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Optimized 5th generation pricing structure?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">User-friendly motivating middleware?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Public-key contextually-based superstructure?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Integrated transitional utilisation?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Morbi quis tortor id nulla ultrices aliquet.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Devolved background archive?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Inverse attitude-oriented ability?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+							</div>
+						</div>
+					</div>
+					<div accordion-item>
+						<div class="listing__item" [class]="{ active: active }">
+							<div class="question" (click)="onToggle($event)"><h3 class="title">Multi-channelled actuating encoding?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
+							<div class="answer">
+								<p>Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- @@include ./templates/shared/contacts-simple.html -->
+
+<section class="section--footer-divline">
+	<div class="container"></div>
+</section>
+
+<!-- @@close-->
+

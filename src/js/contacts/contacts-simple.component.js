@@ -7,7 +7,8 @@ export default class ContactsSimpleComponent extends Component {
 
 	onInit() {
 		const form = new FormGroup({
-			fullName: new FormControl(null, Validators.RequiredValidator()),
+			firstName: new FormControl(null, Validators.RequiredValidator()),
+			lastName: new FormControl(null, Validators.RequiredValidator()),
 			email: new FormControl(null, [Validators.RequiredValidator(), Validators.EmailValidator()]),
 			// privacy: new FormControl(null, Validators.RequiredValidator()),
 			checkRequest: window.antiforgery,
@@ -28,9 +29,9 @@ export default class ContactsSimpleComponent extends Component {
 	}
 
 	test() {
-		const role = this.controls.role.options.length ? this.controls.role.options[0].id : null;
 		this.form.patch({
-			fullName: 'Jhon Appleseed',
+			firstName: 'Jhon',
+			lastName: 'Appleseed',
 			email: 'jhonappleseed@gmail.com',
 			// privacy: true,
 			checkRequest: window.antiforgery,

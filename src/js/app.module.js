@@ -1,5 +1,7 @@
 import { CoreModule, Module } from 'rxcomp';
 import { FormModule } from 'rxcomp-form';
+import AccordionItemComponent from './accordion/accordion-item.component';
+import AccordionComponent from './accordion/accordion.component';
 import AppComponent from './app.component';
 import AppearStaggerDirective from './appear/appear-stagger.directive';
 import AppearDirective from './appear/appear.directive';
@@ -20,6 +22,7 @@ import ControlPasswordComponent from './forms/control-password.component';
 import ControlTextComponent from './forms/control-text.component';
 import ControlTextareaComponent from './forms/control-textarea.component';
 import ErrorsComponent from './forms/errors.component';
+import TestComponent from './forms/test.component';
 import GalleryModalComponent from './gallery/gallery-modal.component';
 import GalleryComponent from './gallery/gallery.component';
 import HeaderComponent from './header/header.component';
@@ -47,6 +50,8 @@ AppModule.meta = {
 		FormModule,
 	],
 	declarations: [
+		AccordionComponent,
+		AccordionItemComponent,
 		AppearDirective,
 		AppearStaggerDirective,
 		AuthComponent,
@@ -83,6 +88,7 @@ AppModule.meta = {
 		SliderGalleryComponent,
 		SliderHeroComponent,
 		SlugPipe,
+		TestComponent,
 		VirtualStructure
 	],
 	bootstrap: AppComponent,

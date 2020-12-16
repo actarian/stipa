@@ -58,7 +58,8 @@ window.data = {
 				<form class="form form--positive" [formGroup]="form" (submit)="onSubmit()" name="form" role="form" novalidate autocomplete="off">
 					<div class="listing--form">
 						<input name="checkField" [formControl]="controls.checkField" value="" type="text" style="display:none !important;" />
-						<div control-text [control]="controls.fullName" label="Nome"></div>
+						<div control-text [control]="controls.firstName" label="Nome"></div>
+						<div control-text [control]="controls.lastName" label="Cognome"></div>
 						<div control-text [control]="controls.email" label="Email"></div>
 						<div control-text [control]="controls.company" label="Azienda"></div>
 						<div control-custom-select [control]="controls.reason" label="Motivo del contatto"></div>

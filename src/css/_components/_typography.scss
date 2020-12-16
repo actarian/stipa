@@ -44,12 +44,12 @@ h1, h2, h3, h4, h5, h6 {
 	}
 
 	@include media-between(xs, md) {
-		font-size: 36px;
+		font-size: 40px;
 		margin-bottom: 20px;
 	}
 
 	@include media-down(xs) {
-		font-size: 24px;
+		font-size: 32px;
 		margin-bottom: 16px;
 	}
 }
@@ -58,13 +58,18 @@ h1, h2, h3, h4, h5, h6 {
 	@extend %reset-link;
 	line-height: 1.2;
 
-	@include media-up(sm) {
+	@include media-up(lg) {
 		font-size: 40px;
 		margin-bottom: 24px;
 	}
 
+	@include media-between(xs, md) {
+		font-size: 34px;
+		margin-bottom: 20px;
+	}
+
 	@include media-down(xs) {
-		font-size: 24px;
+		font-size: 28px;
 		margin-bottom: 16px;
 	}
 }

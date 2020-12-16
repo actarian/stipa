@@ -6,20 +6,27 @@
 
 <section class="section--portfolio" portfolio>
 	<div class="container">
-		<!-- filters -->
-		<div class="listing--filters" *if="visibleItems">
-			<div class="listing__item">
-				<div filter-dropdown label="Filtra per" [filter]="filters.area"></div>
-			</div>
-			<div class="listing__item">
-				<div filter-dropdown label="oppure per" [filter]="filters.city"></div>
-			</div>
-			<div class="listing__item" *for="let [key, filter] of filters">
-				<span *for="let item of filter.options">
-					<button type="button" class="btn--option" *if="filter.has(item)" (click)="filter.remove(item)">
-						<span class="name" [innerHTML]="item.label"></span> <svg class="close"><use xlink:href="#close"></use></svg>
-					</button>
-				</span>
+		<div class="group--title-filters">
+			<h1 class="title">Portfolio / Stand</h1>
+			<!-- filters -->
+			<div class="group--filters">
+				<div class="listing--filters" *if="visibleItems">
+					<div class="listing__item">
+						<div filter-dropdown label="Filtra per" [filter]="filters.area"></div>
+					</div>
+					<div class="listing__item">
+						<div filter-dropdown label="oppure per" [filter]="filters.city"></div>
+					</div>
+				</div>
+				<div class="listing--options">
+					<span *for="let [key, filter] of filters">
+						<span *for="let item of filter.options">
+							<button type="button" class="btn--option" *if="filter.has(item)" (click)="filter.remove(item)">
+								<span class="name" [innerHTML]="item.label"></span> <svg class="close"><use xlink:href="#close"></use></svg>
+							</button>
+						</span>
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>
