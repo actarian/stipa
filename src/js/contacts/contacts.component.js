@@ -2,6 +2,7 @@ import { Component, getContext } from 'rxcomp';
 import { FormControl, FormGroup, Validators } from 'rxcomp-form';
 import { takeUntil } from 'rxjs/operators';
 import HttpService from '../http/http.service';
+import LocationService from '../location/location.service';
 
 export default class ContactsComponent extends Component {
 
@@ -12,10 +13,16 @@ export default class ContactsComponent extends Component {
 			secondCategory: []
 		};
 
+		const contacts = Object.assign({
+			firstName: null,
+			lastName: null,
+			email: null,
+		}, (LocationService.deserialize('contacts') || {}));
+
 		const form = new FormGroup({
-			firstName: new FormControl(null, Validators.RequiredValidator()),
-			lastName: new FormControl(null, Validators.RequiredValidator()),
-			email: new FormControl(null, [Validators.RequiredValidator(), Validators.EmailValidator()]),
+			firstName: new FormControl(contacts.firstName, Validators.RequiredValidator()),
+			lastName: new FormControl(contacts.lastName, Validators.RequiredValidator()),
+			email: new FormControl(contacts.email, [Validators.RequiredValidator(), Validators.EmailValidator()]),
 			company: new FormControl(null, Validators.RequiredValidator()),
 			reason: new FormControl(null, Validators.RequiredValidator()),
 			firstCategory: new FormControl(null, Validators.RequiredValidator()),

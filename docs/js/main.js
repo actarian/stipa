@@ -1360,7 +1360,78 @@ AuthSignupComponent.meta = {
 }(rxcomp.Directive);
 ClickOutsideDirective.meta = {
   selector: "[(clickOutside)]"
-};var ContactsSimpleComponent = /*#__PURE__*/function (_Component) {
+};var LocationService = /*#__PURE__*/function () {
+  function LocationService() {}
+
+  LocationService.get = function get(key) {
+    var params = new URLSearchParams(window.location.search); // console.log('LocationService.get', params);
+
+    return params.get(key);
+  };
+
+  LocationService.set = function set(keyOrValue, value) {
+    var params = new URLSearchParams(window.location.search);
+
+    if (typeof keyOrValue === 'string') {
+      params.set(keyOrValue, value);
+    } else {
+      params.set(keyOrValue, '');
+    }
+
+    this.replace(params); // console.log('LocationService.set', params, keyOrValue, value);
+  };
+
+  LocationService.replace = function replace(params) {
+    if (window.history && window.history.pushState) {
+      var title = document.title;
+      var url = window.location.href.split('?')[0] + "?" + params.toString();
+      window.history.pushState(params.toString(), title, url);
+    }
+  };
+
+  LocationService.deserialize = function deserialize(key) {
+    var encoded = this.get('params');
+    return this.decode(key, encoded);
+  };
+
+  LocationService.serialize = function serialize(keyOrValue, value) {
+    var params = this.deserialize();
+    var encoded = this.encode(keyOrValue, value, params);
+    this.set('params', encoded);
+  };
+
+  LocationService.decode = function decode(key, encoded) {
+    var decoded = null;
+
+    if (encoded) {
+      var json = window.atob(encoded);
+      decoded = JSON.parse(json);
+    }
+
+    if (key && decoded) {
+      decoded = decoded[key];
+    }
+
+    return decoded || null;
+  };
+
+  LocationService.encode = function encode(keyOrValue, value, params) {
+    params = params || {};
+    var encoded = null;
+
+    if (typeof keyOrValue === 'string') {
+      params[keyOrValue] = value;
+    } else {
+      params = keyOrValue;
+    }
+
+    var json = JSON.stringify(params);
+    encoded = window.btoa(json);
+    return encoded;
+  };
+
+  return LocationService;
+}();var ContactsSimpleComponent = /*#__PURE__*/function (_Component) {
   _inheritsLoose(ContactsSimpleComponent, _Component);
 
   function ContactsSimpleComponent() {
@@ -1372,10 +1443,15 @@ ClickOutsideDirective.meta = {
   _proto.onInit = function onInit() {
     var _this = this;
 
+    var contacts = Object.assign({
+      firstName: null,
+      lastName: null,
+      email: null
+    }, LocationService.deserialize('contacts') || {});
     var form = new rxcompForm.FormGroup({
-      firstName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
-      lastName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
-      email: new rxcompForm.FormControl(null, [rxcompForm.Validators.RequiredValidator(), rxcompForm.Validators.EmailValidator()]),
+      firstName: new rxcompForm.FormControl(contacts.firstName, rxcompForm.Validators.RequiredValidator()),
+      lastName: new rxcompForm.FormControl(contacts.lastName, rxcompForm.Validators.RequiredValidator()),
+      email: new rxcompForm.FormControl(contacts.email, [rxcompForm.Validators.RequiredValidator(), rxcompForm.Validators.EmailValidator()]),
       // privacy: new FormControl(null, Validators.RequiredValidator()),
       checkRequest: window.antiforgery,
       checkField: ''
@@ -1405,28 +1481,13 @@ ClickOutsideDirective.meta = {
   };
 
   _proto.onSubmit = function onSubmit() {
-    var _this2 = this;
 
     if (this.form.valid) {
       this.form.submitted = true;
-      HttpService.post$(this.action, this.form.value).subscribe(function (response) {
-        _this2.success = true;
-
-        _this2.form.reset(); // this.pushChanges();
-
-        /*
-        dataLayer.push({
-        	'event': 'formSubmission',
-        	'formType': 'Contacts'
-        });
-        */
-
-      }, function (error) {
-        console.log('ContactsSimpleComponent.error', error);
-        _this2.error = error;
-
-        _this2.pushChanges();
-      });
+      LocationService.serialize('contacts', this.form.value);
+      var url = "" + this.action + window.location.search;
+      window.location.href = url;
+      return;
     } else {
       this.form.touched = true;
     }
@@ -1465,10 +1526,15 @@ ContactsSimpleComponent.meta = {
       firstCategory: [],
       secondCategory: []
     };
+    var contacts = Object.assign({
+      firstName: null,
+      lastName: null,
+      email: null
+    }, LocationService.deserialize('contacts') || {});
     var form = new rxcompForm.FormGroup({
-      firstName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
-      lastName: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
-      email: new rxcompForm.FormControl(null, [rxcompForm.Validators.RequiredValidator(), rxcompForm.Validators.EmailValidator()]),
+      firstName: new rxcompForm.FormControl(contacts.firstName, rxcompForm.Validators.RequiredValidator()),
+      lastName: new rxcompForm.FormControl(contacts.lastName, rxcompForm.Validators.RequiredValidator()),
+      email: new rxcompForm.FormControl(contacts.email, [rxcompForm.Validators.RequiredValidator(), rxcompForm.Validators.EmailValidator()]),
       company: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
       reason: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
       firstCategory: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator()),
@@ -2617,77 +2683,6 @@ var FilterItem = /*#__PURE__*/function () {
   };
 
   return FilterItem;
-}();var LocationService = /*#__PURE__*/function () {
-  function LocationService() {}
-
-  LocationService.get = function get(key) {
-    var params = new URLSearchParams(window.location.search); // console.log('LocationService.get', params);
-
-    return params.get(key);
-  };
-
-  LocationService.set = function set(keyOrValue, value) {
-    var params = new URLSearchParams(window.location.search);
-
-    if (typeof keyOrValue === 'string') {
-      params.set(keyOrValue, value);
-    } else {
-      params.set(keyOrValue, '');
-    }
-
-    this.replace(params); // console.log('LocationService.set', params, keyOrValue, value);
-  };
-
-  LocationService.replace = function replace(params) {
-    if (window.history && window.history.pushState) {
-      var title = document.title;
-      var url = window.location.href.split('?')[0] + "?" + params.toString();
-      window.history.pushState(params.toString(), title, url);
-    }
-  };
-
-  LocationService.deserialize = function deserialize(key) {
-    var encoded = this.get('params');
-    return this.decode(key, encoded);
-  };
-
-  LocationService.serialize = function serialize(keyOrValue, value) {
-    var params = this.deserialize();
-    var encoded = this.encode(keyOrValue, value, params);
-    this.set('params', encoded);
-  };
-
-  LocationService.decode = function decode(key, encoded) {
-    var decoded = null;
-
-    if (encoded) {
-      var json = window.atob(encoded);
-      decoded = JSON.parse(json);
-    }
-
-    if (key && decoded) {
-      decoded = decoded[key];
-    }
-
-    return decoded || null;
-  };
-
-  LocationService.encode = function encode(keyOrValue, value, params) {
-    params = params || {};
-    var encoded = null;
-
-    if (typeof keyOrValue === 'string') {
-      params[keyOrValue] = value;
-    } else {
-      params = keyOrValue;
-    }
-
-    var json = JSON.stringify(params);
-    encoded = window.btoa(json);
-    return encoded;
-  };
-
-  return LocationService;
 }();var FilterService = /*#__PURE__*/function () {
   function FilterService(options, initialParams, callback) {
     var filters = {};
@@ -2935,7 +2930,7 @@ var MagazineComponent = /*#__PURE__*/function (_Component) {
         node = _getContext.node;
 
     return rxjs.fromEvent(window, 'scroll').pipe(operators.tap(function () {
-      if (!_this3.busy && _this3.items.length > _this3.visibleItems.length) {
+      if (!_this3.busy && _this3.items && _this3.visibleItems && _this3.items.length > _this3.visibleItems.length) {
         var rect = node.getBoundingClientRect();
 
         if (rect.bottom < window.innerHeight) {
@@ -3147,7 +3142,7 @@ var PortfolioComponent = /*#__PURE__*/function (_Component) {
         node = _getContext.node;
 
     return rxjs.fromEvent(window, 'scroll').pipe(operators.tap(function () {
-      if (!_this3.busy && _this3.items.length > _this3.visibleItems.length) {
+      if (!_this3.busy && _this3.items && _this3.visibleItems && _this3.items.length > _this3.visibleItems.length) {
         var rect = node.getBoundingClientRect();
 
         if (rect.bottom < window.innerHeight) {
@@ -3397,7 +3392,7 @@ var SearchComponent = /*#__PURE__*/function (_Component) {
         node = _getContext.node;
 
     return rxjs.fromEvent(window, 'scroll').pipe(operators.tap(function () {
-      if (!_this3.busy && _this3.items.length > _this3.visibleItems.length) {
+      if (!_this3.busy && _this3.items && _this3.visibleItems && _this3.items.length > _this3.visibleItems.length) {
         var rect = node.getBoundingClientRect();
 
         if (rect.bottom < window.innerHeight) {

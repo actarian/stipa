@@ -13,7 +13,7 @@
 				<h3 class="title" [innerHTML]="firstItem.title"></h3>
 				<span class="group--bottom">
 					<span class="abstract" [innerHTML]="firstItem.abstract"></span>
-					<span class="category" [innerHTML]="firstItem.category" *if="firstItem.category"></span>
+                    <span class="category" *if="firstItem.long">Case Study</span>
 				</span>
 			</span>
 		</span>

@@ -93,7 +93,7 @@ export default class SearchComponent extends Component {
 		const { node } = getContext(this);
 		return fromEvent(window, 'scroll').pipe(
 			tap(() => {
-				if (!this.busy && this.items.length > this.visibleItems.length) {
+				if (!this.busy && this.items && this.visibleItems && this.items.length > this.visibleItems.length) {
 					const rect = node.getBoundingClientRect();
 					if (rect.bottom < window.innerHeight) {
 						this.busy = true;
