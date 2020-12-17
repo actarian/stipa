@@ -85,7 +85,7 @@ export default class YoutubeComponent extends Component {
 								controls: 1, // YoutubeComponent.MOBILE ? 1 : 0,
 								disablekb: 1,
 								enablejsapi: 1,
-								fs: 0,
+								fs: 1,
 								loop: 1,
 								modestbranding: 1,
 								playsinline: 1,
@@ -216,7 +216,7 @@ YoutubeComponent.MOBILE = YoutubeComponent.mobileAndTabletcheck();
 
 YoutubeComponent.meta = {
 	selector: '[youtube]',
-	inputs: ['youtubeId', 'title'],
+	inputs: ['youtubeId'],
 	template: /* html */`
 		<div class="picture--video" [class]="{ playing: playing }" (click)="togglePlay($event)">
 			<div class="video"></div>
