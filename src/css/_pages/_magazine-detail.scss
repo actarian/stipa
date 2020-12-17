@@ -173,12 +173,21 @@
 		.picture {
 			@include aspect-clip(507, 283);
 		}
+
+		.picture--video {
+			@include aspect-clip(16, 9);
+		}
 	}
 
 	@include media-down(xs) {
 		padding: 0 0 40px 0;
 
 		.picture {
+			@include aspect-clip(5, 4);
+			margin-bottom: 16px;
+		}
+
+		.picture--video {
 			@include aspect-clip(5, 4);
 			margin-bottom: 16px;
 		}
@@ -197,12 +206,21 @@
 		.picture {
 			@include aspect-clip(16, 9);
 		}
+
+		.picture--video {
+			@include aspect-clip(16, 9);
+		}
 	}
 
 	@include media-down(xs) {
 		padding: 0 0 40px 0;
 
 		.picture {
+			@include aspect-clip(5, 4);
+			margin-bottom: 16px;
+		}
+
+		.picture--video {
 			@include aspect-clip(5, 4);
 			margin-bottom: 16px;
 		}

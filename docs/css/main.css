@@ -5929,6 +5929,26 @@ errors-component {
         left: 0;
         width: 100%;
         height: 100%;
+        object-fit: cover; }
+    .section--picture-picture .picture--video {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden; }
+      .section--picture-picture .picture--video > img,
+      .section--picture-picture .picture--video > video,
+      .section--picture-picture .picture--video > canvas,
+      .section--picture-picture .picture--video > .video,
+      .section--picture-picture .picture--video > .youtube,
+      .section--picture-picture .picture--video > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover; } }
 
 @media (max-width: 767.98px) {
@@ -5949,6 +5969,27 @@ errors-component {
       .section--picture-picture .picture > .video,
       .section--picture-picture .picture > .youtube,
       .section--picture-picture .picture > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+    .section--picture-picture .picture--video {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-top: 80%;
+      overflow: hidden;
+      margin-bottom: 16px; }
+      .section--picture-picture .picture--video > img,
+      .section--picture-picture .picture--video > video,
+      .section--picture-picture .picture--video > canvas,
+      .section--picture-picture .picture--video > .video,
+      .section--picture-picture .picture--video > .youtube,
+      .section--picture-picture .picture--video > iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -5981,6 +6022,26 @@ errors-component {
         left: 0;
         width: 100%;
         height: 100%;
+        object-fit: cover; }
+    .section--picture .picture--video {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden; }
+      .section--picture .picture--video > img,
+      .section--picture .picture--video > video,
+      .section--picture .picture--video > canvas,
+      .section--picture .picture--video > .video,
+      .section--picture .picture--video > .youtube,
+      .section--picture .picture--video > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover; } }
 
 @media (max-width: 767.98px) {
@@ -6001,6 +6062,27 @@ errors-component {
       .section--picture .picture > .video,
       .section--picture .picture > .youtube,
       .section--picture .picture > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+    .section--picture .picture--video {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-top: 80%;
+      overflow: hidden;
+      margin-bottom: 16px; }
+      .section--picture .picture--video > img,
+      .section--picture .picture--video > video,
+      .section--picture .picture--video > canvas,
+      .section--picture .picture--video > .video,
+      .section--picture .picture--video > .youtube,
+      .section--picture .picture--video > iframe {
         position: absolute;
         top: 0;
         left: 0;
