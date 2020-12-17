@@ -35,19 +35,15 @@
 
 	// hack IE 11
 	height: calc(100vh - 90px);
+
 	@media (-webkit-min-device-pixel-ratio:0) {
 		height: auto;
 		min-height: calc(100vh - 90px);
 	}
 }
 
-.section--text {
-	padding: 80px 0;
-
-	.text {
-		@extend %abstract;
-		line-height: 1.4;
-	}
+.section--gallery+.section--text {
+	padding-top: 0;
 }
 
 .section--gallery {
@@ -110,8 +106,6 @@
 
 	.btn--prev,
 	.btn--next {
-		width: 40px;
-		height: 40px;
 		border: 1px solid #152154;
 		// border: none;
 		// box-shadow: 0 0 0 1px #152154;
@@ -127,6 +121,16 @@
 		&.disabled {
 			opacity: 0.5;
 			pointer-events: none;
+		}
+
+		@include media-up(sm) {
+			width: 40px;
+			height: 40px;
+		}
+
+		@include media-down(xs) {
+			width: 35px;
+			height: 35px;
 		}
 	}
 }
@@ -227,6 +231,10 @@
 		.picture {
 			@include aspect-clip(1440, 687);
 		}
+
+		.picture--video {
+			@include aspect-clip(16, 9);
+		}
 	}
 
 	@include media-down(xs) {
@@ -236,8 +244,17 @@
 	}
 }
 
+.section--picture-full + .section--picture-full {
+	@include media-up(sm) {
+		margin-top: 80px;
+	}
+
+	@include media-down(xs) {
+		margin-top: 40px;
+	}
+}
+
 .section--quote {
-	padding: 80px 0;
 
 	.quote {
 		position: relative;
@@ -256,6 +273,14 @@
 			top: 0;
 			background: $foreground;
 		}
+	}
+
+	@include media-up(sm) {
+		padding: 80px 0;
+	}
+
+	@include media-down(xs) {
+		padding: 40px 0;
 	}
 }
 
@@ -283,6 +308,10 @@
 		@include aspect-clip(1, 1);
 	}
 
+	.picture--video {
+		@include aspect-clip(16, 9);
+	}
+
 	@include media-up(sm) {
 		padding: 0 0 80px 0;
 	}
@@ -301,16 +330,10 @@
 		.picture {
 			margin-bottom: 24px;
 		}
-
-		.group--cta {
-			margin-bottom: 32px;
-		}
 	}
 }
 
 .section--contacts-simple {
-	padding: 80px 0;
-	// margin-bottom: 80px;
 	background: $background-primary;
 	color: $foreground-negative;
 
@@ -331,10 +354,25 @@
 	.abstract {
 		margin-bottom: 32px;
 	}
+
+	@include media-up(sm) {
+		padding: 80px 0;
+	}
+
+	@include media-down(xs) {
+		padding: 80px 0;
+	}
 }
 
 .section--contacts-simple+.section--case-studies {
-	margin-top: 80px;
+
+	@include media-up(sm) {
+		margin-top: 80px;
+	}
+
+	@include media-down(xs) {
+		margin-top: 40px;
+	}
 }
 
 .picture--gallery {

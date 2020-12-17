@@ -26,6 +26,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-10 offset-sm-1">
+				<!-- group -->
+				<div class="badge"></div>
+				<div class="section--accordion__title">Design</div>
 				<div class="listing--accordion" accordion>
 					<div accordion-item>
 						<div class="listing__item" [class]="{ active: active }">
@@ -51,6 +54,11 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<!-- group -->
+				<div class="badge"></div>
+				<div class="section--accordion__title">Frontend</div>
+				<div class="listing--accordion" accordion>
 					<div accordion-item>
 						<div class="listing__item" [class]="{ active: active }">
 							<div class="question" (click)="onToggle($event)"><h3 class="title">Face to face client-driven info-mediaries?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>
@@ -75,6 +83,11 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<!-- group -->
+				<div class="badge"></div>
+				<div class="section--accordion__title">Backend</div>
+				<div class="listing--accordion" accordion>
 					<div accordion-item>
 						<div class="listing__item" [class]="{ active: active }">
 							<div class="question" (click)="onToggle($event)"><h3 class="title">Devolved global solution?</h3> <svg class="arrow-down"><use xlink:href="#arrow-down"></use></svg></div>

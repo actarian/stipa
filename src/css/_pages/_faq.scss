@@ -1,8 +1,17 @@
 .section--accordion {
 	padding: 80px 0;
+
+	&__title {
+		@extend %title-secondary;
+		font-weight: 500;
+		margin: 0;
+		padding: 16px 0;
+		border-bottom: 1px solid $background-secondary;
+	}
 }
 
 .listing--accordion {
+	margin-bottom: 32px;
 
 	.listing__item {
 		border-bottom: 1px solid $background-secondary;

@@ -41,6 +41,7 @@ import SliderHeroComponent from './slider/slider-hero.component';
 import SliderComponent from './slider/slider.component';
 import SlugPipe from './slug/slug.pipe';
 import VirtualStructure from './virtual/virtual.structure';
+import YoutubeComponent from './youtube/youtube.component';
 
 export default class AppModule extends Module { }
 
@@ -89,7 +90,8 @@ AppModule.meta = {
 		SliderHeroComponent,
 		SlugPipe,
 		TestComponent,
-		VirtualStructure
+		VirtualStructure,
+		YoutubeComponent,
 	],
 	bootstrap: AppComponent,
 };

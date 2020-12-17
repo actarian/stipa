@@ -116,8 +116,6 @@
 
 	.btn--prev,
 	.btn--next {
-		width: 40px;
-		height: 40px;
 		border: 1px solid #152154;
 		// border: none;
 		// box-shadow: 0 0 0 1px #152154;
@@ -132,6 +130,16 @@
 		&.disabled {
 			opacity: 0.5;
 			pointer-events: none;
+		}
+
+		@include media-up(sm) {
+			width: 40px;
+			height: 40px;
+		}
+
+		@include media-down(xs) {
+			width: 35px;
+			height: 35px;
 		}
 	}
 }

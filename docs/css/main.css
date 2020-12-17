@@ -9,7 +9,7 @@ $container-max-widths: (sm: calc(100% - 70px),
 
 .card--hero .title, .section--hero-tertiary .title, .section--hero-magazine-detail .title, .section--hero-secondary .title, .card--generic .title, .section--office .title, .section--search .title, .section--search .form--control, .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
 .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
-.section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--hero-magazine .title, .card--magazine .title, .section--hero-portfolio .title, .card--search .title, .card--search .abstract {
+.section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--accordion__title, .section--hero-magazine .title, .card--magazine .title, .section--hero-portfolio .title, .card--search .title, .card--search .abstract {
   text-decoration: none;
   outline: none;
   color: inherit; }
@@ -127,24 +127,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
 .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
-.section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title {
+.section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--accordion__title {
   line-height: 1.2; }
   @media (min-width: 1440px) {
     .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
     .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
-    .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title {
+    .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--accordion__title {
       font-size: 40px;
       margin-bottom: 24px; } }
   @media (max-width: 1439.98px) {
     .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
     .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
-    .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title {
+    .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--accordion__title {
       font-size: 34px;
       margin-bottom: 20px; } }
   @media (max-width: 767.98px) {
     .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
     .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
-    .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title {
+    .section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--accordion__title {
       font-size: 28px;
       margin-bottom: 16px; } }
 
@@ -153,16 +153,16 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   margin-bottom: 24px; }
 
-.section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .listing--accordion .listing__item .question .title {
+.section--hero-secondary .abstract, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
   line-height: 1.2; }
   @media (min-width: 1440px) {
-    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .listing--accordion .listing__item .question .title {
+    .section--hero-secondary .abstract, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
       font-size: 24px; } }
   @media (max-width: 1439.98px) {
-    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .listing--accordion .listing__item .question .title {
+    .section--hero-secondary .abstract, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
       font-size: 22px; } }
   @media (max-width: 767.98px) {
-    .section--hero-secondary .abstract, .section--text .text, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .listing--accordion .listing__item .question .title {
+    .section--hero-secondary .abstract, .section--quote .quote, .section--office .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
       font-size: 20px; } }
 
 .card--search .abstract {
@@ -3768,6 +3768,45 @@ errors-component {
   100% {
     transform: scale(1); } }
 
+[youtube] {
+  background: black;
+  cursor: pointer; }
+  [youtube] .btn--youtube {
+    width: 68px;
+    height: 48px; }
+    [youtube] .btn--youtube svg {
+      width: 68px;
+      height: 48px; }
+    [youtube] .btn--youtube .button {
+      fill: #212121;
+      fill-opacity: .8;
+      transition: fill 0.1s cubic-bezier(0.4, 0, 1, 1), fill-opacity 0.1s cubic-bezier(0.4, 0, 1, 1); }
+    [youtube] .btn--youtube .icon {
+      fill: #ffffff; }
+  [youtube] .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; }
+    [youtube] .overlay > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+  [youtube] .btn--youtube {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%); }
+  [youtube]:hover .btn--youtube .button {
+    fill: #ff0000;
+    fill-opacity: 1; }
+  [youtube] .playing .overlay {
+    display: none; }
+  [youtube] .playing .btn--youtube {
+    display: none; }
+
 .spinner,
 .spinner:after {
   border-radius: 50%;
@@ -4510,8 +4549,6 @@ errors-component {
       align-items: center; }
   .slider--modal .btn--prev,
   .slider--modal .btn--next {
-    width: 40px;
-    height: 40px;
     border: 1px solid #152154;
     color: #152154; }
     .slider--modal .btn--prev svg,
@@ -4523,6 +4560,16 @@ errors-component {
     .slider--modal .btn--next.disabled {
       opacity: 0.5;
       pointer-events: none; }
+    @media (min-width: 768px) {
+      .slider--modal .btn--prev,
+      .slider--modal .btn--next {
+        width: 40px;
+        height: 40px; } }
+    @media (max-width: 767.98px) {
+      .slider--modal .btn--prev,
+      .slider--modal .btn--next {
+        width: 35px;
+        height: 35px; } }
 
 .gallery-grid {
   height: 100%; }
@@ -4646,6 +4693,7 @@ errors-component {
     .card--grid > .picture > video,
     .card--grid > .picture > canvas,
     .card--grid > .picture > .video,
+    .card--grid > .picture > .youtube,
     .card--grid > .picture > iframe {
       position: absolute;
       top: 0;
@@ -4789,12 +4837,19 @@ errors-component {
     .section--proposition .group--cta {
       margin-bottom: 32px; } }
 
-.section--case-studies {
-  padding: 0 0 80px 0; }
-  .section--case-studies__badge {
-    margin-bottom: 16px; }
-  .section--case-studies__title {
-    margin-bottom: 32px; }
+.section--case-studies__badge {
+  margin-bottom: 16px; }
+
+.section--case-studies__title {
+  margin-bottom: 32px; }
+
+@media (min-width: 768px) {
+  .section--case-studies {
+    padding: 0 0 80px 0; } }
+
+@media (max-width: 767.98px) {
+  .section--case-studies {
+    padding: 0 0 40px 0; } }
 
 .slider--case-studies {
   width: 100%;
@@ -4835,8 +4890,6 @@ errors-component {
       align-items: center; }
   .slider--case-studies .btn--prev,
   .slider--case-studies .btn--next {
-    width: 40px;
-    height: 40px;
     border: 1px solid #152154;
     color: #152154; }
     .slider--case-studies .btn--prev svg,
@@ -4848,6 +4901,16 @@ errors-component {
     .slider--case-studies .btn--next.disabled {
       opacity: 0.5;
       pointer-events: none; }
+    @media (min-width: 768px) {
+      .slider--case-studies .btn--prev,
+      .slider--case-studies .btn--next {
+        width: 40px;
+        height: 40px; } }
+    @media (max-width: 767.98px) {
+      .slider--case-studies .btn--prev,
+      .slider--case-studies .btn--next {
+        width: 35px;
+        height: 35px; } }
   .slider--case-studies .btn--prev + .btn--next {
     border-left: 0; }
 
@@ -4895,6 +4958,7 @@ errors-component {
         .card--case-study > .picture > video,
         .card--case-study > .picture > canvas,
         .card--case-study > .picture > .video,
+        .card--case-study > .picture > .youtube,
         .card--case-study > .picture > iframe {
           position: absolute;
           top: 0;
@@ -4915,6 +4979,7 @@ errors-component {
         .card--case-study > .picture > video,
         .card--case-study > .picture > canvas,
         .card--case-study > .picture > .video,
+        .card--case-study > .picture > .youtube,
         .card--case-study > .picture > iframe {
           position: absolute;
           top: 0;
@@ -5046,6 +5111,7 @@ errors-component {
         .card--generic > .picture > video,
         .card--generic > .picture > canvas,
         .card--generic > .picture > .video,
+        .card--generic > .picture > .youtube,
         .card--generic > .picture > iframe {
           position: absolute;
           top: 0;
@@ -5066,6 +5132,7 @@ errors-component {
         .card--generic > .picture > video,
         .card--generic > .picture > canvas,
         .card--generic > .picture > .video,
+        .card--generic > .picture > .youtube,
         .card--generic > .picture > iframe {
           position: absolute;
           top: 0;
@@ -5127,10 +5194,8 @@ errors-component {
       height: auto;
       min-height: calc(100vh - 90px); } }
 
-.section--text {
-  padding: 80px 0; }
-  .section--text .text {
-    line-height: 1.4; }
+.section--gallery + .section--text {
+  padding-top: 0; }
 
 .section--gallery__badge {
   margin-bottom: 16px; }
@@ -5165,8 +5230,6 @@ errors-component {
       align-items: center; }
   .slider--gallery .btn--prev,
   .slider--gallery .btn--next {
-    width: 40px;
-    height: 40px;
     border: 1px solid #152154;
     color: #152154; }
     .slider--gallery .btn--prev svg,
@@ -5178,6 +5241,16 @@ errors-component {
     .slider--gallery .btn--next.disabled {
       opacity: 0.5;
       pointer-events: none; }
+    @media (min-width: 768px) {
+      .slider--gallery .btn--prev,
+      .slider--gallery .btn--next {
+        width: 40px;
+        height: 40px; } }
+    @media (max-width: 767.98px) {
+      .slider--gallery .btn--prev,
+      .slider--gallery .btn--next {
+        width: 35px;
+        height: 35px; } }
 
 .card--gallery {
   position: relative;
@@ -5223,6 +5296,7 @@ errors-component {
         .card--gallery > .picture > video,
         .card--gallery > .picture > canvas,
         .card--gallery > .picture > .video,
+        .card--gallery > .picture > .youtube,
         .card--gallery > .picture > iframe {
           position: absolute;
           top: 0;
@@ -5243,6 +5317,7 @@ errors-component {
         .card--gallery > .picture > video,
         .card--gallery > .picture > canvas,
         .card--gallery > .picture > .video,
+        .card--gallery > .picture > .youtube,
         .card--gallery > .picture > iframe {
           position: absolute;
           top: 0;
@@ -5284,7 +5359,28 @@ errors-component {
     .section--picture-full .picture > video,
     .section--picture-full .picture > canvas,
     .section--picture-full .picture > .video,
+    .section--picture-full .picture > .youtube,
     .section--picture-full .picture > iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; }
+  .section--picture-full .picture--video {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden; }
+    .section--picture-full .picture--video > img,
+    .section--picture-full .picture--video > video,
+    .section--picture-full .picture--video > canvas,
+    .section--picture-full .picture--video > .video,
+    .section--picture-full .picture--video > .youtube,
+    .section--picture-full .picture--video > iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -5305,6 +5401,7 @@ errors-component {
     .section--picture-full .picture > video,
     .section--picture-full .picture > canvas,
     .section--picture-full .picture > .video,
+    .section--picture-full .picture > .youtube,
     .section--picture-full .picture > iframe {
       position: absolute;
       top: 0;
@@ -5313,22 +5410,36 @@ errors-component {
       height: 100%;
       object-fit: cover; } }
 
-.section--quote {
-  padding: 80px 0; }
-  .section--quote .quote {
-    position: relative;
-    padding-left: 32px;
-    font-weight: 400;
-    line-height: 1.4; }
-    .section--quote .quote:before {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 4px;
-      height: 100%;
-      left: 0;
-      top: 0;
-      background: #152154; }
+@media (min-width: 768px) {
+  .section--picture-full + .section--picture-full {
+    margin-top: 80px; } }
+
+@media (max-width: 767.98px) {
+  .section--picture-full + .section--picture-full {
+    margin-top: 40px; } }
+
+.section--quote .quote {
+  position: relative;
+  padding-left: 32px;
+  font-weight: 400;
+  line-height: 1.4; }
+  .section--quote .quote:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #152154; }
+
+@media (min-width: 768px) {
+  .section--quote {
+    padding: 80px 0; } }
+
+@media (max-width: 767.98px) {
+  .section--quote {
+    padding: 40px 0; } }
 
 .section--picture-text .row,
 .section--text-picture .row {
@@ -5359,12 +5470,42 @@ errors-component {
   .section--picture-text .picture > video,
   .section--picture-text .picture > canvas,
   .section--picture-text .picture > .video,
+  .section--picture-text .picture > .youtube,
   .section--picture-text .picture > iframe,
   .section--text-picture .picture > img,
   .section--text-picture .picture > video,
   .section--text-picture .picture > canvas,
   .section--text-picture .picture > .video,
+  .section--text-picture .picture > .youtube,
   .section--text-picture .picture > iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; }
+
+.section--picture-text .picture--video,
+.section--text-picture .picture--video {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 56.25%;
+  overflow: hidden; }
+  .section--picture-text .picture--video > img,
+  .section--picture-text .picture--video > video,
+  .section--picture-text .picture--video > canvas,
+  .section--picture-text .picture--video > .video,
+  .section--picture-text .picture--video > .youtube,
+  .section--picture-text .picture--video > iframe,
+  .section--text-picture .picture--video > img,
+  .section--text-picture .picture--video > video,
+  .section--text-picture .picture--video > canvas,
+  .section--text-picture .picture--video > .video,
+  .section--text-picture .picture--video > .youtube,
+  .section--text-picture .picture--video > iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -5389,13 +5530,9 @@ errors-component {
       order: 2; }
     .section--picture-text .picture,
     .section--text-picture .picture {
-      margin-bottom: 24px; }
-    .section--picture-text .group--cta,
-    .section--text-picture .group--cta {
-      margin-bottom: 32px; } }
+      margin-bottom: 24px; } }
 
 .section--contacts-simple {
-  padding: 80px 0;
   background: #004987;
   color: #ffffff; }
   .section--contacts-simple .row {
@@ -5408,9 +5545,20 @@ errors-component {
     margin-bottom: 32px; }
   .section--contacts-simple .abstract {
     margin-bottom: 32px; }
+  @media (min-width: 768px) {
+    .section--contacts-simple {
+      padding: 80px 0; } }
+  @media (max-width: 767.98px) {
+    .section--contacts-simple {
+      padding: 80px 0; } }
 
-.section--contacts-simple + .section--case-studies {
-  margin-top: 80px; }
+@media (min-width: 768px) {
+  .section--contacts-simple + .section--case-studies {
+    margin-top: 80px; } }
+
+@media (max-width: 767.98px) {
+  .section--contacts-simple + .section--case-studies {
+    margin-top: 40px; } }
 
 .picture--gallery {
   cursor: pointer; }
@@ -5469,6 +5617,7 @@ errors-component {
       .section--hero-magazine .picture > video,
       .section--hero-magazine .picture > canvas,
       .section--hero-magazine .picture > .video,
+      .section--hero-magazine .picture > .youtube,
       .section--hero-magazine .picture > iframe {
         position: absolute;
         top: 0;
@@ -5489,6 +5638,7 @@ errors-component {
       .section--hero-magazine .picture > video,
       .section--hero-magazine .picture > canvas,
       .section--hero-magazine .picture > .video,
+      .section--hero-magazine .picture > .youtube,
       .section--hero-magazine .picture > iframe {
         position: absolute;
         top: 0;
@@ -5523,6 +5673,7 @@ errors-component {
     .card--magazine > .picture > video,
     .card--magazine > .picture > canvas,
     .card--magazine > .picture > .video,
+    .card--magazine > .picture > .youtube,
     .card--magazine > .picture > iframe {
       position: absolute;
       top: 0;
@@ -5771,6 +5922,7 @@ errors-component {
       .section--picture-picture .picture > video,
       .section--picture-picture .picture > canvas,
       .section--picture-picture .picture > .video,
+      .section--picture-picture .picture > .youtube,
       .section--picture-picture .picture > iframe {
         position: absolute;
         top: 0;
@@ -5795,7 +5947,60 @@ errors-component {
       .section--picture-picture .picture > video,
       .section--picture-picture .picture > canvas,
       .section--picture-picture .picture > .video,
+      .section--picture-picture .picture > .youtube,
       .section--picture-picture .picture > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; } }
+
+.section--picture + .section--magazine-text {
+  padding-top: 0; }
+
+@media (min-width: 768px) {
+  .section--picture {
+    padding: 0 0 80px 0; }
+    .section--picture .picture {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden; }
+      .section--picture .picture > img,
+      .section--picture .picture > video,
+      .section--picture .picture > canvas,
+      .section--picture .picture > .video,
+      .section--picture .picture > .youtube,
+      .section--picture .picture > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; } }
+
+@media (max-width: 767.98px) {
+  .section--picture {
+    padding: 0 0 40px 0; }
+    .section--picture .picture {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-top: 80%;
+      overflow: hidden;
+      margin-bottom: 16px; }
+      .section--picture .picture > img,
+      .section--picture .picture > video,
+      .section--picture .picture > canvas,
+      .section--picture .picture > .video,
+      .section--picture .picture > .youtube,
+      .section--picture .picture > iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -5822,6 +6027,7 @@ errors-component {
     .section--magazine-gallery .card--gallery > .picture > video,
     .section--magazine-gallery .card--gallery > .picture > canvas,
     .section--magazine-gallery .card--gallery > .picture > .video,
+    .section--magazine-gallery .card--gallery > .picture > .youtube,
     .section--magazine-gallery .card--gallery > .picture > iframe {
       position: absolute;
       top: 0;
@@ -5843,6 +6049,7 @@ errors-component {
     .section--magazine-gallery .card--gallery > .picture > video,
     .section--magazine-gallery .card--gallery > .picture > canvas,
     .section--magazine-gallery .card--gallery > .picture > .video,
+    .section--magazine-gallery .card--gallery > .picture > .youtube,
     .section--magazine-gallery .card--gallery > .picture > iframe {
       position: absolute;
       top: 0;
@@ -5890,6 +6097,7 @@ errors-component {
       .section--office .picture > video,
       .section--office .picture > canvas,
       .section--office .picture > .video,
+      .section--office .picture > .youtube,
       .section--office .picture > iframe {
         position: absolute;
         top: 0;
@@ -5910,6 +6118,7 @@ errors-component {
       .section--office .picture > video,
       .section--office .picture > canvas,
       .section--office .picture > .video,
+      .section--office .picture > .youtube,
       .section--office .picture > iframe {
         position: absolute;
         top: 0;
@@ -5971,6 +6180,7 @@ errors-component {
     .section--hero-portfolio .picture > video,
     .section--hero-portfolio .picture > canvas,
     .section--hero-portfolio .picture > .video,
+    .section--hero-portfolio .picture > .youtube,
     .section--hero-portfolio .picture > iframe {
       position: absolute;
       top: 0;
@@ -6095,6 +6305,7 @@ errors-component {
       .card--portfolio:not(.important) .picture > video,
       .card--portfolio:not(.important) .picture > canvas,
       .card--portfolio:not(.important) .picture > .video,
+      .card--portfolio:not(.important) .picture > .youtube,
       .card--portfolio:not(.important) .picture > iframe {
         position: absolute;
         top: 0;
@@ -6120,6 +6331,7 @@ errors-component {
       .card--portfolio:not(.important) .picture > video,
       .card--portfolio:not(.important) .picture > canvas,
       .card--portfolio:not(.important) .picture > .video,
+      .card--portfolio:not(.important) .picture > .youtube,
       .card--portfolio:not(.important) .picture > iframe {
         position: absolute;
         top: 0;
@@ -6143,6 +6355,7 @@ errors-component {
       .card--portfolio.important .picture > video,
       .card--portfolio.important .picture > canvas,
       .card--portfolio.important .picture > .video,
+      .card--portfolio.important .picture > .youtube,
       .card--portfolio.important .picture > iframe {
         position: absolute;
         top: 0;
@@ -6166,6 +6379,7 @@ errors-component {
       .card--portfolio.important .picture > video,
       .card--portfolio.important .picture > canvas,
       .card--portfolio.important .picture > .video,
+      .card--portfolio.important .picture > .youtube,
       .card--portfolio.important .picture > iframe {
         position: absolute;
         top: 0;
@@ -6235,10 +6449,16 @@ errors-component {
     line-height: 0;
     background: rgba(255, 255, 255, 0.1); }
 
-.section--text {
-  padding: 80px 0; }
-  .section--text .text {
-    line-height: 1.4; }
+.section--text .text {
+  line-height: 1.4; }
+
+@media (min-width: 768px) {
+  .section--text {
+    padding: 80px 0; } }
+
+@media (max-width: 767.98px) {
+  .section--text {
+    padding: 40px 0; } }
 
 .section--generic-text-intro {
   padding: 80px 0; }
@@ -6337,7 +6557,28 @@ errors-component {
       .section--generic-map-full .picture > video,
       .section--generic-map-full .picture > canvas,
       .section--generic-map-full .picture > .video,
+      .section--generic-map-full .picture > .youtube,
       .section--generic-map-full .picture > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; }
+    .section--generic-map-full .picture--video {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding-top: 56.25%;
+      overflow: hidden; }
+      .section--generic-map-full .picture--video > img,
+      .section--generic-map-full .picture--video > video,
+      .section--generic-map-full .picture--video > canvas,
+      .section--generic-map-full .picture--video > .video,
+      .section--generic-map-full .picture--video > .youtube,
+      .section--generic-map-full .picture--video > iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -6362,6 +6603,7 @@ errors-component {
       .section--generic-map-full .picture > video,
       .section--generic-map-full .picture > canvas,
       .section--generic-map-full .picture > .video,
+      .section--generic-map-full .picture > .youtube,
       .section--generic-map-full .picture > iframe {
         position: absolute;
         top: 0;
@@ -6512,37 +6754,44 @@ errors-component {
 
 .section--accordion {
   padding: 80px 0; }
-
-.listing--accordion .listing__item {
-  border-bottom: 1px solid #d5defd; }
-  .listing--accordion .listing__item .question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    -webkit-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    cursor: pointer; }
-    .listing--accordion .listing__item .question .title {
-      display: inline;
-      font-weight: 500;
-      transition: all ease-in-out 250ms; }
-    .listing--accordion .listing__item .question .arrow-down {
-      width: 14.5px;
-      height: 8px;
-      transition: all ease-in-out 250ms; }
-  .listing--accordion .listing__item .answer {
+  .section--accordion__title {
     font-weight: 500;
-    display: none;
-    padding: 0 0 32px 0; }
-    .listing--accordion .listing__item .answer p {
-      margin: 0; }
-    .listing--accordion .listing__item .answer > p + p {
-      margin-top: 16px; }
-  .listing--accordion .listing__item.active .question .arrow-down {
-    transform: rotate(180deg); }
-  .listing--accordion .listing__item.active .answer {
-    display: block; }
-  .listing--accordion .listing__item:not(.active) .question:hover .title {
-    transform: translateX(10px); }
+    margin: 0;
+    padding: 16px 0;
+    border-bottom: 1px solid #d5defd; }
+
+.listing--accordion {
+  margin-bottom: 32px; }
+  .listing--accordion .listing__item {
+    border-bottom: 1px solid #d5defd; }
+    .listing--accordion .listing__item .question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      -webkit-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+      cursor: pointer; }
+      .listing--accordion .listing__item .question .title {
+        display: inline;
+        font-weight: 500;
+        transition: all ease-in-out 250ms; }
+      .listing--accordion .listing__item .question .arrow-down {
+        width: 14.5px;
+        height: 8px;
+        transition: all ease-in-out 250ms; }
+    .listing--accordion .listing__item .answer {
+      font-weight: 500;
+      display: none;
+      padding: 0 0 32px 0; }
+      .listing--accordion .listing__item .answer p {
+        margin: 0; }
+      .listing--accordion .listing__item .answer > p + p {
+        margin-top: 16px; }
+    .listing--accordion .listing__item.active .question .arrow-down {
+      transform: rotate(180deg); }
+    .listing--accordion .listing__item.active .answer {
+      display: block; }
+    .listing--accordion .listing__item:not(.active) .question:hover .title {
+      transform: translateX(10px); }

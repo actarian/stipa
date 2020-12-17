@@ -185,6 +185,30 @@
 	}
 }
 
+.section--picture+.section--magazine-text {
+	padding-top: 0;
+}
+
+.section--picture {
+
+	@include media-up(sm) {
+		padding: 0 0 80px 0;
+
+		.picture {
+			@include aspect-clip(16, 9);
+		}
+	}
+
+	@include media-down(xs) {
+		padding: 0 0 40px 0;
+
+		.picture {
+			@include aspect-clip(5, 4);
+			margin-bottom: 16px;
+		}
+	}
+}
+
 .section--magazine-gallery {
 
 	&__badge {

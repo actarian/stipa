@@ -1,7 +1,9 @@
 import { Component, getContext } from 'rxcomp';
 import { BehaviorSubject, interval, Subject } from 'rxjs';
 import { distinctUntilChanged, filter, map, switchMap, takeUntil, tap } from 'rxjs/operators';
-import SwiperDirective from '../swiper/swiper.directive';
+// import SwiperDirective from '../swiper/swiper.directive';
+
+// 	<iframe src="https://www.youtube.com/embed/K4d8hV4WOOs?vq=hd1080&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&color=white" width="560" height="315" frameborder="0"></iframe>
 
 export default class YoutubeComponent extends Component {
 
@@ -17,12 +19,12 @@ export default class YoutubeComponent extends Component {
 	}
 
 	get cover() {
-		return this.youtubeId ? `//i.ytimg.com/vi/${this.youtubeId}/maxresdefault.jpg` : '';
+		return this.youtubeId ? `//i.ytimg.com/vi/${this.youtubeId}/hqdefault.jpg` : '';
 	}
 
 	onInit() {
 		this.item = {};
-		const { node, parentInstance } = getContext(this);
+		const { node } = getContext(this);
 		node.classList.add('youtube');
 		if (YoutubeComponent.MOBILE) {
 			node.classList.add('mobile');
@@ -31,13 +33,16 @@ export default class YoutubeComponent extends Component {
 		this.onPlayerReady = this.onPlayerReady.bind(this);
 		this.onPlayerStateChange = this.onPlayerStateChange.bind(this);
 		this.onPlayerError = this.onPlayerError.bind(this);
-		this.id$ = new Subject().pipe(distinctUntilChanged());
+		this.id$ = new Subject().pipe(
+			distinctUntilChanged()
+		);
+		/*
 		if (parentInstance instanceof SwiperDirective) {
 			parentInstance.events$.pipe(
 				takeUntil(this.unsubscribe$)
 			).subscribe(event => this.pause());
 		}
-		// this.addListeners();
+		*/
 	}
 
 	onChanges(changes) {
@@ -47,15 +52,17 @@ export default class YoutubeComponent extends Component {
 	}
 
 	initPlayer() {
-		// console.log('VideoComponent.initPlayer');
+		// console.log('YoutubeComponent.initPlayer');
 		this.player$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe(player => {
 			console.log('YoutubeComponent.player$', player);
 		});
+		/*
 		this.interval$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe(() => {});
+		*/
 		this.id$.next(this.youtubeId);
 	}
 
@@ -134,14 +141,15 @@ export default class YoutubeComponent extends Component {
 		return interval(500).pipe(
 			filter(() => this.playing && this.player),
 			tap(() => {
-				this.progress.style.strokeDashoffset =
-					this.player.getCurrentTime() / this.player.getDuration();
+				if (this.progress) {
+					this.progress.style.strokeDashoffset = this.player.getCurrentTime() / this.player.getDuration();
+				}
 			})
 		);
 	}
 
 	togglePlay() {
-		// console.log('VideoComponent.togglePlay');
+		// console.log('YoutubeComponent.togglePlay');
 		if (this.playing) {
 			this.pause();
 		} else {
@@ -150,7 +158,7 @@ export default class YoutubeComponent extends Component {
 	}
 
 	play() {
-		// console.log('VideoComponent.play');
+		// console.log('YoutubeComponent.play');
 		if (!this.player) {
 			this.initPlayer();
 		} else {
@@ -159,6 +167,7 @@ export default class YoutubeComponent extends Component {
 	}
 
 	pause() {
+		// console.log('YoutubeComponent.pause');
 		if (!this.player) {
 			return;
 		}
@@ -166,6 +175,7 @@ export default class YoutubeComponent extends Component {
 	}
 
 	static once$() {
+		// console.log('YoutubeComponent.once$');
 		if (this.youtube$) {
 			return this.youtube$;
 		} else {
@@ -178,12 +188,13 @@ export default class YoutubeComponent extends Component {
 			const last = scripts[scripts.length - 1];
 			last.parentNode.insertBefore(script, last);
 			script.src = '//www.youtube.com/iframe_api';
+			// console.log('YoutubeComponent.once$', script);
 			return this.youtube$;
 		}
 	}
 
 	static onYouTubeIframeAPIReady_() {
-		// console.log('onYouTubeIframeAPIReady');
+		// console.log('YoutubeComponent.onYouTubeIframeAPIReady');
 		this.youtube$.next(window.YT);
 	}
 
@@ -205,5 +216,17 @@ YoutubeComponent.MOBILE = YoutubeComponent.mobileAndTabletcheck();
 
 YoutubeComponent.meta = {
 	selector: '[youtube]',
-	inputs: ['youtubeId', 'title']
+	inputs: ['youtubeId', 'title'],
+	template: /* html */`
+		<div class="picture--video" [class]="{ playing: playing }" (click)="togglePlay($event)">
+			<div class="video"></div>
+			<div class="overlay"><img [src]="cover" /></div>
+			<div class="btn--youtube" aria-label="Play">
+				<svg height="100%" version="1.1" viewBox="0 0 68 48" width="100%">
+					<path class="button" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"></path>
+					<path class="icon" d="M 45,24 27,14 27,34"></path>
+				</svg>
+			</div>
+		</div>
+	`,
 };
