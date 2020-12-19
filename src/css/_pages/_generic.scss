@@ -155,6 +155,10 @@
 		.picture {
 			@include aspect-clip(1, 1);
 		}
+
+		.picture--video {
+			@include aspect-clip(16, 9);
+		}
 	}
 }
 

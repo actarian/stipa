@@ -188,7 +188,7 @@
 		}
 
 		.picture--video {
-			@include aspect-clip(5, 4);
+			@include aspect-clip(16, 9);
 			margin-bottom: 16px;
 		}
 	}
@@ -221,7 +221,7 @@
 		}
 
 		.picture--video {
-			@include aspect-clip(5, 4);
+			@include aspect-clip(16, 9);
 			margin-bottom: 16px;
 		}
 	}

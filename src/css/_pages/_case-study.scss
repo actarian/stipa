@@ -241,6 +241,10 @@
 		.picture {
 			@include aspect-clip(5, 4);
 		}
+
+		.picture--video {
+			@include aspect-clip(16, 9);
+		}
 	}
 }
 
