@@ -317,6 +317,7 @@ strong {
     height: auto;
     white-space: nowrap;
     overflow: hidden;
+    text-align: center;
     z-index: 10;
     transition-delay: 0s; }
   .btn--secondary:hover:before, .btn--primary:hover:before, .btn--submit:hover:before, .active.btn--secondary:before, .active.btn--primary:before, .active.btn--submit:before {
