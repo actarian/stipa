@@ -7,9 +7,9 @@ $container-max-widths: (sm: calc(100% - 70px),
 *, *:before, *:after {
   box-sizing: border-box; }
 
-.card--hero .title, .section--hero-tertiary .title, .section--hero-magazine-detail .title, .section--hero-secondary .title, .section--hero-magazine .title, .card--generic .title, .section--office .title, .section--search .title, .section--search .form--control, .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
+.card--hero .title, .section--hero-tertiary .title, .section--hero-magazine-detail .title, .section--hero-secondary .title, .section--hero-magazine .title, .section--hero-portfolio .title, .card--generic .title, .section--office .title, .section--search .title, .section--search .form--control, .section--proposition .title, .section--case-studies__title, .card--case-study .title, .section--listing__title, .section--gallery__title, .card--gallery .title, .section--picture-text .title,
 .section--text-picture .title, .section--magazine-gallery__title, .section--our-offices__title, .group--title-filters .title, .card--portfolio .title, .section--generic-text-intro .title, .section--generic-picture-text .title,
-.section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--accordion__title, .section--hero-magazine__bak .title, .card--magazine .title, .section--hero-portfolio .title, .card--search .title, .card--search .abstract {
+.section--generic-text-picture .title, .section--generic-text-full .title, .section--generic-text-full-negative .title, .section--accordion__title, .section--hero-magazine__bak .title, .card--magazine .title, .section--hero-portfolio_bak .title, .card--search .title, .card--search .abstract {
   text-decoration: none;
   outline: none;
   color: inherit; }
@@ -106,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0; }
 
-.card--hero .title, .section--hero-tertiary .title, .section--hero-magazine-detail .title, .section--hero-secondary .title, .section--hero-magazine .title {
+.card--hero .title, .section--hero-tertiary .title, .section--hero-magazine-detail .title, .section--hero-secondary .title, .section--hero-magazine .title, .section--hero-portfolio .title {
   font-size: 48px;
   line-height: 1.2; }
 
@@ -148,21 +148,21 @@ h1, h2, h3, h4, h5, h6 {
       font-size: 28px;
       margin-bottom: 16px; } }
 
-.section--hero-magazine__bak .title, .card--magazine .title, .section--hero-portfolio .title, .card--search .title {
+.section--hero-magazine__bak .title, .card--magazine .title, .section--hero-portfolio_bak .title, .card--search .title {
   font-size: 24px;
   line-height: 1.2;
   margin-bottom: 24px; }
 
-.section--hero-secondary .abstract, .section--quote .quote, .section--hero-magazine .abstract, .section--office .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
+.section--hero-secondary .abstract, .section--quote .quote, .section--hero-magazine .abstract, .section--office .abstract, .section--hero-portfolio .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
   line-height: 1.2; }
   @media (min-width: 1440px) {
-    .section--hero-secondary .abstract, .section--quote .quote, .section--hero-magazine .abstract, .section--office .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
+    .section--hero-secondary .abstract, .section--quote .quote, .section--hero-magazine .abstract, .section--office .abstract, .section--hero-portfolio .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
       font-size: 24px; } }
   @media (max-width: 1439.98px) {
-    .section--hero-secondary .abstract, .section--quote .quote, .section--hero-magazine .abstract, .section--office .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
+    .section--hero-secondary .abstract, .section--quote .quote, .section--hero-magazine .abstract, .section--office .abstract, .section--hero-portfolio .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
       font-size: 22px; } }
   @media (max-width: 767.98px) {
-    .section--hero-secondary .abstract, .section--quote .quote, .section--hero-magazine .abstract, .section--office .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
+    .section--hero-secondary .abstract, .section--quote .quote, .section--hero-magazine .abstract, .section--office .abstract, .section--hero-portfolio .abstract, .card--portfolio .abstract, .section--text .text, .listing--accordion .listing__item .question .title {
       font-size: 20px; } }
 
 .card--search .abstract {
@@ -4364,7 +4364,7 @@ errors-component {
 .header-v2 .nav--primary-menu li > span,
 .header-v2 .nav--primary-menu li > a {
   padding: .19em 0; }
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     .header-v2 .nav--primary-menu li > span,
     .header-v2 .nav--primary-menu li > a {
       font-size: 44px; } }
@@ -4376,7 +4376,7 @@ errors-component {
 .header-v2 .nav--secondary-menu li > span,
 .header-v2 .nav--secondary-menu li > a {
   padding: .20em 0; }
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     .header-v2 .nav--secondary-menu li > span,
     .header-v2 .nav--secondary-menu li > a {
       font-size: 30px; } }
@@ -6405,8 +6405,85 @@ errors-component {
   padding-top: 0; }
 
 .section--hero-portfolio {
-  padding: 0 0 48px 0; }
+  display: block;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  white-space: normal;
+  text-decoration: none;
+  height: calc(100vh - 90px); }
   .section--hero-portfolio .picture {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+    .section--hero-portfolio .picture > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all ease-in-out 350ms; }
+    .section--hero-portfolio .picture:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3); }
+  .section--hero-portfolio .container {
+    display: block; }
+  .section--hero-portfolio .title {
+    display: block;
+    margin-bottom: 16px;
+    max-width: 720px;
+    color: #ffffff; }
+  .section--hero-portfolio .abstract {
+    display: block;
+    color: #ffffff; }
+  .section--hero-portfolio .category {
+    display: block;
+    padding: 5px 13px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+    color: #152154;
+    background: white;
+    border-radius: 18px; }
+  .section--hero-portfolio .group--bottom {
+    display: flex;
+    justify-content: space-between; }
+  .section--hero-portfolio p {
+    margin: 0; }
+  .section--hero-portfolio p + p {
+    margin-top: 10px; }
+  .section--hero-portfolio:hover > .picture > img {
+    opacity: 0.8;
+    transform: scale(1.02, 1.02); }
+  @media (min-width: 768px) {
+    .section--hero-portfolio .container {
+      padding-top: 40px;
+      padding-bottom: 40px; } }
+  @media (max-width: 767.98px) {
+    .section--hero-portfolio .container {
+      padding-top: 16px;
+      padding-bottom: 16px; } }
+  @media (-webkit-min-device-pixel-ratio: 0) {
+    .section--hero-portfolio {
+      height: auto;
+      min-height: calc(100vh - 90px); } }
+
+.section--hero-portfolio_bak {
+  padding: 0 0 48px 0; }
+  .section--hero-portfolio_bak .picture {
     position: relative;
     display: flex;
     justify-content: center;
@@ -6415,29 +6492,29 @@ errors-component {
     padding-top: 37.70833%;
     overflow: hidden;
     margin-bottom: 24px; }
-    .section--hero-portfolio .picture > img,
-    .section--hero-portfolio .picture > video,
-    .section--hero-portfolio .picture > canvas,
-    .section--hero-portfolio .picture > .video,
-    .section--hero-portfolio .picture > .youtube,
-    .section--hero-portfolio .picture > iframe {
+    .section--hero-portfolio_bak .picture > img,
+    .section--hero-portfolio_bak .picture > video,
+    .section--hero-portfolio_bak .picture > canvas,
+    .section--hero-portfolio_bak .picture > .video,
+    .section--hero-portfolio_bak .picture > .youtube,
+    .section--hero-portfolio_bak .picture > iframe {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover; }
-    .section--hero-portfolio .picture > img {
+    .section--hero-portfolio_bak .picture > img {
       width: 100%;
       height: 100%;
       object-fit: cover; }
-  .section--hero-portfolio .date {
+  .section--hero-portfolio_bak .date {
     margin-bottom: 16px;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.2;
     color: #767676; }
-  .section--hero-portfolio .btn--card {
+  .section--hero-portfolio_bak .btn--card {
     font-size: 16px; }
 
 .section--portfolio {

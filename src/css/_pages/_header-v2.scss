@@ -139,7 +139,7 @@
 			&>a {
 				padding: .19em 0;
 
-				@include media-up(md) {
+				@include media-up(sm) {
 					font-size: 44px;
 				}
 
@@ -156,7 +156,7 @@
 			&>a {
 				padding: .20em 0;
 
-				@include media-up(md) {
+				@include media-up(sm) {
 					font-size: 30px;
 				}
 
