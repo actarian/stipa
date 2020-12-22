@@ -58,7 +58,8 @@
 		}
 	}
 
-	.nav--primary-menu {
+	.nav--primary-menu,
+	.nav--secondary-menu {
 		padding: 0;
 		margin: 0;
 		display: flex;
@@ -78,14 +79,7 @@
 				text-decoration: none;
 				cursor: pointer;
 
-				@include media-up(md) {
-					font-size: 44px;
-				}
-
-				@include media-down(xs) {
-					font-size: 36px;
-				}
-
+				/*
 				&:before {
 					content: '';
 					display: block;
@@ -93,6 +87,12 @@
 					height: 2px;
 					margin-bottom: -3px;
 					background: #f5b335;
+					transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 250ms;
+				}
+				*/
+
+				.badge {
+					width: 0;
 					transition: all cubic-bezier(0.65, 0.05, 0.36, 1) 250ms;
 				}
 
@@ -106,7 +106,12 @@
 				}
 
 				&:hover {
+					/*
 					&:before {
+						width: 0.5em;
+					}
+					*/
+					.badge {
 						width: 0.5em;
 					}
 				}
@@ -115,7 +120,12 @@
 			&.active {
 				&>span,
 				&>a {
+					/*
 					&:before {
+						width: 0.5em;
+					}
+					*/
+					.badge {
 						width: 0.5em;
 					}
 				}
@@ -123,9 +133,44 @@
 		}
 	}
 
+	.nav--primary-menu {
+		li {
+			&>span,
+			&>a {
+				padding: .19em 0;
+
+				@include media-up(md) {
+					font-size: 44px;
+				}
+
+				@include media-down(xs) {
+					font-size: 36px;
+				}
+			}
+		}
+	}
+
+	.nav--secondary-menu {
+		li {
+			&>span,
+			&>a {
+				padding: .20em 0;
+
+				@include media-up(md) {
+					font-size: 30px;
+				}
+
+				@include media-down(xs) {
+					font-size: 30px;
+				}
+			}
+		}
+	}
+
 	@media screen {
 		.main-menu.active {
-			.nav--primary-menu {
+			.nav--primary-menu,
+			.nav--secondary-menu {
 				&>li {
 					animation: appear-right 250ms 0ms cubic-bezier(0.250, 0.460, 0.450, 0.940) backwards;
 

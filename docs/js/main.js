@@ -2347,8 +2347,7 @@ GalleryComponent.meta = {
       search: new rxcompForm.FormControl(null, rxcompForm.Validators.RequiredValidator())
     });
     var controls = this.controls = form.controls;
-    CssService.height$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (height) {
-      console.log('HeaderComponent.height$', height);
+    CssService.height$().pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (height) {// console.log('HeaderComponent.height$', height);
     });
   };
 

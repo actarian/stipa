@@ -5,9 +5,11 @@
 <!-- @@include ./templates/shared/header.html { "path": "<ul class=\"nav--path\"><li>Magazine</li></ul>" } -->
 
 <section class="section--hero-magazine">
-	<div class="picture">
-		<img loading="lazy" src="/stipa/img/magazine/hero@2x.jpg" />
-	</div>
+	<picture class="picture">
+		<source media="(max-width: 767px)" srcset="/stipa/img/magazine/hero.jpg">
+		<source media="(min-width: 768px)" srcset="/stipa/img/magazine/hero@2x.jpg">
+		<img loading="lazy" src="/stipa/img/magazine/hero@2x.jpg" alt="Image title" ondragstart="return false;">
+	</picture>
 	<div class="container">
 		<div class="date">Set. 16, 2020</div>
 		<h3 class="title">MV Agusta accoglie i suoi visitatori con un look tutto nuovo!</h3>

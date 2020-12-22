@@ -19,7 +19,7 @@ export default class HeaderComponent extends Component {
 		CssService.height$().pipe(
 			takeUntil(this.unsubscribe$)
 		).subscribe(height => {
-			console.log('HeaderComponent.height$', height);
+			// console.log('HeaderComponent.height$', height);
 		});
 	}
 
